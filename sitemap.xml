@@ -53,13 +53,13 @@
   </url>
   
   <url>
-    <loc>http://hanzhihua.cn/categories/shortcodes/</loc>
+    <loc>http://hanzhihua.cn/tags/shortcodes/</loc>
     <lastmod>2018-03-07T16:01:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://hanzhihua.cn/tags/shortcodes/</loc>
+    <loc>http://hanzhihua.cn/categories/shortcodes/</loc>
     <lastmod>2018-03-07T16:01:23+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -141,13 +141,13 @@
   </url>
   
   <url>
-    <loc>http://hanzhihua.cn/categories/english/</loc>
+    <loc>http://hanzhihua.cn/tags/english/</loc>
     <lastmod>2017-08-31T15:43:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://hanzhihua.cn/tags/english/</loc>
+    <loc>http://hanzhihua.cn/categories/english/</loc>
     <lastmod>2017-08-31T15:43:48+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -204,13 +204,13 @@
   </url>
   
   <url>
-    <loc>http://hanzhihua.cn/categories/golang/</loc>
+    <loc>http://hanzhihua.cn/tags/golang/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://hanzhihua.cn/tags/golang/</loc>
+    <loc>http://hanzhihua.cn/categories/golang/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -261,13 +261,13 @@
   </url>
   
   <url>
-    <loc>http://hanzhihua.cn/categories/syntax-highlighting/</loc>
+    <loc>http://hanzhihua.cn/tags/syntax-highlighting/</loc>
     <lastmod>2017-08-30T16:01:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://hanzhihua.cn/tags/syntax-highlighting/</loc>
+    <loc>http://hanzhihua.cn/categories/syntax-highlighting/</loc>
     <lastmod>2017-08-30T16:01:23+08:00</lastmod>
     <priority>0</priority>
   </url>
