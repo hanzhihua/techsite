@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Fri, 02 Aug 2019 22:31:39 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 02 Aug 2019 23:54:30 +0800</lastBuildDate>
     
         <atom:link href="http://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
@@ -36,6 +36,30 @@
 &lt;p&gt;目前从事大数据相关的工作！&lt;/p&gt;
 
 &lt;p&gt;热爱软件开发和与朋友聊天（主要是闲扯）&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Thrid</title>
+      <link>http://hanzhihua.cn/post/thrid/</link>
+      <pubDate>Fri, 02 Aug 2019 23:54:30 +0800</pubDate>
+      
+      <guid>http://hanzhihua.cn/post/thrid/</guid>
+      
+        <description>&lt;p&gt;aaa&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Second</title>
+      <link>http://hanzhihua.cn/post/second/</link>
+      <pubDate>Fri, 02 Aug 2019 23:52:37 +0800</pubDate>
+      
+      <guid>http://hanzhihua.cn/post/second/</guid>
+      
+        <description>&lt;p&gt;second page&lt;/p&gt;
 </description>
       
     </item>
