@@ -16,7 +16,37 @@
   </url>
   
   <url>
+    <loc>http://hanzhihua.cn/categories/</loc>
+    <lastmod>2019-08-02T22:31:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://hanzhihua.cn/post/</loc>
+    <lastmod>2019-08-02T22:31:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://hanzhihua.cn/tags/</loc>
+    <lastmod>2019-08-02T22:31:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://hanzhihua.cn/tags/test/</loc>
+    <lastmod>2019-08-02T22:31:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://hanzhihua.cn/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
+    <lastmod>2019-08-02T22:31:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
     <lastmod>2019-08-02T22:31:39+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -24,16 +54,6 @@
   <url>
     <loc>http://hanzhihua.cn/</loc>
     <lastmod>2019-08-02T22:31:39+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://hanzhihua.cn/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://hanzhihua.cn/tags/</loc>
     <priority>0</priority>
   </url>
   
