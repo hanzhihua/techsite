@@ -1,86 +1,16 @@
-<?xml-stylesheet type="text/xsl" href="http://hanzhihua.cn/sitemap.xsl"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <url>
-    <loc>http://hanzhihua.cn/post/my-first-post/</loc>
-    <lastmod>2019-08-02T22:31:39+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://hanzhihua.cn/about/</loc>
-    <lastmod>2017-08-28T21:41:52+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://hanzhihua.cn/post/</loc>
-    <lastmod>2019-08-02T23:54:30+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://hanzhihua.cn/post/thrid/</loc>
-    <lastmod>2019-08-02T23:54:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://hanzhihua.cn/</loc>
-    <lastmod>2019-08-02T23:54:30+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://hanzhihua.cn/categories/</loc>
-    <lastmod>2019-08-02T23:52:37+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://hanzhihua.cn/post/second/</loc>
-    <lastmod>2019-08-02T23:52:37+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://hanzhihua.cn/tags/</loc>
-    <lastmod>2019-08-02T23:52:37+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://hanzhihua.cn/tags/test22/</loc>
-    <lastmod>2019-08-02T23:52:37+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://hanzhihua.cn/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
-    <lastmod>2019-08-02T23:52:37+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE22/</loc>
-    <lastmod>2019-08-02T23:52:37+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://hanzhihua.cn/tags/test/</loc>
-    <lastmod>2019-08-02T22:31:39+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
-    <lastmod>2019-08-02T22:31:39+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-</urlset>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	
+	<sitemap>
+	   	<loc>http://hanzhihua.cn/cn/sitemap.xml</loc>
+		
+	</sitemap>
+	
+	<sitemap>
+	   	<loc>http://hanzhihua.cn/en/sitemap.xml</loc>
+		
+	   	<lastmod>2019-08-02T23:54:30+08:00</lastmod>
+		
+	</sitemap>
+	
+</sitemapindex>

@@ -5,7 +5,7 @@
     <link>http://hanzhihua.cn/</link>
     <description>Recent content on 一个码农 技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>cn</language>
+    <language>en</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Fri, 02 Aug 2019 23:54:30 +0800</lastBuildDate>
     
@@ -20,22 +20,6 @@
       <guid>http://hanzhihua.cn/post/my-first-post/</guid>
       
         <description>&lt;p&gt;测试！！！&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>关于我</title>
-      <link>http://hanzhihua.cn/about/</link>
-      <pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate>
-      
-      <guid>http://hanzhihua.cn/about/</guid>
-      
-        <description>&lt;p&gt;我有近20年软件开发经验，一直在各个一线互联网公司就职，带过中间件团队，基础服务团队，负责过大数据平台。&lt;/p&gt;
-
-&lt;p&gt;目前从事大数据相关的工作！&lt;/p&gt;
-
-&lt;p&gt;热爱软件开发和与朋友聊天（主要是闲扯）&lt;/p&gt;
 </description>
       
     </item>
@@ -60,6 +44,24 @@
       <guid>http://hanzhihua.cn/post/second/</guid>
       
         <description>&lt;p&gt;second page&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>关于我</title>
+      <link>http://hanzhihua.cn/about/</link>
+      <pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate>
+      
+      <guid>http://hanzhihua.cn/about/</guid>
+      
+        <description>&lt;p&gt;我叫韩志华，好高兴你能找到这儿，这是我的个人站点。&lt;/p&gt;
+
+&lt;p&gt;近20年软件开发经验，一直在各个一线互联网公司就职，带过中间件团队，基础服务团队，负责过大数据平台。&lt;/p&gt;
+
+&lt;p&gt;目前从事大数据相关的工作！&lt;/p&gt;
+
+&lt;p&gt;热爱软件开发和与朋友聊天（主要是闲扯）&lt;/p&gt;
 </description>
       
     </item>

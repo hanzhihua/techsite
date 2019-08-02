@@ -1,0 +1,19 @@
+<?xml-stylesheet type="text/xsl" href="http://hanzhihua.cn/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://hanzhihua.cn/cn/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://hanzhihua.cn/cn/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://hanzhihua.cn/cn/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
