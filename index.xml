@@ -19,10 +19,11 @@
       
       <guid>https://hanzhihua.cn/post/chatbot/</guid>
       
-        <description>&lt;p&gt;最近在研究机器人对话场景，里面涉及的内容比较多，主要以工程的角度去简单实现。
-1.   使用word2vec(利用&lt;a href=&#34;https://github.com/hankcs/HanLP&#34;&gt;hanlp&lt;/a&gt;)，以概率论的方式简单实现&lt;/p&gt;
+        <description>&lt;p&gt;最近在研究机器人对话场景，里面涉及的内容比较多，主要以工程的角度去简单实现。&lt;/p&gt;
 
 &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;使用word2vec(利用&lt;a href=&#34;https://github.com/hankcs/HanLP&#34;&gt;hanlp&lt;/a&gt;)，以概率论的方式简单实现&lt;/p&gt;&lt;/li&gt;
+
 &lt;li&gt;&lt;p&gt;支持词槽判断&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;支持流程意图判断&lt;/p&gt;&lt;/li&gt;

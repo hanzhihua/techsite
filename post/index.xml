@@ -18,7 +18,7 @@
       <pubDate>Sat, 03 Aug 2019 22:43:59 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/post/chatbot/</guid>
-      <description>最近在研究机器人对话场景，里面涉及的内容比较多，主要以工程的角度去简单实现。 1. 使用word2vec(利用hanlp)，以概率论的方式简单实现</description>
+      <description>最近在研究机器人对话场景，里面涉及的内容比较多，主要以工程的角度去简单实现。 使用word2vec(利用hanlp)，以概率论的方式简单实现 支</description>
     </item>
     
   </channel>
