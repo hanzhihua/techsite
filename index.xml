@@ -7,43 +7,33 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Fri, 02 Aug 2019 23:54:30 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 03 Aug 2019 22:43:59 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>第一篇文章</title>
-      <link>https://hanzhihua.cn/post/my-first-post/</link>
-      <pubDate>Fri, 02 Aug 2019 22:31:39 +0800</pubDate>
+      <title>Chatbot</title>
+      <link>https://hanzhihua.cn/post/chatbot/</link>
+      <pubDate>Sat, 03 Aug 2019 22:43:59 +0800</pubDate>
       
-      <guid>https://hanzhihua.cn/post/my-first-post/</guid>
+      <guid>https://hanzhihua.cn/post/chatbot/</guid>
       
-        <description>&lt;p&gt;测试！！！&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Thrid</title>
-      <link>https://hanzhihua.cn/post/thrid/</link>
-      <pubDate>Fri, 02 Aug 2019 23:54:30 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/thrid/</guid>
-      
-        <description>&lt;p&gt;aaa&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Second</title>
-      <link>https://hanzhihua.cn/post/second/</link>
-      <pubDate>Fri, 02 Aug 2019 23:52:37 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/second/</guid>
-      
-        <description>&lt;p&gt;second page&lt;/p&gt;
+        <description>&lt;p&gt;最近在研究机器人对话场景，里面涉及的内容比较多，主要用工程的角度去简单实现，
+利用word2vec，以概率论的方式简单实现，下面是功能组件图&lt;/p&gt;
+
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/chatbot.jpg&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/chatbot.jpg&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
 </description>
       
     </item>
