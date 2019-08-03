@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>大数据22 on 一个码农 技术分享</title>
-    <link>http://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE22/</link>
+    <link>https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE22/</link>
     <description>Recent content in 大数据22 on 一个码农 技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Fri, 02 Aug 2019 23:52:37 +0800</lastBuildDate>
     
-	<atom:link href="http://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE22/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE22/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Second</title>
-      <link>http://hanzhihua.cn/post/second/</link>
+      <link>https://hanzhihua.cn/post/second/</link>
       <pubDate>Fri, 02 Aug 2019 23:52:37 +0800</pubDate>
       
-      <guid>http://hanzhihua.cn/post/second/</guid>
+      <guid>https://hanzhihua.cn/post/second/</guid>
       <description>second page</description>
     </item>
     

@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://hanzhihua.cn/sitemap.xml
+Sitemap: https://hanzhihua.cn/sitemap.xml

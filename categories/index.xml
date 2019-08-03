@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on 一个码农 技术分享</title>
-    <link>http://hanzhihua.cn/categories/</link>
+    <link>https://hanzhihua.cn/categories/</link>
     <description>Recent content in Categories on 一个码农 技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Fri, 02 Aug 2019 23:52:37 +0800</lastBuildDate>
     
-	<atom:link href="http://hanzhihua.cn/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hanzhihua.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>大数据22</title>
-      <link>http://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE22/</link>
+      <link>https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE22/</link>
       <pubDate>Fri, 02 Aug 2019 23:52:37 +0800</pubDate>
       
-      <guid>http://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE22/</guid>
+      <guid>https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE22/</guid>
       <description></description>
     </item>
     
     <item>
       <title>大数据</title>
-      <link>http://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
+      <link>https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
       <pubDate>Fri, 02 Aug 2019 22:31:39 +0800</pubDate>
       
-      <guid>http://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</guid>
+      <guid>https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</guid>
       <description></description>
     </item>
     

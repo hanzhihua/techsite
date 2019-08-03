@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>关于我 on 一个码农 技术分享</title>
-    <link>http://hanzhihua.cn/about/</link>
+    <link>https://hanzhihua.cn/about/</link>
     <description>Recent content in 关于我 on 一个码农 技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Sun, 20 Aug 2017 21:38:52 +0800</lastBuildDate>
     
-	<atom:link href="http://hanzhihua.cn/about/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hanzhihua.cn/about/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

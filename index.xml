@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>一个码农 技术分享</title>
-    <link>http://hanzhihua.cn/</link>
+    <link>https://hanzhihua.cn/</link>
     <description>Recent content on 一个码农 技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Fri, 02 Aug 2019 23:54:30 +0800</lastBuildDate>
     
-        <atom:link href="http://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>第一篇文章</title>
-      <link>http://hanzhihua.cn/post/my-first-post/</link>
+      <link>https://hanzhihua.cn/post/my-first-post/</link>
       <pubDate>Fri, 02 Aug 2019 22:31:39 +0800</pubDate>
       
-      <guid>http://hanzhihua.cn/post/my-first-post/</guid>
+      <guid>https://hanzhihua.cn/post/my-first-post/</guid>
       
         <description>&lt;p&gt;测试！！！&lt;/p&gt;
 </description>
@@ -26,10 +26,10 @@
     
     <item>
       <title>Thrid</title>
-      <link>http://hanzhihua.cn/post/thrid/</link>
+      <link>https://hanzhihua.cn/post/thrid/</link>
       <pubDate>Fri, 02 Aug 2019 23:54:30 +0800</pubDate>
       
-      <guid>http://hanzhihua.cn/post/thrid/</guid>
+      <guid>https://hanzhihua.cn/post/thrid/</guid>
       
         <description>&lt;p&gt;aaa&lt;/p&gt;
 </description>
@@ -38,10 +38,10 @@
     
     <item>
       <title>Second</title>
-      <link>http://hanzhihua.cn/post/second/</link>
+      <link>https://hanzhihua.cn/post/second/</link>
       <pubDate>Fri, 02 Aug 2019 23:52:37 +0800</pubDate>
       
-      <guid>http://hanzhihua.cn/post/second/</guid>
+      <guid>https://hanzhihua.cn/post/second/</guid>
       
         <description>&lt;p&gt;second page&lt;/p&gt;
 </description>
