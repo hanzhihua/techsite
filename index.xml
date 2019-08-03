@@ -55,13 +55,22 @@
       
       <guid>https://hanzhihua.cn/about/</guid>
       
-        <description>&lt;p&gt;我叫韩志华，好高兴你能找到这儿，这是我的个人站点。&lt;/p&gt;
+        <description>
+
+&lt;p&gt;我叫韩志华，很高兴你能找到这儿，这是我的个人站点。这个站点的域名是 hanzhihua.cn ，我名字的拼音 hanzhihua ，再加上 .cn 后缀。&lt;/p&gt;
+
+&lt;h2 id=&#34;关于我&#34;&gt;关于我&lt;/h2&gt;
 
 &lt;p&gt;近20年软件开发经验，一直在各个一线互联网公司就职，带过中间件团队，基础服务团队，负责过大数据平台。&lt;/p&gt;
 
 &lt;p&gt;目前从事大数据相关的工作！&lt;/p&gt;
 
-&lt;p&gt;热爱软件开发和与朋友聊天（主要是闲扯）&lt;/p&gt;
+&lt;p&gt;本人爱好比较少，主要就是两个爱好，写代码和与朋友聊天（主要是闲扯）&lt;/p&gt;
+
+&lt;h3 id=&#34;关于本站的建站目的&#34;&gt;关于本站的建站目的&lt;/h3&gt;
+
+&lt;p&gt;本站的内容都是原创，记录我工作上的技术记录，包括分布式、大数据、人工智能、基础知识 四个模块
+希望大家能喜欢&lt;/p&gt;
 </description>
       
     </item>
