@@ -13,14 +13,18 @@
     
     
     <item>
-      <title>Chatbot</title>
+      <title>对话机器人设计</title>
       <link>https://hanzhihua.cn/post/chatbot/</link>
       <pubDate>Sat, 03 Aug 2019 22:43:59 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/post/chatbot/</guid>
       
-        <description>&lt;p&gt;最近在研究机器人对话场景，里面涉及的内容比较多，主要用工程的角度去简单实现，
-利用word2vec，以概率论的方式简单实现，下面是功能组件图&lt;/p&gt;
+        <description>&lt;p&gt;最近在研究机器人对话场景，里面涉及的内容比较多，主要以工程的角度去简单实现。
+1.   利用word2vec(利用hanlp)，以概率论的方式简单实现
+2.   支持词槽判断
+3.   支持流程意图判断&lt;/p&gt;
+
+&lt;p&gt;#组件图&lt;/p&gt;
 
 
 
