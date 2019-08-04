@@ -385,13 +385,10 @@
 
   
 
-    
-
-      
-      <div id="gitalk-container"></div>
+    <div id="gitalk-container">
       <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
       <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-      <script>
+      <script type="text/javascript">
         const gitalk = new Gitalk({
           clientID: '6fdacbf5308d1aa661b4',
           clientSecret: '11a93eb514c765f17225deb68c486ce18e9f54cb',
@@ -409,7 +406,8 @@
           gitalk.render('gitalk-container');
         })();
       </script>
-      
+      </div>
+
 
         </div>
       </div>
