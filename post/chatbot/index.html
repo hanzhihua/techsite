@@ -387,6 +387,30 @@
 
     
 
+      
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+      <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+      <script>
+        const gitalk = new Gitalk({
+          clientID: '6fdacbf5308d1aa661b4',
+          clientSecret: '11a93eb514c765f17225deb68c486ce18e9f54cb',
+          repo: 'hanzhihua.cn',
+          owner: 'hanzhihua',
+          admin: ['hanzhihua'],
+          id: location.pathname, 
+          distractionFreeMode: false 
+        });
+        (function() {
+          if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+            return;
+          }
+          gitalk.render('gitalk-container');
+        })();
+      </script>
+      
+
         </div>
       </div>
     </main>
