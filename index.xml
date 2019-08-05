@@ -21,11 +21,11 @@
       
         <description>
 
-&lt;p&gt;最近在做一个DAG系统，里面设置到控制节点和执行节点通信、及节点发现问题。&lt;/p&gt;
+&lt;p&gt;最近在做一个DAG系统，遇到一个组件节点通信、及节点发现问题。&lt;/p&gt;
 
 &lt;h1 id=&#34;原方案&#34;&gt;原方案&lt;/h1&gt;
 
-&lt;p&gt;基本上就传统的服务发现，调用的玩法，依赖zookeeper
+&lt;p&gt;基本上就是传统的解决方案，服务发现、调用依赖zookeeper&lt;br /&gt;
 ![正常情况]
 
 &lt;div class=&#34;box&#34;&gt;
