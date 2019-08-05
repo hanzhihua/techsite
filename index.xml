@@ -37,7 +37,7 @@
 &lt;ul&gt;
 &lt;li&gt;只侦听zk的节点新增通知，忽略节点下线的通知&lt;/li&gt;
 &lt;li&gt;在执行节点与通信节点新增心跳&lt;/li&gt;
-&lt;li&gt;节点下线，由心跳超时来确定
+&lt;li&gt;节点下线，由心跳超时来确定&lt;br /&gt;
 ![正常情况](&amp;ldquo;/Snip20190805_210.png&amp;rdquo;)&lt;/li&gt;
 &lt;/ul&gt;
 </description>
