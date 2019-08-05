@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Zkchange - 一个码农 技术分享</title>
+  <title>去zk网络分区容错方案 - 一个码农 技术分享</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="最近在做一个DAG系统，遇到一个组件节点通信、及节点发现问题。 原方案 基本上就是传统的解决方案，服务发现、调用依赖zookeeper ![正常情" />
+  <meta name="description" content="最近在做一个DAG系统，遇到一个组件节点通信、及节点发现问题。 原方案 基本上就是传统的解决方案，服务发现、调用依赖zookeeper 部署图 这个" />
 <meta name="keywords" content="网络分区容错" />
 
 
@@ -57,26 +57,26 @@
 
 
 
-<meta property="og:title" content="Zkchange" />
-<meta property="og:description" content="最近在做一个DAG系统，遇到一个组件节点通信、及节点发现问题。 原方案 基本上就是传统的解决方案，服务发现、调用依赖zookeeper ![正常情" />
+<meta property="og:title" content="去zk网络分区容错方案" />
+<meta property="og:description" content="最近在做一个DAG系统，遇到一个组件节点通信、及节点发现问题。 原方案 基本上就是传统的解决方案，服务发现、调用依赖zookeeper 部署图 这个" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hanzhihua.cn/post/zkchange/" />
 <meta property="article:published_time" content="2019-08-05T20:32:50+08:00" />
 <meta property="article:modified_time" content="2019-08-05T20:32:50+08:00" />
-<meta itemprop="name" content="Zkchange">
-<meta itemprop="description" content="最近在做一个DAG系统，遇到一个组件节点通信、及节点发现问题。 原方案 基本上就是传统的解决方案，服务发现、调用依赖zookeeper ![正常情">
+<meta itemprop="name" content="去zk网络分区容错方案">
+<meta itemprop="description" content="最近在做一个DAG系统，遇到一个组件节点通信、及节点发现问题。 原方案 基本上就是传统的解决方案，服务发现、调用依赖zookeeper 部署图 这个">
 
 
 <meta itemprop="datePublished" content="2019-08-05T20:32:50&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-05T20:32:50&#43;08:00" />
-<meta itemprop="wordCount" content="358">
+<meta itemprop="wordCount" content="272">
 
 
 
 <meta itemprop="keywords" content="java,zookeeper," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Zkchange"/>
-<meta name="twitter:description" content="最近在做一个DAG系统，遇到一个组件节点通信、及节点发现问题。 原方案 基本上就是传统的解决方案，服务发现、调用依赖zookeeper ![正常情"/>
+<meta name="twitter:title" content="去zk网络分区容错方案"/>
+<meta name="twitter:description" content="最近在做一个DAG系统，遇到一个组件节点通信、及节点发现问题。 原方案 基本上就是传统的解决方案，服务发现、调用依赖zookeeper 部署图 这个"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -296,7 +296,7 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">Zkchange</h1>
+      <h1 class="post-title">去zk网络分区容错方案</h1>
       
       <div class="post-meta">
         <time datetime="2019-08-05" class="post-time">
@@ -328,9 +328,20 @@
 
 <h1 id="原方案">原方案</h1>
 
-<p>基本上就是传统的解决方案，服务发现、调用依赖zookeeper</p>
+<p>基本上就是传统的解决方案，服务发现、调用依赖zookeeper<br />
+部署图<br />
 
-<p>![正常情况](&ldquo;/Snip20190805_207.png&rdquo;)<br />
+<link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
+<div class="box">
+<figure  itemprop="associatedMedia"
+  itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="/Snip20190805_207.png" />
+    </div>
+    <a href="/Snip20190805_207.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+<br />
 这个方案，有一个致命问题就是当执行节点与zk出现网络不稳定时，会造成控制节点做出错误的决定<br />
 这个时候也许控制节点与执行节点的通信是非常正常，这就是典型的网络分区问题<br />
 考虑到 控制节点与执行节点之间的通信还是主要，只有与zk的通信就不是那么的重要，所以减少对zk的依赖，
@@ -341,9 +352,21 @@
 <ul>
 <li>只侦听zk的节点新增通知，忽略节点下线的通知</li>
 <li>在执行节点与通信节点新增心跳</li>
-<li>节点下线，由心跳超时来确定<br />
-![正常情况2](&ldquo;/Snip20190805_210.png&rdquo;)</li>
+<li>节点下线，由心跳超时来确定<br /></li>
 </ul>
+
+
+
+<div class="box">
+<figure  itemprop="associatedMedia"
+  itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="/Snip20190805_210.png" />
+    </div>
+    <a href="/Snip20190805_210.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
 
     </div>
 
