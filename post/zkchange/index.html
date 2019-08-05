@@ -69,7 +69,7 @@
 
 <meta itemprop="datePublished" content="2019-08-05T20:32:50&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-05T20:32:50&#43;08:00" />
-<meta itemprop="wordCount" content="109">
+<meta itemprop="wordCount" content="357">
 
 
 
@@ -329,7 +329,20 @@
 <h1 id="原方案">原方案</h1>
 
 <p>基本上就是传统的解决方案，服务发现、调用依赖zookeeper<br />
-![正常情况](&ldquo;/Snip20190805_207.png&rdquo;)</p>
+![正常情况](&ldquo;/Snip20190805_207.png&rdquo;)<br />
+这个方案，有一个致命问题就是当执行节点与zk出现网络不稳定时，会造成控制节点做出错误的决定<br />
+这个时候也许控制节点与执行节点的通信是非常正常，这就是典型的网络分区问题<br />
+考虑到 控制节点与执行节点之间的通信还是主要，只有与zk的通信就不是那么的重要，所以减少对zk的依赖，
+只依赖zk的节点上线功能，下线功能就忽略了</p>
+
+<h1 id="新方案">新方案</h1>
+
+<ul>
+<li>只侦听zk的节点新增通知，忽略节点下线的通知</li>
+<li>在执行节点与通信节点新增心跳</li>
+<li>节点下线，由心跳超时来确定
+![正常情况](&ldquo;/Snip20190805_210.png&rdquo;)</li>
+</ul>
 
     </div>
 
