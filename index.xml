@@ -26,18 +26,7 @@
 &lt;h1 id=&#34;原方案&#34;&gt;原方案&lt;/h1&gt;
 
 &lt;p&gt;基本上就是传统的解决方案，服务发现、调用依赖zookeeper&lt;br /&gt;
-![正常情况]
-
-&lt;div class=&#34;box&#34;&gt;
-&lt;figure  itemprop=&#34;associatedMedia&#34;
-  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
-    &lt;div class=&#34;img&#34;&gt;
-      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/Snip20190805_207.png&#34; /&gt;
-    &lt;/div&gt;
-    &lt;a href=&#34;https://hanzhihua.cn/Snip20190805_207.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-&lt;/p&gt;
+![正常情况](&amp;ldquo;/Snip20190805_207.png&amp;rdquo;)&lt;/p&gt;
 </description>
       
     </item>
