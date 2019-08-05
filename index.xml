@@ -25,8 +25,9 @@
 
 &lt;h1 id=&#34;原方案&#34;&gt;原方案&lt;/h1&gt;
 
-&lt;p&gt;基本上就是传统的解决方案，服务发现、调用依赖zookeeper&lt;br /&gt;
-![正常情况](&amp;ldquo;/Snip20190805_207.png&amp;rdquo;)&lt;br /&gt;
+&lt;p&gt;基本上就是传统的解决方案，服务发现、调用依赖zookeeper&lt;/p&gt;
+
+&lt;p&gt;![正常情况](&amp;ldquo;/Snip20190805_207.png&amp;rdquo;)&lt;br /&gt;
 这个方案，有一个致命问题就是当执行节点与zk出现网络不稳定时，会造成控制节点做出错误的决定&lt;br /&gt;
 这个时候也许控制节点与执行节点的通信是非常正常，这就是典型的网络分区问题&lt;br /&gt;
 考虑到 控制节点与执行节点之间的通信还是主要，只有与zk的通信就不是那么的重要，所以减少对zk的依赖，
@@ -38,7 +39,7 @@
 &lt;li&gt;只侦听zk的节点新增通知，忽略节点下线的通知&lt;/li&gt;
 &lt;li&gt;在执行节点与通信节点新增心跳&lt;/li&gt;
 &lt;li&gt;节点下线，由心跳超时来确定&lt;br /&gt;
-![正常情况](&amp;ldquo;/Snip20190805_210.png&amp;rdquo;)&lt;/li&gt;
+![正常情况2](&amp;ldquo;/Snip20190805_210.png&amp;rdquo;)&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
