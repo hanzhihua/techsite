@@ -71,7 +71,7 @@
 
 &lt;p&gt;案例分析，出现下面异常：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;2019-08-02 18:44:59.476 archer-controlnode [nioEventLoopGroup-2-1] c.b.a.c.j.i.net.NettyChannelClient.exceptionCaught ERROR - error while pipeline: {}
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;2019-08-02 18:44:59.476 controlnode [nioEventLoopGroup-2-1] c.b.a.c.j.i.net.NettyChannelClient.exceptionCaught ERROR - error while pipeline: {}
 java.io.IOException: Operation timed out
 	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
 	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
