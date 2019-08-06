@@ -90,9 +90,10 @@ java.io.IOException: Operation timed out
 	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:137)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;很多同学会认为是应用层中设置的connectiontimeout,或者sotime,其实&lt;strong&gt;可能&lt;/strong&gt;都不是&lt;br /&gt;
-而是tcp层 &lt;strong&gt;报文失败重传 timeout&lt;/strong&gt;&lt;br /&gt;
-可以使用tcpdump来查看，如果当tcp层重传报文多次，kernel会reset连接,对应应用层就收到了上述的异常&lt;/p&gt;
+&lt;p&gt;很多同学会认为是应用层中设置的connectiontimeout,或者sotimeout,其实&lt;strong&gt;可能&lt;/strong&gt;都不是&lt;br /&gt;
+而是TCP层 &lt;strong&gt;报文失败重传 timeout&lt;/strong&gt;&lt;br /&gt;
+可以使用tcpdump来查看就明白了&lt;br /&gt;
+TCP层会对报文重传，分超时重传、快速重传，如果当重传报文多次没有收到ack，kernel会reset连接,对应应用层就收到了上述的异常&lt;/p&gt;
 </description>
       
     </item>

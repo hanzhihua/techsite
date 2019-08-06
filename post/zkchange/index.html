@@ -69,7 +69,7 @@
 
 <meta itemprop="datePublished" content="2019-08-05T20:32:50&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-05T20:32:50&#43;08:00" />
-<meta itemprop="wordCount" content="500">
+<meta itemprop="wordCount" content="531">
 
 
 
@@ -393,9 +393,10 @@ java.io.IOException: Operation timed out
 	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:137)
 </code></pre>
 
-<p>很多同学会认为是应用层中设置的connectiontimeout,或者sotime,其实<strong>可能</strong>都不是<br />
-而是tcp层 <strong>报文失败重传 timeout</strong><br />
-可以使用tcpdump来查看，如果当tcp层重传报文多次，kernel会reset连接,对应应用层就收到了上述的异常</p>
+<p>很多同学会认为是应用层中设置的connectiontimeout,或者sotimeout,其实<strong>可能</strong>都不是<br />
+而是TCP层 <strong>报文失败重传 timeout</strong><br />
+可以使用tcpdump来查看就明白了<br />
+TCP层会对报文重传，分超时重传、快速重传，如果当重传报文多次没有收到ack，kernel会reset连接,对应应用层就收到了上述的异常</p>
 
     </div>
 
