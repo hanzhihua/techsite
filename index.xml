@@ -41,8 +41,8 @@
 &lt;br /&gt;
 这个方案，有一个致命问题就是当执行节点与zk出现网络不稳定时，会造成控制节点做出错误的决定&lt;br /&gt;
 这个时候也许控制节点与执行节点的通信是非常正常，这就是典型的网络分区问题&lt;br /&gt;
-考虑到 控制节点与执行节点之间的通信还是主要，只有与zk的通信就不是那么的重要，所以减少对zk的依赖，
-只依赖zk的节点上线功能，下线功能就忽略了&lt;/p&gt;
+考虑到 控制节点与执行节点之间的通信还是主要，而与zk的通信就不是那么的重要，所以减少对zk的依赖，
+只处理zk的节点上线通知，对于下线通知就不处理了，改成依赖节点间的心跳&lt;/p&gt;
 
 &lt;h1 id=&#34;新方案&#34;&gt;新方案&lt;/h1&gt;
 
@@ -64,6 +64,35 @@
   &lt;/figure&gt;
 &lt;/div&gt;
 
+
+&lt;h1 id=&#34;附加知识点&#34;&gt;附加知识点&lt;/h1&gt;
+
+&lt;p&gt;在开发节点心跳功能时，需要对网络timeout类型完全理解。&lt;/p&gt;
+
+&lt;p&gt;案例分析，出现下面异常：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;2019-08-02 18:44:59.476 archer-controlnode [nioEventLoopGroup-2-1] c.b.a.c.j.i.net.NettyChannelClient.exceptionCaught ERROR - error while pipeline: {}
+java.io.IOException: Operation timed out
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at io.netty.buffer.PooledUnsafeDirectByteBuf.setBytes(PooledUnsafeDirectByteBuf.java:311)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:881)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:241)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:119)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:511)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:468)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:382)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:354)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:137)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;很多同学会认为是应用层中设置的connectiontimeout,或者sotime,其实&lt;strong&gt;可能&lt;/strong&gt;都不是&lt;br /&gt;
+而是tcp层 &lt;strong&gt;报文失败重传 timeout&lt;/strong&gt;&lt;br /&gt;
+可以使用tcpdump来查看，如果当tcp层重传报文多次，kernel会reset连接,对应应用层就收到了上述的异常&lt;/p&gt;
 </description>
       
     </item>
@@ -124,7 +153,7 @@
 
 &lt;h2 id=&#34;关于本站的建站目的&#34;&gt;建站目的&lt;/h2&gt;
 
-&lt;p&gt;本站的内容都是原创，记录我工作上的技术积累，主要分 分布式、大数据、人工智能、基础知识 四个模块
+&lt;p&gt;本站的内容都是原创，记录我工作上的技术积累，主要分 分布式、大数据、人工智能、基础设施、编程语言 五个模块
 希望大家能喜欢&lt;/p&gt;
 </description>
       

@@ -69,7 +69,7 @@
 
 <meta itemprop="datePublished" content="2019-08-05T20:32:50&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-05T20:32:50&#43;08:00" />
-<meta itemprop="wordCount" content="274">
+<meta itemprop="wordCount" content="500">
 
 
 
@@ -344,8 +344,8 @@
 <br />
 这个方案，有一个致命问题就是当执行节点与zk出现网络不稳定时，会造成控制节点做出错误的决定<br />
 这个时候也许控制节点与执行节点的通信是非常正常，这就是典型的网络分区问题<br />
-考虑到 控制节点与执行节点之间的通信还是主要，只有与zk的通信就不是那么的重要，所以减少对zk的依赖，
-只依赖zk的节点上线功能，下线功能就忽略了</p>
+考虑到 控制节点与执行节点之间的通信还是主要，而与zk的通信就不是那么的重要，所以减少对zk的依赖，
+只处理zk的节点上线通知，对于下线通知就不处理了，改成依赖节点间的心跳</p>
 
 <h1 id="新方案">新方案</h1>
 
@@ -367,6 +367,35 @@
   </figure>
 </div>
 
+
+<h1 id="附加知识点">附加知识点</h1>
+
+<p>在开发节点心跳功能时，需要对网络timeout类型完全理解。</p>
+
+<p>案例分析，出现下面异常：</p>
+
+<pre><code class="language-java">2019-08-02 18:44:59.476 archer-controlnode [nioEventLoopGroup-2-1] c.b.a.c.j.i.net.NettyChannelClient.exceptionCaught ERROR - error while pipeline: {}
+java.io.IOException: Operation timed out
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at io.netty.buffer.PooledUnsafeDirectByteBuf.setBytes(PooledUnsafeDirectByteBuf.java:311)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:881)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:241)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:119)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:511)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:468)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:382)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:354)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:137)
+</code></pre>
+
+<p>很多同学会认为是应用层中设置的connectiontimeout,或者sotime,其实<strong>可能</strong>都不是<br />
+而是tcp层 <strong>报文失败重传 timeout</strong><br />
+可以使用tcpdump来查看，如果当tcp层重传报文多次，kernel会reset连接,对应应用层就收到了上述的异常</p>
 
     </div>
 
