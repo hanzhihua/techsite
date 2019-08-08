@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号</copyright>
-    <lastBuildDate>Mon, 05 Aug 2019 20:32:50 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 08 Aug 2019 12:43:34 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>血缘分析</title>
+      <link>https://hanzhihua.cn/post/table_relate/</link>
+      <pubDate>Thu, 08 Aug 2019 12:43:34 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/table_relate/</guid>
+      <description>数据血缘就是分析数据之间的关系，也就是对元信息进行管理，是数据平台重要组成部分 元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管</description>
+    </item>
     
     <item>
       <title>去zk网络分区容错方案</title>
