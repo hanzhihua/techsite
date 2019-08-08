@@ -37,13 +37,17 @@
 &lt;/div&gt;
 &lt;/p&gt;
 
-&lt;p&gt;#要做什么
-* 在DAG任务平台对sql语句、非sql（spark,MR）进行血缘挖掘
-* 对BI报表使用的数据源与DAG任务生成的数据源进行管理
-* 对存储引擎进行元信息同步&lt;/p&gt;
+&lt;p&gt;#要做什么&lt;/p&gt;
 
-&lt;p&gt;#如何做
-TODO&amp;hellip;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在DAG任务平台对sql语句、非sql（spark,MR）进行血缘挖掘&lt;/li&gt;
+&lt;li&gt;对BI报表使用的数据源与DAG任务生成的数据源进行管理&lt;/li&gt;
+&lt;li&gt;对存储引擎进行元信息同步&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;#如何做&lt;/p&gt;
+
+&lt;p&gt;TODO&amp;hellip;&lt;/p&gt;
 </description>
       
     </item>
