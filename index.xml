@@ -19,10 +19,11 @@
       
       <guid>https://hanzhihua.cn/post/table_relate/</guid>
       
-        <description>&lt;p&gt;数据血缘就是分析数据之间的关系，也就是对元信息进行管理，是数据平台重要组成部分&lt;br /&gt;
-元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管理，一般包括 hive、hbase、mysql、ES、mongo、kafka(&lt;em&gt;topic及内部数据格式&lt;/em&gt;)&lt;/p&gt;
+        <description>&lt;p&gt;数据血缘就是分析数据之间的关系，也就是对元信息进行管理，是数据平台重要组成部分&lt;/p&gt;
 
-&lt;p&gt;#功能图
+&lt;p&gt;元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管理，一般包括 hive、hbase、mysql、ES、mongo、kafka(&lt;em&gt;topic及内部数据格式&lt;/em&gt;)&lt;/p&gt;
+
+&lt;p&gt;#功能图&lt;br /&gt;
 
 
 &lt;div class=&#34;box&#34;&gt;
