@@ -19,11 +19,14 @@
       
       <guid>https://hanzhihua.cn/post/table_relate/</guid>
       
-        <description>&lt;p&gt;数据血缘就是分析数据之间的关系，也就是对元信息进行管理，是数据平台重要组成部分&lt;/p&gt;
+        <description>
+
+&lt;p&gt;数据血缘就是分析数据之间的关系，也就是对元信息进行管理，是数据平台重要组成部分&lt;/p&gt;
 
 &lt;p&gt;元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管理，一般包括 hive、hbase、mysql、ES、mongo、kafka(&lt;em&gt;topic及内部数据格式&lt;/em&gt;)&lt;/p&gt;
 
-&lt;p&gt;#功能图&lt;br /&gt;
+&lt;h1 id=&#34;功能图&#34;&gt;功能图&lt;/h1&gt;
+
 
 
 &lt;div class=&#34;box&#34;&gt;
@@ -35,9 +38,9 @@
     &lt;a href=&#34;https://hanzhihua.cn/Snip20190808_213.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
   &lt;/figure&gt;
 &lt;/div&gt;
-&lt;/p&gt;
 
-&lt;p&gt;#要做什么&lt;/p&gt;
+
+&lt;h1 id=&#34;要做什么&#34;&gt;要做什么&lt;/h1&gt;
 
 &lt;ul&gt;
 &lt;li&gt;在DAG任务平台对sql语句、非sql（spark,MR）进行血缘挖掘&lt;/li&gt;
@@ -45,7 +48,7 @@
 &lt;li&gt;对存储引擎进行元信息同步&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;#如何做&lt;/p&gt;
+&lt;h1 id=&#34;如何做&#34;&gt;如何做&lt;/h1&gt;
 
 &lt;p&gt;TODO&amp;hellip;&lt;/p&gt;
 </description>
