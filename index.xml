@@ -7,10 +7,95 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号</copyright>
-    <lastBuildDate>Thu, 08 Aug 2019 12:43:34 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 08 Aug 2019 18:50:43 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ha</title>
+      <link>https://hanzhihua.cn/post/ha/</link>
+      <pubDate>Thu, 08 Aug 2019 18:50:43 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/ha/</guid>
+      
+        <description>
+
+&lt;h1 id=&#34;web服务高可用设计&#34;&gt;WEB服务高可用设计&lt;/h1&gt;
+
+&lt;p&gt;主要是从以下几个方面去考虑，设计不考虑dns,动静态CDN&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;架构是slb+keepalived+web服务（针对运维高可用，需要做少量工作）&lt;/li&gt;
+&lt;li&gt;slb开源可选方案lvs、haproxy、nginx&lt;/li&gt;
+&lt;li&gt;slb是可以分层的,主要看项目规模&lt;/li&gt;
+&lt;li&gt;高可用要需要跟CICD配合，web端需要做点工作&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;标准玩法&#34;&gt;标准玩法&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Nginx 配置&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;upstream api {
+server *:8080 weight=5;
+server *:8080 weight=5;
+server *:8080 weight=5;
+server *:8080 weight=5;
+check interval=3000 rise=2 fall=3 timeout=1000 type=http;
+check_http_send &amp;quot;HEAD /health/status HTTP/1.0\r\n\r\n&amp;quot;;
+check_http_expect_alive http_2xx http_3xx;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;web端改造(java语言)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Controller
+@RequestMapping(&amp;quot;/health&amp;quot;)
+public class HealthController {
+
+	private static boolean healthFlag = false;
+
+	//白名单
+	private static Set&amp;lt;String&amp;gt; ipSet = new HashSet&amp;lt;String&amp;gt;();
+
+	static {
+		ipSet.add(&amp;quot;******&amp;quot;);
+	}
+
+	//项目启动时触发 （由运维发布时触发）
+	@RequestMapping(&amp;quot;/active&amp;quot;)
+	public void active(HttpServletRequest request, HttpServletResponse response) {
+		String ip = HttpUtils.getRemoteIP(request);
+		if (ipSet.contains(ip)) {
+			healthFlag = true;
+		} else {
+			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+		}
+	}
+
+	//项目关闭时触发 由运维发布时触发）
+	@RequestMapping(&amp;quot;/offline&amp;quot;)
+	public void offline(HttpServletRequest request, HttpServletResponse response) {
+		String ip = HttpUtils.getRemoteIP(request);
+		if (ipSet.contains(ip)) {
+			healthFlag = false;
+		} else {
+			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+		}
+	}
+	
+	//nginx来探测的URL，来判断web端是否上下线
+	@RequestMapping(&amp;quot;/status&amp;quot;)
+	public void status(HttpServletRequest request, HttpServletResponse response) {
+		response.setStatus(healthFlag ? HttpServletResponse.SC_OK : HttpServletResponse.SC_FORBIDDEN);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>血缘分析</title>
