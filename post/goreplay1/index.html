@@ -3,10 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Categories - 一个码农 技术分享</title>
+  <title>使用Goreplay来做压测 - 一个码农 技术分享</title>
   
-<link rel="alternate" hreflang="cn" href="https://hanzhihua.cn/cn/categories/" />
-
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -25,7 +23,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="Hanzhihua 技术分享." />
+  <meta name="description" content="背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 #接近方案 * 使用goreplay来录制用户请求，来做" />
+
 
 
 
@@ -35,8 +34,7 @@
 <meta name="generator" content="Hugo 0.56.0" />
 
 
-<link rel="canonical" href="https://hanzhihua.cn/categories/" />
-<link href="%7balternate%20%7bRSS%20application/rss&#43;xml%20%20index%20alternate%20%20false%20false%20true%20false%20false%200%7d%20/categories/index.xml%20https://hanzhihua.cn/categories/index.xml%7d" rel="alternate" type="application/rss+xml" title="一个码农 技术分享" />
+<link rel="canonical" href="https://hanzhihua.cn/post/goreplay1/" />
 
 
 
@@ -58,18 +56,26 @@
 
 
 
-<meta property="og:title" content="Categories" />
-<meta property="og:description" content="Hanzhihua 技术分享." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://hanzhihua.cn/categories/" />
+<meta property="og:title" content="使用Goreplay来做压测" />
+<meta property="og:description" content="背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 #接近方案 * 使用goreplay来录制用户请求，来做" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanzhihua.cn/post/goreplay1/" />
+<meta property="article:published_time" content="2019-08-09T16:07:22+08:00" />
+<meta property="article:modified_time" content="2019-08-09T16:07:22+08:00" />
+<meta itemprop="name" content="使用Goreplay来做压测">
+<meta itemprop="description" content="背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 #接近方案 * 使用goreplay来录制用户请求，来做">
 
-<meta property="og:updated_time" content="2019-08-09T16:07:22+08:00" />
-<meta itemprop="name" content="Categories">
-<meta itemprop="description" content="Hanzhihua 技术分享.">
 
+<meta itemprop="datePublished" content="2019-08-09T16:07:22&#43;08:00" />
+<meta itemprop="dateModified" content="2019-08-09T16:07:22&#43;08:00" />
+<meta itemprop="wordCount" content="139">
+
+
+
+<meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Categories"/>
-<meta name="twitter:description" content="Hanzhihua 技术分享."/>
+<meta name="twitter:title" content="使用Goreplay来做压测"/>
+<meta name="twitter:description" content="背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 #接近方案 * 使用goreplay来录制用户请求，来做"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -250,7 +256,7 @@
 
       </li>
     
-        <li class="menu-item active">
+        <li class="menu-item">
         
           
           
@@ -286,161 +292,115 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          
-  
-  
-  
-  
-
-  
-  
+          <article class="post bg-white">
     
-    
-    
-    
-      <section id="archive" class="archive">
-        <div class="archive-title">
-        </div>
-          <div class="collection-title">
-            <h2 class="archive-year">
-              <a href="https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/">
-                Category: 基础设施
-              </a>
-            </h2>
+    <header class="post-header">
+      <h1 class="post-title">使用Goreplay来做压测</h1>
+      
+      <div class="post-meta">
+        <time datetime="2019-08-09" class="post-time">
+          2019-08-09
+        </time>
+        <div class="post-category">
+            <a href="https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/"> 基础设施 </a>
+            
           </div>
+        
 
-          
-            <div class="archive-post">
-              <time datetime="2019-08-09" class="archive-post-time">
-                2019-08-09
-              </time>
-              <span class="archive-post-title">
-                <a href="/post/goreplay1/" class="archive-post-link">
-                  使用Goreplay来做压测
-                </a>
-              </span>
-            </div>
-          
-            <div class="archive-post">
-              <time datetime="2019-08-08" class="archive-post-time">
-                2019-08-08
-              </time>
-              <span class="archive-post-title">
-                <a href="/post/ha/" class="archive-post-link">
-                  WEB端高可用默认玩法
-                </a>
-              </span>
-            </div>
-          
-          
-      </section>
-    
-    
-    
-    
-    
-      <section id="archive" class="archive">
-        <div class="archive-title">
-        </div>
-          <div class="collection-title">
-            <h2 class="archive-year">
-              <a href="https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">
-                Category: 大数据
-              </a>
-            </h2>
-          </div>
+        
+        
 
-          
-            <div class="archive-post">
-              <time datetime="2019-08-08" class="archive-post-time">
-                2019-08-08
-              </time>
-              <span class="archive-post-title">
-                <a href="/post/table_relate/" class="archive-post-link">
-                  血缘分析
-                </a>
-              </span>
-            </div>
-          
-            <div class="archive-post">
-              <time datetime="2019-08-05" class="archive-post-time">
-                2019-08-05
-              </time>
-              <span class="archive-post-title">
-                <a href="/post/zkchange/" class="archive-post-link">
-                  去zk网络分区容错方案
-                </a>
-              </span>
-            </div>
-          
-          
-      </section>
-    
-    
-    
-    
-    
-      <section id="archive" class="archive">
-        <div class="archive-title">
-        </div>
-          <div class="collection-title">
-            <h2 class="archive-year">
-              <a href="https://hanzhihua.cn/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">
-                Category: 人工智能
-              </a>
-            </h2>
-          </div>
+        
+        
+      </div>
+    </header>
 
-          
-            <div class="archive-post">
-              <time datetime="2019-08-03" class="archive-post-time">
-                2019-08-03
-              </time>
-              <span class="archive-post-title">
-                <a href="/post/chatbot/" class="archive-post-link">
-                  对话机器人设计
-                </a>
-              </span>
-            </div>
-          
-          
-      </section>
     
     
-    
-    
-    
-      <section id="archive" class="archive">
-        <div class="archive-title">
-        </div>
-          <div class="collection-title">
-            <h2 class="archive-year">
-              <a href="https://hanzhihua.cn/categories/%E5%88%86%E5%B8%83%E5%BC%8F/">
-                Category: 分布式
-              </a>
-            </h2>
-          </div>
 
-          
-            <div class="archive-post">
-              <time datetime="2019-08-05" class="archive-post-time">
-                2019-08-05
-              </time>
-              <span class="archive-post-title">
-                <a href="/post/zkchange/" class="archive-post-link">
-                  去zk网络分区容错方案
-                </a>
-              </span>
-            </div>
-          
-          
-      </section>
+    
+    <div class="post-content">
+      
+
+<h1 id="背景">背景</h1>
+
+<p>项目要做一个性能测试，希望能最大限度的模拟用户真实请求。</p>
+
+<p>项目特点弱安全性，无用户标识</p>
+
+<p>#接近方案
+* 使用<a href="https://github.com/buger/goreplay">goreplay</a>来录制用户请求，来做压测样本
+* 登录线上服务器，录制请求<br />
+./gor &ndash;input-raw :线上端口 &ndash;output-file=input.gor &ndash;output-file-append
+* 在压测机，放大流量压测<br />
+ ./gor &ndash;input-file &ldquo;input.gor|450000% &ndash;output-http http://测试服务器IP:测试服务器port &ndash;input-file-loop &ndash;exit-after 60m</p>
+
+    </div>
+
     
     
+
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/ha/">
+            <span class="next-text nav-default">WEB端高可用默认玩法</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
 
   
   
 
+  
+  
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+const gitalk = new Gitalk({
+  clientID: '6fdacbf5308d1aa661b4',
+  clientSecret: '11a93eb514c765f17225deb68c486ce18e9f54cb',
+  repo: 'techsite',
+  owner: 'hanzhihua',
+  admin: ['hanzhihua'],
+  id: location.pathname, 
+  distractionFreeMode: false 
+})
+gitalk.render('gitalk-container')
+</script>
+  
+
+  
+  
+
+  
+
+  
+
+
+
+    
 
         </div>
       </div>
