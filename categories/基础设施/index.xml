@@ -18,7 +18,7 @@
       <pubDate>Fri, 09 Aug 2019 16:07:22 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/post/goreplay1/</guid>
-      <description>背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 #接近方案 * 使用goreplay来录制用户请求，来做</description>
+      <description>背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 解决方案 使用goreplay来录制用户请求，来做压测</description>
     </item>
     
     <item>

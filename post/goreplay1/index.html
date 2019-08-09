@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 #接近方案 * 使用goreplay来录制用户请求，来做" />
+  <meta name="description" content="背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 解决方案 使用goreplay来录制用户请求，来做压测" />
 
 
 
@@ -57,25 +57,25 @@
 
 
 <meta property="og:title" content="使用Goreplay来做压测" />
-<meta property="og:description" content="背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 #接近方案 * 使用goreplay来录制用户请求，来做" />
+<meta property="og:description" content="背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 解决方案 使用goreplay来录制用户请求，来做压测" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hanzhihua.cn/post/goreplay1/" />
 <meta property="article:published_time" content="2019-08-09T16:07:22+08:00" />
 <meta property="article:modified_time" content="2019-08-09T16:07:22+08:00" />
 <meta itemprop="name" content="使用Goreplay来做压测">
-<meta itemprop="description" content="背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 #接近方案 * 使用goreplay来录制用户请求，来做">
+<meta itemprop="description" content="背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 解决方案 使用goreplay来录制用户请求，来做压测">
 
 
 <meta itemprop="datePublished" content="2019-08-09T16:07:22&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-09T16:07:22&#43;08:00" />
-<meta itemprop="wordCount" content="139">
+<meta itemprop="wordCount" content="135">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用Goreplay来做压测"/>
-<meta name="twitter:description" content="背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 #接近方案 * 使用goreplay来录制用户请求，来做"/>
+<meta name="twitter:description" content="背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 解决方案 使用goreplay来录制用户请求，来做压测"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -328,12 +328,15 @@
 
 <p>项目特点弱安全性，无用户标识</p>
 
-<p>#接近方案
-* 使用<a href="https://github.com/buger/goreplay">goreplay</a>来录制用户请求，来做压测样本
-* 登录线上服务器，录制请求<br />
-./gor &ndash;input-raw :线上端口 &ndash;output-file=input.gor &ndash;output-file-append
-* 在压测机，放大流量压测<br />
- ./gor &ndash;input-file &ldquo;input.gor|450000% &ndash;output-http http://测试服务器IP:测试服务器port &ndash;input-file-loop &ndash;exit-after 60m</p>
+<h1 id="解决方案">解决方案</h1>
+
+<ul>
+<li>使用<a href="https://github.com/buger/goreplay">goreplay</a>来录制用户请求，来做压测样本</li>
+<li>登录线上服务器，录制请求<br />
+./gor &ndash;input-raw :线上端口 &ndash;output-file=input.gor &ndash;output-file-append</li>
+<li>在压测机，放大流量压测<br />
+./gor &ndash;input-file &ldquo;input.gor|450000% &ndash;output-http http://测试服务器IP:测试服务器port &ndash;input-file-loop &ndash;exit-after 60m</li>
+</ul>
 
     </div>
 
