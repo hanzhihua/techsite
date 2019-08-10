@@ -7,10 +7,115 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Fri, 09 Aug 2019 16:07:22 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 10 Aug 2019 18:09:05 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Control_shell</title>
+      <link>https://hanzhihua.cn/post/control_shell/</link>
+      <pubDate>Sat, 10 Aug 2019 18:09:05 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/control_shell/</guid>
+      
+        <description>
+
+&lt;h1 id=&#34;服务进程管理&#34;&gt;服务进程管理&lt;/h1&gt;
+
+&lt;p&gt;在工作中，一般是使用supervisor来管理服务进程（*运行在docker容器的服务，那就不需要了*）&lt;/p&gt;
+
+&lt;p&gt;有的时候，我们可能采用简单的方式处理，对服务进程进行管理，就是简单的写一个control.sh&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;模板：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;#!/bin/bash
+
+WORK_DIR=$(cd $(dirname $0)/; pwd)
+cd $WORK_DIR
+
+SERVICE_NAME=服务名
+PID_FILE=$SERVICE_NAME.pid
+LOG_FILE=$SERVICE_NAME.out
+SERVICE_CMD=服务启动脚本
+
+function check_pid() {
+if [ -f $PID_FILE ];then
+    pid=`cat $PID_FILE`
+    if [ -n $pid ]; then
+        running=`ps -p $pid|grep -v &amp;quot;PID TTY&amp;quot; |wc -l`
+        return $running
+    fi
+fi
+return 0
+}
+
+function start() {
+check_pid
+running=$?
+if [ $running -gt 0 ];then
+    echo -n &amp;quot;$SERVICE_NAME now is running already, pid=&amp;quot;
+    cat $PID_FILE
+    return 1
+fi
+
+nohup $SERVICE_CMD   &amp;amp;&amp;gt; $LOG_FILE &amp;amp;
+echo $! &amp;gt; $PID_FILE
+echo &amp;quot;$SERVICE_NAME started..., pid=$!&amp;quot;
+}
+
+function stop() {
+pid=`cat $PID_FILE`
+kill $pid
+echo &amp;quot;$SERVICE_NAME stoped...&amp;quot;
+}
+
+function restart() {
+stop
+sleep 1
+start
+}
+
+function status() {
+check_pid
+running=$?
+if [ $running -gt 0 ];then
+    echo -n &amp;quot;$SERVICE_NAME now is running, pid=&amp;quot;
+    cat $PID_FILE
+else
+    echo &amp;quot;$SERVICE_NAME is stoped&amp;quot;
+fi
+}
+
+function tailf() {
+tail -f $logfile
+}
+
+function help() {
+echo &amp;quot;$0 start|stop|restart|status|tail&amp;quot;
+}
+
+if [ &amp;quot;$1&amp;quot; == &amp;quot;&amp;quot; ]; then
+help
+elif [ &amp;quot;$1&amp;quot; == &amp;quot;stop&amp;quot; ];then
+stop
+elif [ &amp;quot;$1&amp;quot; == &amp;quot;start&amp;quot; ];then
+start
+elif [ &amp;quot;$1&amp;quot; == &amp;quot;restart&amp;quot; ];then
+restart
+elif [ &amp;quot;$1&amp;quot; == &amp;quot;status&amp;quot; ];then
+status
+elif [ &amp;quot;$1&amp;quot; == &amp;quot;tail&amp;quot; ];then
+tailf
+else
+help
+fi
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>使用Goreplay来做压测</title>
@@ -313,7 +418,7 @@ TCP层会对报文重传，分超时重传、快速重传，如果当重传报�
 &lt;h2 id=&#34;关于本站的建站目的&#34;&gt;建站目的&lt;/h2&gt;
 
 &lt;p&gt;本站的内容都是原创，记录我工作上的技术积累，主要分 分布式、大数据、人工智能、基础设施、编程语言 五个模块
-希望大家能喜欢&lt;/p&gt;
+希望大家能喜欢，大家有什么技术问题也可以咨询我，我的QQ: 8187347&lt;/p&gt;
 </description>
       
     </item>
