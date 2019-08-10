@@ -18,7 +18,7 @@
       <pubDate>Sat, 10 Aug 2019 18:09:05 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/post/control_shell/</guid>
-      <description>服务进程管理 在生成环境中，一般是使用supervisor来管理服务进程（*运行在k8s平台上的服务，那就不需要了*） 但有的时候，我们可能采用</description>
+      <description>服务进程管理 在生成环境中，一般是使用supervisor来管理服务进程（运行在k8s平台上的服务，那就不需要了） 但有的时候，我们可能采用简单</description>
     </item>
     
   </channel>
