@@ -19,11 +19,7 @@
       
       <guid>https://hanzhihua.cn/post/control_shell/</guid>
       
-        <description>
-
-&lt;h2 id=&#34;服务进程管理&#34;&gt;服务进程管理&lt;/h2&gt;
-
-&lt;p&gt;在生成环境中，一般是使用&lt;a href=&#34;http://supervisord.org/&#34;&gt;supervisor&lt;/a&gt;来管理服务进程（运行在k8s平台上的服务，那就不需要了）&lt;/p&gt;
+        <description>&lt;p&gt;在生成环境中，一般是使用&lt;a href=&#34;http://supervisord.org/&#34;&gt;supervisor&lt;/a&gt;来管理服务进程（运行在k8s平台上的服务，那就不需要了）&lt;/p&gt;
 
 &lt;p&gt;但有的时候，我们可能采用简单的方式处理，对服务进程进行管理，就是简单的写一个control.sh&lt;/p&gt;
 
