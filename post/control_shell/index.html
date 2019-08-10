@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Control_shell - 一个码农 技术分享</title>
+  <title>服务进程管理脚本 - 一个码农 技术分享</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="服务进程管理 在工作中，一般是使用supervisor来管理服务进程（*运行在docker容器的服务，那就不需要了*） 有的时候，我们可能采用简" />
+  <meta name="description" content="服务进程管理 在生成环境中，一般是使用supervisor来管理服务进程（*运行在k8s平台上的服务，那就不需要了*） 但有的时候，我们可能采用" />
 <meta name="keywords" content="shell" />
 
 
@@ -57,26 +57,26 @@
 
 
 
-<meta property="og:title" content="Control_shell" />
-<meta property="og:description" content="服务进程管理 在工作中，一般是使用supervisor来管理服务进程（*运行在docker容器的服务，那就不需要了*） 有的时候，我们可能采用简" />
+<meta property="og:title" content="服务进程管理脚本" />
+<meta property="og:description" content="服务进程管理 在生成环境中，一般是使用supervisor来管理服务进程（*运行在k8s平台上的服务，那就不需要了*） 但有的时候，我们可能采用" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hanzhihua.cn/post/control_shell/" />
 <meta property="article:published_time" content="2019-08-10T18:09:05+08:00" />
 <meta property="article:modified_time" content="2019-08-10T18:09:05+08:00" />
-<meta itemprop="name" content="Control_shell">
-<meta itemprop="description" content="服务进程管理 在工作中，一般是使用supervisor来管理服务进程（*运行在docker容器的服务，那就不需要了*） 有的时候，我们可能采用简">
+<meta itemprop="name" content="服务进程管理脚本">
+<meta itemprop="description" content="服务进程管理 在生成环境中，一般是使用supervisor来管理服务进程（*运行在k8s平台上的服务，那就不需要了*） 但有的时候，我们可能采用">
 
 
 <meta itemprop="datePublished" content="2019-08-10T18:09:05&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-10T18:09:05&#43;08:00" />
-<meta itemprop="wordCount" content="326">
+<meta itemprop="wordCount" content="327">
 
 
 
 <meta itemprop="keywords" content="shell," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Control_shell"/>
-<meta name="twitter:description" content="服务进程管理 在工作中，一般是使用supervisor来管理服务进程（*运行在docker容器的服务，那就不需要了*） 有的时候，我们可能采用简"/>
+<meta name="twitter:title" content="服务进程管理脚本"/>
+<meta name="twitter:description" content="服务进程管理 在生成环境中，一般是使用supervisor来管理服务进程（*运行在k8s平台上的服务，那就不需要了*） 但有的时候，我们可能采用"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -296,7 +296,7 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">Control_shell</h1>
+      <h1 class="post-title">服务进程管理脚本</h1>
       
       <div class="post-meta">
         <time datetime="2019-08-10" class="post-time">
@@ -325,9 +325,9 @@
 
 <h1 id="服务进程管理">服务进程管理</h1>
 
-<p>在工作中，一般是使用supervisor来管理服务进程（*运行在docker容器的服务，那就不需要了*）</p>
+<p>在生成环境中，一般是使用<a href="http://supervisord.org/">supervisor</a>来管理服务进程（*运行在k8s平台上的服务，那就不需要了*）</p>
 
-<p>有的时候，我们可能采用简单的方式处理，对服务进程进行管理，就是简单的写一个control.sh</p>
+<p>但有的时候，我们可能采用简单的方式处理，对服务进程进行管理，就是简单的写一个control.sh</p>
 
 <ul>
 <li><p>模板：</p>
