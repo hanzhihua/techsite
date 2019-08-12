@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>服务进程管理脚本 - 一个码农 技术分享</title>
+  <title>使用消息中间件来均分任务 - 一个码农 技术分享</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,8 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="在生成环境中，一般是使用supervisor来管理服务进程（运行在k8s平台上的服务，那就不需要了） 但有的时候，我们可能采用简单的方式处理，" />
-<meta name="keywords" content="shell" />
+  <meta name="description" content="业务场景 需要把一下大任务，均分到不同节点中去计算，利用集群规模来快速完成任务 解决方案 利用消息中间件的消息分配（任务分配）、容错、消费者（计算" />
 
 
 
@@ -35,7 +34,7 @@
 <meta name="generator" content="Hugo 0.56.0" />
 
 
-<link rel="canonical" href="https://hanzhihua.cn/post/control_shell/" />
+<link rel="canonical" href="https://hanzhihua.cn/post/mqtask/" />
 
 
 
@@ -57,26 +56,26 @@
 
 
 
-<meta property="og:title" content="服务进程管理脚本" />
-<meta property="og:description" content="在生成环境中，一般是使用supervisor来管理服务进程（运行在k8s平台上的服务，那就不需要了） 但有的时候，我们可能采用简单的方式处理，" />
+<meta property="og:title" content="使用消息中间件来均分任务" />
+<meta property="og:description" content="业务场景 需要把一下大任务，均分到不同节点中去计算，利用集群规模来快速完成任务 解决方案 利用消息中间件的消息分配（任务分配）、容错、消费者（计算" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://hanzhihua.cn/post/control_shell/" />
-<meta property="article:published_time" content="2019-08-10T18:09:05+08:00" />
-<meta property="article:modified_time" content="2019-08-10T18:09:05+08:00" />
-<meta itemprop="name" content="服务进程管理脚本">
-<meta itemprop="description" content="在生成环境中，一般是使用supervisor来管理服务进程（运行在k8s平台上的服务，那就不需要了） 但有的时候，我们可能采用简单的方式处理，">
+<meta property="og:url" content="https://hanzhihua.cn/post/mqtask/" />
+<meta property="article:published_time" content="2019-08-11T15:04:12+08:00" />
+<meta property="article:modified_time" content="2019-08-11T15:04:12+08:00" />
+<meta itemprop="name" content="使用消息中间件来均分任务">
+<meta itemprop="description" content="业务场景 需要把一下大任务，均分到不同节点中去计算，利用集群规模来快速完成任务 解决方案 利用消息中间件的消息分配（任务分配）、容错、消费者（计算">
 
 
-<meta itemprop="datePublished" content="2019-08-10T18:09:05&#43;08:00" />
-<meta itemprop="dateModified" content="2019-08-10T18:09:05&#43;08:00" />
-<meta itemprop="wordCount" content="319">
+<meta itemprop="datePublished" content="2019-08-11T15:04:12&#43;08:00" />
+<meta itemprop="dateModified" content="2019-08-11T15:04:12&#43;08:00" />
+<meta itemprop="wordCount" content="191">
 
 
 
-<meta itemprop="keywords" content="shell," />
+<meta itemprop="keywords" content="rocketmq," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="服务进程管理脚本"/>
-<meta name="twitter:description" content="在生成环境中，一般是使用supervisor来管理服务进程（运行在k8s平台上的服务，那就不需要了） 但有的时候，我们可能采用简单的方式处理，"/>
+<meta name="twitter:title" content="使用消息中间件来均分任务"/>
+<meta name="twitter:description" content="业务场景 需要把一下大任务，均分到不同节点中去计算，利用集群规模来快速完成任务 解决方案 利用消息中间件的消息分配（任务分配）、容错、消费者（计算"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -296,14 +295,14 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">服务进程管理脚本</h1>
+      <h1 class="post-title">使用消息中间件来均分任务</h1>
       
       <div class="post-meta">
-        <time datetime="2019-08-10" class="post-time">
-          2019-08-10
+        <time datetime="2019-08-11" class="post-time">
+          2019-08-11
         </time>
         <div class="post-category">
-            <a href="https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/"> 基础设施 </a>
+            <a href="https://hanzhihua.cn/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"> 分布式 </a>
             
           </div>
         
@@ -321,96 +320,37 @@
 
     
     <div class="post-content">
-      <p>在生成环境中，一般是使用<a href="http://supervisord.org/">supervisor</a>来管理服务进程（运行在k8s平台上的服务，那就不需要了）</p>
+      
 
-<p>但有的时候，我们可能采用简单的方式处理，对服务进程进行管理，就是简单的写一个control.sh</p>
+<h2 id="业务场景">业务场景</h2>
+
+<p>需要把一下大任务，均分到不同节点中去计算，利用集群规模来快速完成任务</p>
+
+<h2 id="解决方案">解决方案</h2>
+
+<p>利用消息中间件的消息分配（任务分配）、容错、消费者（计算节点）的自动扩缩容，就可以非常简单的完成该功能。</p>
+
+<p>主要是利用rocketmq机制。</p>
 
 <ul>
-<li><p>模板：</p>
-
-<pre><code class="language-shell">#!/bin/bash
-
-WORK_DIR=$(cd $(dirname $0)/; pwd)
-cd $WORK_DIR
-
-SERVICE_NAME=服务名
-PID_FILE=$SERVICE_NAME.pid
-LOG_FILE=$SERVICE_NAME.out
-SERVICE_CMD=服务启动脚本
-
-function check_pid() {
-if [ -f $PID_FILE ];then
-    pid=`cat $PID_FILE`
-    if [ -n $pid ]; then
-        running=`ps -p $pid|grep -v &quot;PID TTY&quot; |wc -l`
-        return $running
-    fi
-fi
-return 0
-}
-
-function start() {
-check_pid
-running=$?
-if [ $running -gt 0 ];then
-    echo -n &quot;$SERVICE_NAME now is running already, pid=&quot;
-    cat $PID_FILE
-    return 1
-fi
-
-nohup $SERVICE_CMD   &amp;&gt; $LOG_FILE &amp;
-echo $! &gt; $PID_FILE
-echo &quot;$SERVICE_NAME started..., pid=$!&quot;
-}
-
-function stop() {
-pid=`cat $PID_FILE`
-kill $pid
-echo &quot;$SERVICE_NAME stoped...&quot;
-}
-
-function restart() {
-stop
-sleep 1
-start
-}
-
-function status() {
-check_pid
-running=$?
-if [ $running -gt 0 ];then
-    echo -n &quot;$SERVICE_NAME now is running, pid=&quot;
-    cat $PID_FILE
-else
-    echo &quot;$SERVICE_NAME is stoped&quot;
-fi
-}
-
-function tailf() {
-tail -f $logfile
-}
-
-function help() {
-echo &quot;$0 start|stop|restart|status|tail&quot;
-}
-
-if [ &quot;$1&quot; == &quot;&quot; ]; then
-help
-elif [ &quot;$1&quot; == &quot;stop&quot; ];then
-stop
-elif [ &quot;$1&quot; == &quot;start&quot; ];then
-start
-elif [ &quot;$1&quot; == &quot;restart&quot; ];then
-restart
-elif [ &quot;$1&quot; == &quot;status&quot; ];then
-status
-elif [ &quot;$1&quot; == &quot;tail&quot; ];then
-tailf
-else
-help
-fi
-</code></pre></li>
+<li>建立topic，<strong>保证queue数量大于工作节点数量</strong></li>
+<li>由任务发起节点，把大任务拆分一个个小任务，发送到消息中间件</li>
+<li>各个任务处理节点按照分配对来处理小任务</li>
+<li>上报任务处理状态</li>
 </ul>
+
+
+<link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
+<div class="box">
+<figure  itemprop="associatedMedia"
+  itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="/Snip20190812_219.png" />
+    </div>
+    <a href="/Snip20190812_219.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
 
     </div>
 
@@ -423,29 +363,16 @@ fi
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://hanzhihua.cn/tags/shell/">shell</a>
+          <a href="https://hanzhihua.cn/tags/rocketmq/">rocketmq</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/mqtask/">
-            
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
-</svg>
-
-            </i>
-            <span class="prev-text nav-default">使用消息中间件来均分任务</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
         
-          <a class="next" href="/post/goreplay1/">
-            <span class="next-text nav-default">使用Goreplay来做压测</span>
+          <a class="next" href="/post/control_shell/">
+            <span class="next-text nav-default">服务进程管理脚本</span>
             <span class="prev-text nav-mobile">Next</span>
             
             <i class="iconfont">
