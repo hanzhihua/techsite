@@ -284,7 +284,7 @@ public class HealthController {
 &lt;h1 id=&#34;概念&#34;&gt;概念：&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;表： hive表，报表；目前先实现表级别。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;表： hive表，BI报表。&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;作业：对应一个sql文件，或者数据收集，数据转移任务，一个可以独立执行的程序；&lt;/p&gt;&lt;/li&gt;
 
