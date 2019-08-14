@@ -203,6 +203,21 @@ fi
 &lt;li&gt;高可用要需要跟CICD配合，web端需要做点工作&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;h1 id=&#34;标准部署架构&#34;&gt;标准部署架构&lt;/h1&gt;
+
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/Snip20190814_238.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/Snip20190814_238.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+
 &lt;h1 id=&#34;标准玩法&#34;&gt;标准玩法&lt;/h1&gt;
 
 &lt;ul&gt;
