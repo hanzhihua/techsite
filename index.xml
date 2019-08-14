@@ -277,9 +277,31 @@ public class HealthController {
       
         <description>
 
-&lt;p&gt;数据血缘就是分析数据之间的关系，也就是对元信息进行管理，是数据平台重要组成部分&lt;/p&gt;
+&lt;p&gt;数据血缘就是分析数据之间的关系，是数据平台中元信息管理重要组成部分&lt;/p&gt;
 
 &lt;p&gt;元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管理，一般包括 hive、hbase、mysql、ES、mongo、kafka(&lt;em&gt;topic及内部数据格式&lt;/em&gt;)&lt;/p&gt;
+
+&lt;h1 id=&#34;概念&#34;&gt;概念：&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;表： hive表，报表；目前先实现表级别。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;作业：对应一个sql文件，或者数据收集，数据转移任务，一个可以独立执行的程序；&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;项目： DAG系统中概念，包含多个作业；&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;数据的血缘关系&#34;&gt;数据的血缘关系：&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;作业跟作业之间的血缘追溯&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;表跟作业之间的血缘追溯&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;表跟表之间的血缘追溯&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;字段级别的血缘追溯&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h1 id=&#34;功能图&#34;&gt;功能图&lt;/h1&gt;
 
@@ -296,10 +318,11 @@ public class HealthController {
 &lt;/div&gt;
 
 
-&lt;h1 id=&#34;要做什么&#34;&gt;要做什么&lt;/h1&gt;
+&lt;h1 id=&#34;怎么做&#34;&gt;怎么做&lt;/h1&gt;
 
 &lt;ul&gt;
 &lt;li&gt;在DAG任务平台对sql语句、非sql（spark,MR）进行血缘挖掘&lt;/li&gt;
+&lt;li&gt;DAG平台中，项目依赖关系&lt;/li&gt;
 &lt;li&gt;对BI报表使用的数据源与DAG任务生成的数据源进行管理&lt;/li&gt;
 &lt;li&gt;对存储引擎进行元信息同步&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;

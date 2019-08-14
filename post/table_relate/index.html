@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="数据血缘就是分析数据之间的关系，也就是对元信息进行管理，是数据平台重要组成部分 元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管" />
+  <meta name="description" content="数据血缘就是分析数据之间的关系，是数据平台中元信息管理重要组成部分 元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管理，一般包括" />
 
 
 
@@ -57,25 +57,25 @@
 
 
 <meta property="og:title" content="血缘分析" />
-<meta property="og:description" content="数据血缘就是分析数据之间的关系，也就是对元信息进行管理，是数据平台重要组成部分 元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管" />
+<meta property="og:description" content="数据血缘就是分析数据之间的关系，是数据平台中元信息管理重要组成部分 元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管理，一般包括" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hanzhihua.cn/post/table_relate/" />
 <meta property="article:published_time" content="2019-08-08T12:43:34+08:00" />
 <meta property="article:modified_time" content="2019-08-08T12:43:34+08:00" />
 <meta itemprop="name" content="血缘分析">
-<meta itemprop="description" content="数据血缘就是分析数据之间的关系，也就是对元信息进行管理，是数据平台重要组成部分 元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管">
+<meta itemprop="description" content="数据血缘就是分析数据之间的关系，是数据平台中元信息管理重要组成部分 元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管理，一般包括">
 
 
 <meta itemprop="datePublished" content="2019-08-08T12:43:34&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-08T12:43:34&#43;08:00" />
-<meta itemprop="wordCount" content="206">
+<meta itemprop="wordCount" content="343">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="血缘分析"/>
-<meta name="twitter:description" content="数据血缘就是分析数据之间的关系，也就是对元信息进行管理，是数据平台重要组成部分 元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管"/>
+<meta name="twitter:description" content="数据血缘就是分析数据之间的关系，是数据平台中元信息管理重要组成部分 元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管理，一般包括"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -322,9 +322,31 @@
     <div class="post-content">
       
 
-<p>数据血缘就是分析数据之间的关系，也就是对元信息进行管理，是数据平台重要组成部分</p>
+<p>数据血缘就是分析数据之间的关系，是数据平台中元信息管理重要组成部分</p>
 
 <p>元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管理，一般包括 hive、hbase、mysql、ES、mongo、kafka(<em>topic及内部数据格式</em>)</p>
+
+<h1 id="概念">概念：</h1>
+
+<ul>
+<li><p>表： hive表，报表；目前先实现表级别。</p></li>
+
+<li><p>作业：对应一个sql文件，或者数据收集，数据转移任务，一个可以独立执行的程序；</p></li>
+
+<li><p>项目： DAG系统中概念，包含多个作业；</p></li>
+</ul>
+
+<h1 id="数据的血缘关系">数据的血缘关系：</h1>
+
+<ul>
+<li><p>作业跟作业之间的血缘追溯</p></li>
+
+<li><p>表跟作业之间的血缘追溯</p></li>
+
+<li><p>表跟表之间的血缘追溯</p></li>
+
+<li><p>字段级别的血缘追溯</p></li>
+</ul>
 
 <h1 id="功能图">功能图</h1>
 
@@ -341,10 +363,11 @@
 </div>
 
 
-<h1 id="要做什么">要做什么</h1>
+<h1 id="怎么做">怎么做</h1>
 
 <ul>
 <li>在DAG任务平台对sql语句、非sql（spark,MR）进行血缘挖掘</li>
+<li>DAG平台中，项目依赖关系</li>
 <li>对BI报表使用的数据源与DAG任务生成的数据源进行管理</li>
 <li>对存储引擎进行元信息同步<br /></li>
 </ul>
