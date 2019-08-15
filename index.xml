@@ -19,11 +19,7 @@
       
       <guid>https://hanzhihua.cn/post/dag_1/</guid>
       
-        <description>
-
-&lt;h1 id=&#34;hive语句太长问题&#34;&gt;hive语句太长问题&lt;/h1&gt;
-
-&lt;p&gt;今天有一个同学写了一个超长的hive脚步， &amp;gt; 1000行，在执行的时候出现错误&lt;/p&gt;
+        <description>&lt;p&gt;今天有一个同学写了一个超长的hive脚本， &amp;gt; 1000行，在执行ADHOC的时候出现错误&lt;/p&gt;
 
 &lt;p&gt;分析原因，因为DAG系统的作业信息是存在mysql，作业的命令是text格式的，最大只有65535，超过mysql限制长度就
 报错误了&lt;/p&gt;

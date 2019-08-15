@@ -18,7 +18,7 @@
       <pubDate>Thu, 15 Aug 2019 20:30:17 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/post/dag_1/</guid>
-      <description>hive语句太长问题 今天有一个同学写了一个超长的hive脚步， &amp;gt; 1000行，在执行的时候出现错误 分析原因，因为DAG系统的作业信息是存在my</description>
+      <description>今天有一个同学写了一个超长的hive脚本， &amp;gt; 1000行，在执行ADHOC的时候出现错误 分析原因，因为DAG系统的作业信息是存在mysql，作</description>
     </item>
     
     <item>

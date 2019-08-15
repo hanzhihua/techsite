@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="hive语句太长问题 今天有一个同学写了一个超长的hive脚步， &amp;gt; 1000行，在执行的时候出现错误 分析原因，因为DAG系统的作业信息是存在my" />
+  <meta name="description" content="今天有一个同学写了一个超长的hive脚本， &amp;gt; 1000行，在执行ADHOC的时候出现错误 分析原因，因为DAG系统的作业信息是存在mysql，作" />
 
 
 
@@ -57,25 +57,25 @@
 
 
 <meta property="og:title" content="hive语句太长问题" />
-<meta property="og:description" content="hive语句太长问题 今天有一个同学写了一个超长的hive脚步， &gt; 1000行，在执行的时候出现错误 分析原因，因为DAG系统的作业信息是存在my" />
+<meta property="og:description" content="今天有一个同学写了一个超长的hive脚本， &gt; 1000行，在执行ADHOC的时候出现错误 分析原因，因为DAG系统的作业信息是存在mysql，作" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hanzhihua.cn/post/dag_1/" />
 <meta property="article:published_time" content="2019-08-15T20:30:17+08:00" />
 <meta property="article:modified_time" content="2019-08-15T20:30:17+08:00" />
 <meta itemprop="name" content="hive语句太长问题">
-<meta itemprop="description" content="hive语句太长问题 今天有一个同学写了一个超长的hive脚步， &gt; 1000行，在执行的时候出现错误 分析原因，因为DAG系统的作业信息是存在my">
+<meta itemprop="description" content="今天有一个同学写了一个超长的hive脚本， &gt; 1000行，在执行ADHOC的时候出现错误 分析原因，因为DAG系统的作业信息是存在mysql，作">
 
 
 <meta itemprop="datePublished" content="2019-08-15T20:30:17&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-15T20:30:17&#43;08:00" />
-<meta itemprop="wordCount" content="156">
+<meta itemprop="wordCount" content="151">
 
 
 
 <meta itemprop="keywords" content="DAG," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="hive语句太长问题"/>
-<meta name="twitter:description" content="hive语句太长问题 今天有一个同学写了一个超长的hive脚步， &gt; 1000行，在执行的时候出现错误 分析原因，因为DAG系统的作业信息是存在my"/>
+<meta name="twitter:description" content="今天有一个同学写了一个超长的hive脚本， &gt; 1000行，在执行ADHOC的时候出现错误 分析原因，因为DAG系统的作业信息是存在mysql，作"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -320,11 +320,7 @@
 
     
     <div class="post-content">
-      
-
-<h1 id="hive语句太长问题">hive语句太长问题</h1>
-
-<p>今天有一个同学写了一个超长的hive脚步， &gt; 1000行，在执行的时候出现错误</p>
+      <p>今天有一个同学写了一个超长的hive脚本， &gt; 1000行，在执行ADHOC的时候出现错误</p>
 
 <p>分析原因，因为DAG系统的作业信息是存在mysql，作业的命令是text格式的，最大只有65535，超过mysql限制长度就
 报错误了</p>
