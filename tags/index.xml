@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sun, 11 Aug 2019 15:04:12 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 15 Aug 2019 20:30:17 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DAG</title>
+      <link>https://hanzhihua.cn/tags/dag/</link>
+      <pubDate>Thu, 15 Aug 2019 20:30:17 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/tags/dag/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>rocketmq</title>

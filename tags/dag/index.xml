@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DAG on 一个码农 技术分享</title>
+    <link>https://hanzhihua.cn/tags/dag/</link>
+    <description>Recent content in DAG on 一个码农 技术分享</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
+    <lastBuildDate>Thu, 15 Aug 2019 20:30:17 +0800</lastBuildDate>
+    
+	<atom:link href="https://hanzhihua.cn/tags/dag/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Dag_1</title>
+      <link>https://hanzhihua.cn/post/dag_1/</link>
+      <pubDate>Thu, 15 Aug 2019 20:30:17 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/dag_1/</guid>
+      <description>hive语句太长问题 今天有一个同学写了一个超长的hive脚步， &amp;gt; 1000行，在执行的时候出现错误 分析原因，因为DAG系统的作业信息是存在my</description>
+    </item>
+    
+  </channel>
+</rss>
