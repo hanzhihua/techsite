@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Thu, 15 Aug 2019 20:30:17 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 16 Aug 2019 11:33:48 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Jar包冲突问题</title>
+      <link>https://hanzhihua.cn/post/jarconflict/</link>
+      <pubDate>Fri, 16 Aug 2019 11:33:48 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/jarconflict/</guid>
+      <description>今天发现了上线版本出现jar冲突问题 jar包冲突 一般是下面两种情况 项目中依赖同一个jar的不同版本 同一个class存在在不同的jar包中 上述</description>
+    </item>
     
     <item>
       <title>hive语句太长问题</title>

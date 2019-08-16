@@ -7,10 +7,87 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Thu, 15 Aug 2019 20:30:17 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 16 Aug 2019 11:33:48 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Jar包冲突问题</title>
+      <link>https://hanzhihua.cn/post/jarconflict/</link>
+      <pubDate>Fri, 16 Aug 2019 11:33:48 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/jarconflict/</guid>
+      
+        <description>
+
+&lt;p&gt;今天发现了上线版本出现jar冲突问题&lt;/p&gt;
+
+&lt;h2 id=&#34;jar包冲突&#34;&gt;jar包冲突&lt;/h2&gt;
+
+&lt;p&gt;一般是下面两种情况&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;项目中依赖同一个jar的不同版本&lt;/li&gt;
+&lt;li&gt;同一个class存在在不同的jar包中&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;上述情况都会在运行中发生异常，造成麻烦&lt;/p&gt;
+
+&lt;p&gt;可以加上&lt;a href=&#34;https://maven.apache.org/enforcer/maven-enforcer-plugin/&#34;&gt;enforcer&lt;/a&gt;插件，在项目打包时做检查&lt;/p&gt;
+
+&lt;p&gt;加上这个&lt;a href=&#34;https://www.mojohaus.org/extra-enforcer-rules/banDuplicateClasses.html&#34;&gt;banDuplicateClasses规则&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;例子：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;build&amp;gt;
+    &amp;lt;plugins&amp;gt;
+      &amp;lt;plugin&amp;gt;
+        &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;maven-enforcer-plugin&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;1.0&amp;lt;/version&amp;gt; &amp;lt;!-- find the latest version at http://maven.apache.org/plugins/maven-enforcer-plugin/ --&amp;gt;
+        &amp;lt;executions&amp;gt;
+          &amp;lt;execution&amp;gt;
+            &amp;lt;id&amp;gt;enforce-ban-duplicate-classes&amp;lt;/id&amp;gt;
+            &amp;lt;goals&amp;gt;
+              &amp;lt;goal&amp;gt;enforce&amp;lt;/goal&amp;gt;
+            &amp;lt;/goals&amp;gt;
+            &amp;lt;configuration&amp;gt;
+              &amp;lt;rules&amp;gt;
+                &amp;lt;banDuplicateClasses&amp;gt;
+                  &amp;lt;ignoreClasses&amp;gt;
+                    &amp;lt;!-- example of ignoring one specific class --&amp;gt;
+                    &amp;lt;ignoreClass&amp;gt;com.xyz.i18n.Messages&amp;lt;/ignoreClass&amp;gt;
+
+                    &amp;lt;!-- example of ignoring with wildcards --&amp;gt;
+                    &amp;lt;ignoreClass&amp;gt;org.apache.commons.logging.*&amp;lt;/ignoreClass&amp;gt;
+                  &amp;lt;/ignoreClasses&amp;gt;
+                  &amp;lt;scopes&amp;gt;
+                      &amp;lt;scope&amp;gt;compile&amp;lt;/scope&amp;gt;
+                      &amp;lt;scope&amp;gt;provided&amp;lt;/scope&amp;gt;
+                  &amp;lt;/scopes&amp;gt;
+                  &amp;lt;findAllDuplicates&amp;gt;true&amp;lt;/findAllDuplicates&amp;gt;
+                  &amp;lt;ignoreWhenIdentical&amp;gt;true&amp;lt;/ignoreWhenIdentical&amp;gt;
+                &amp;lt;/banDuplicateClasses&amp;gt;
+              &amp;lt;/rules&amp;gt;
+              &amp;lt;fail&amp;gt;true&amp;lt;/fail&amp;gt;
+            &amp;lt;/configuration&amp;gt;
+          &amp;lt;/execution&amp;gt;
+        &amp;lt;/executions&amp;gt;
+        &amp;lt;dependencies&amp;gt;
+          &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.codehaus.mojo&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;extra-enforcer-rules&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;1.2&amp;lt;/version&amp;gt;
+          &amp;lt;/dependency&amp;gt;
+        &amp;lt;/dependencies&amp;gt;
+      &amp;lt;/plugin&amp;gt;
+    &amp;lt;/plugins&amp;gt;
+  &amp;lt;/build&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>hive语句太长问题</title>
