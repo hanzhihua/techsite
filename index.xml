@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>一个码农 技术分享</title>
+    <title>一个码农 工作点滴</title>
     <link>https://hanzhihua.cn/</link>
-    <description>Recent content on 一个码农 技术分享</description>
+    <description>Recent content on 一个码农 工作点滴</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
@@ -48,20 +48,13 @@
         &amp;lt;version&amp;gt;1.0&amp;lt;/version&amp;gt; &amp;lt;!-- find the latest version at http://maven.apache.org/plugins/maven-enforcer-plugin/ --&amp;gt;
         &amp;lt;executions&amp;gt;
           &amp;lt;execution&amp;gt;
-            &amp;lt;id&amp;gt;enforce-ban-duplicate-classes&amp;lt;/id&amp;gt;
+            &amp;lt;id&amp;gt;default-cli&amp;lt;/id&amp;gt;
             &amp;lt;goals&amp;gt;
               &amp;lt;goal&amp;gt;enforce&amp;lt;/goal&amp;gt;
             &amp;lt;/goals&amp;gt;
             &amp;lt;configuration&amp;gt;
               &amp;lt;rules&amp;gt;
                 &amp;lt;banDuplicateClasses&amp;gt;
-                  &amp;lt;ignoreClasses&amp;gt;
-                    &amp;lt;!-- example of ignoring one specific class --&amp;gt;
-                    &amp;lt;ignoreClass&amp;gt;com.xyz.i18n.Messages&amp;lt;/ignoreClass&amp;gt;
-
-                    &amp;lt;!-- example of ignoring with wildcards --&amp;gt;
-                    &amp;lt;ignoreClass&amp;gt;org.apache.commons.logging.*&amp;lt;/ignoreClass&amp;gt;
-                  &amp;lt;/ignoreClasses&amp;gt;
                   &amp;lt;scopes&amp;gt;
                       &amp;lt;scope&amp;gt;compile&amp;lt;/scope&amp;gt;
                       &amp;lt;scope&amp;gt;provided&amp;lt;/scope&amp;gt;
@@ -587,7 +580,7 @@ TCP层会对报文重传，分超时重传、快速重传，如果当重传报�
 
 &lt;h2 id=&#34;关于本站的建站目的&#34;&gt;建站目的&lt;/h2&gt;
 
-&lt;p&gt;本站的内容都是原创，记录我工作上的技术积累，主要分 分布式、大数据、人工智能、基础设施、编程语言 五个模块
+&lt;p&gt;本站的内容都是原创，记录我工作中技术遇到各种点滴及趣味，主要分 分布式、大数据、人工智能、基础设施、编程语言、其他 六个模块
 希望大家能喜欢，大家有什么技术问题也可以咨询我。&lt;br /&gt;
 QQ: 8187347&lt;/p&gt;
 </description>
