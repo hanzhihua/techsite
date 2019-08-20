@@ -31,7 +31,9 @@
 
 &lt;p&gt;有同学提出意见，说无状态系统的高可用应该采用四层路由方式来保证&lt;/p&gt;
 
-&lt;h2 id=&#34;现在说说四层路由方式的优缺点&#34;&gt;现在说说四层路由方式的优缺点&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;四层路由一般指haproxy、nginx tcp stream、lvs+keepalived&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;说说四层路由方式的优缺点&#34;&gt;说说四层路由方式的优缺点&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;优点&lt;br /&gt;
