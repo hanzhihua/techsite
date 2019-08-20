@@ -7,10 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Fri, 16 Aug 2019 11:33:48 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 20 Aug 2019 20:00:11 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>负载均衡的问题</title>
+      <link>https://hanzhihua.cn/post/lb_1/</link>
+      <pubDate>Tue, 20 Aug 2019 20:00:11 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/lb_1/</guid>
+      
+        <description>
+
+&lt;p&gt;最近线上出现一个故障，DAG系统调用hiveserver集群时，hiveserver集群有一个节点出现了crash
+，造成了DAG系统出现大量错误&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;DAG系统维护hiveserver ip列表，使用smartclient方案来完成failover&lt;/li&gt;
+&lt;li&gt;功能实现中有bug，造成了系统failover失败&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;有同学提出意见，说无状态系统的高可用应该采用四层路由方式来保证&lt;/p&gt;
+
+&lt;h2 id=&#34;现在说说四层路由方式的优缺点&#34;&gt;现在说说四层路由方式的优缺点&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;优点&lt;br /&gt;
+节点探活，自动上下线&lt;br /&gt;
+支持多种负载均衡策略&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;缺点&lt;br /&gt;
+节点探活只是在系统层面，无法做到应用层面
+负载均衡策略也无法根据应用性能做出正确的判断&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;应用性能4个重要指标：延迟、错误率、吞吐、饱和度。&lt;/p&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>Jar包冲突问题</title>

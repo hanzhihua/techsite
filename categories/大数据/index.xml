@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Thu, 15 Aug 2019 20:30:17 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 20 Aug 2019 20:00:11 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>负载均衡的问题</title>
+      <link>https://hanzhihua.cn/post/lb_1/</link>
+      <pubDate>Tue, 20 Aug 2019 20:00:11 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/lb_1/</guid>
+      <description>最近线上出现一个故障，DAG系统调用hiveserver集群时，hiveserver集群有一个节点出现了crash ，造成了DAG系统出现大量</description>
+    </item>
     
     <item>
       <title>hive语句太长问题</title>
