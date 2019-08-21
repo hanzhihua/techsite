@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>casestudy on 一个码农 工作点滴</title>
+    <link>https://hanzhihua.cn/tags/casestudy/</link>
+    <description>Recent content in casestudy on 一个码农 工作点滴</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
+    <lastBuildDate>Wed, 21 Aug 2019 20:51:15 +0800</lastBuildDate>
+    
+	<atom:link href="https://hanzhihua.cn/tags/casestudy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>发布脚本问题</title>
+      <link>https://hanzhihua.cn/post/shell_1/</link>
+      <pubDate>Wed, 21 Aug 2019 20:51:15 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/shell_1/</guid>
+      <description>今天一个应用系统在发布新版本过程中，发布系统在关闭应用的时候，随便也把其他应用关闭了 背景 公司规模比较大，大部分项目是跑在k8s上面，部分项目</description>
+    </item>
+    
+    <item>
+      <title>负载均衡的问题</title>
+      <link>https://hanzhihua.cn/post/lb_1/</link>
+      <pubDate>Tue, 20 Aug 2019 20:00:11 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/lb_1/</guid>
+      <description>最近线上出现一个故障，DAG系统调用hiveserver集群时，hiveserver集群有一个节点出现了crash ，造成了DAG系统出现大量</description>
+    </item>
+    
+    <item>
+      <title>Jar包冲突问题</title>
+      <link>https://hanzhihua.cn/post/jarconflict/</link>
+      <pubDate>Fri, 16 Aug 2019 11:33:48 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/jarconflict/</guid>
+      <description>今天发现了上线版本出现jar冲突问题 jar包冲突 一般是下面两种情况 项目中依赖同一个jar的不同版本 同一个class存在在不同的jar包中 上述</description>
+    </item>
+    
+  </channel>
+</rss>
