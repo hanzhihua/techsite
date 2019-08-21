@@ -7,10 +7,55 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 20 Aug 2019 20:00:11 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 21 Aug 2019 20:51:15 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>发布脚本问题</title>
+      <link>https://hanzhihua.cn/post/shell_1/</link>
+      <pubDate>Wed, 21 Aug 2019 20:51:15 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/shell_1/</guid>
+      
+        <description>
+
+&lt;p&gt;今天一个应用系统在发布新版本过程中，发布系统在关闭应用的时候，随便也把其他应用关闭了&lt;/p&gt;
+
+&lt;h1 id=&#34;背景&#34;&gt;背景&lt;/h1&gt;
+
+&lt;p&gt;公司规模比较大，大部分项目是跑在k8s上面，部分项目是跑在kvm上面，但还有一些项目一个机器部署多个应用&lt;br /&gt;
+而今天这个情况发生在部署一台机器上的多个应用&lt;/p&gt;
+
+&lt;h1 id=&#34;问题根因&#34;&gt;问题根因&lt;/h1&gt;
+
+&lt;p&gt;主要问题是出在stop脚本上面，下面是Stop脚本（看官，是不是觉得比较low吧，没有办法历史的原因）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;#!/bin/bash                                                                                                                                                                                       
+export JAVA_HOME=/usr/lib/jdk1.8.0
+export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
+export CLASSPATH=$CLASSPATH:.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
+
+pid=$(ps -aux |grep 关键字|grep java| grep -v &amp;quot;grep&amp;quot;| awk &#39;{print $2}&#39;)
+
+if [ -n &amp;quot;$pid&amp;quot; ];then
+    kill -2 $pid
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;关键字是应用名，而这个应用是一个基础服务，会被很多其他应用依赖，所以pid会拿到多个应用进程的pid,
+全部都kill 了&lt;/p&gt;
+
+&lt;h1 id=&#34;解决方案&#34;&gt;解决方案&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;能容器化的，能虚拟化的，最好都部署在里面，不要直接部署在裸机上面&lt;/li&gt;
+&lt;li&gt;关键字最好是启动类的全称，而不是应用名这样的缩写&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>负载均衡的问题</title>
