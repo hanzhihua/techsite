@@ -449,6 +449,15 @@ public class HealthController {
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h2 id=&#34;发布流程流程&#34;&gt;发布流程流程&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;请求 /offline，在等待3-5s （nginx摘掉服务器和处理完已接受的请求）&lt;/li&gt;
+&lt;li&gt;停应用&lt;/li&gt;
+&lt;li&gt;发布，启动应用&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;请求 /active，挂到nginx上面，接受流量&lt;/li&gt;
+&lt;/ul&gt;
 </description>
       
     </item>

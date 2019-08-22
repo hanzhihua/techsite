@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-08-08T18:50:43&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-08T18:50:43&#43;08:00" />
-<meta itemprop="wordCount" content="357">
+<meta itemprop="wordCount" content="437">
 
 
 
@@ -408,6 +408,15 @@ public class HealthController {
 	}
 }
 </code></pre></li>
+</ul>
+
+<h2 id="发布流程流程">发布流程流程</h2>
+
+<ul>
+<li>请求 /offline，在等待3-5s （nginx摘掉服务器和处理完已接受的请求）</li>
+<li>停应用</li>
+<li>发布，启动应用<br /></li>
+<li>请求 /active，挂到nginx上面，接受流量</li>
 </ul>
 
     </div>
