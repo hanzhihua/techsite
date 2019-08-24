@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Wed, 21 Aug 2019 20:51:15 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 24 Aug 2019 10:56:11 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Io_1</title>
+      <link>https://hanzhihua.cn/post/io_1/</link>
+      <pubDate>Sat, 24 Aug 2019 10:56:11 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/io_1/</guid>
+      
+        <description>
+
+&lt;p&gt;最近在项目中，看到一个已经离职同事写的关于写日志服务的代码&lt;/p&gt;
+
+&lt;h1 id=&#34;写性能提升&#34;&gt;写性能提升&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;使用缓存，必要的时候在落盘&lt;/li&gt;
+&lt;li&gt;预先定义文件大小，在生成文件生成一个长度固定的空文件&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;使用zero copy,可以是sendfile或者mmap方式,下面是mmap的例子&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;FileChannel fileChannel = new RandomAccessFile(this.file, &amp;quot;rw&amp;quot;).getChannel();
+MappedByteBuffer mappedByteBuffer = fileChannel.map(MapMode.READ_WRITE, 0, 文件大小);
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>发布脚本问题</title>

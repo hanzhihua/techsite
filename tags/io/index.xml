@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>编程语言 on 一个码农 工作点滴</title>
-    <link>https://hanzhihua.cn/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</link>
-    <description>Recent content in 编程语言 on 一个码农 工作点滴</description>
+    <title>io on 一个码农 工作点滴</title>
+    <link>https://hanzhihua.cn/tags/io/</link>
+    <description>Recent content in io on 一个码农 工作点滴</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
     <lastBuildDate>Sat, 24 Aug 2019 10:56:11 +0800</lastBuildDate>
     
-	<atom:link href="https://hanzhihua.cn/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hanzhihua.cn/tags/io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       
       <guid>https://hanzhihua.cn/post/io_1/</guid>
       <description>最近在项目中，看到一个已经离职同事写的关于写日志服务的代码 写性能提升 使用缓存，必要的时候在落盘 预先定义文件大小，在生成文件生成一个长度固定的</description>
-    </item>
-    
-    <item>
-      <title>Jar包冲突问题</title>
-      <link>https://hanzhihua.cn/post/jarconflict/</link>
-      <pubDate>Fri, 16 Aug 2019 11:33:48 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/jarconflict/</guid>
-      <description>今天发现了上线版本出现jar冲突问题 jar包冲突 一般是下面两种情况 项目中依赖同一个jar的不同版本 同一个class存在在不同的jar包中 上述</description>
     </item>
     
   </channel>
