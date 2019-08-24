@@ -8,13 +8,6 @@
   </url>
   
   <url>
-    <loc>https://hanzhihua.cn/post/io_1/</loc>
-    <lastmod>2019-08-24T10:56:11+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://hanzhihua.cn/post/</loc>
     <lastmod>2019-08-24T10:56:11+08:00</lastmod>
     <priority>0</priority>
@@ -42,6 +35,13 @@
     <loc>https://hanzhihua.cn/</loc>
     <lastmod>2019-08-24T10:56:11+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/post/io_1/</loc>
+    <lastmod>2019-08-24T10:56:11+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
