@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 24 Aug 2019 10:56:11 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 24 Aug 2019 16:44:39 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>golang</title>
+      <link>https://hanzhihua.cn/tags/golang/</link>
+      <pubDate>Sat, 24 Aug 2019 16:44:39 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>promethues</title>
+      <link>https://hanzhihua.cn/tags/promethues/</link>
+      <pubDate>Sat, 24 Aug 2019 16:44:39 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/tags/promethues/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>io</title>

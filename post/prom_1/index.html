@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>写文件性能总结 - 一个码农 工作点滴</title>
+  <title>Mysql Exporter代码分析 - 一个码农 工作点滴</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="最近在项目中，看到一个已经离职同事写的关于写日志服务的代码 写性能提升 使用缓存，必要的时候在落盘 预先定义文件大小，在生成文件生成一个长度固定的" />
+  <meta name="description" content="今天闲来无事看看 promthues的mysqlexporter 监控组件是如何实现的 实现原理 遵循promethues的规范，提供http接口，" />
 
 
 
@@ -34,7 +34,7 @@
 <meta name="generator" content="Hugo 0.56.0" />
 
 
-<link rel="canonical" href="https://hanzhihua.cn/post/io_1/" />
+<link rel="canonical" href="https://hanzhihua.cn/post/prom_1/" />
 
 
 
@@ -56,26 +56,26 @@
 
 
 
-<meta property="og:title" content="写文件性能总结" />
-<meta property="og:description" content="最近在项目中，看到一个已经离职同事写的关于写日志服务的代码 写性能提升 使用缓存，必要的时候在落盘 预先定义文件大小，在生成文件生成一个长度固定的" />
+<meta property="og:title" content="Mysql Exporter代码分析" />
+<meta property="og:description" content="今天闲来无事看看 promthues的mysqlexporter 监控组件是如何实现的 实现原理 遵循promethues的规范，提供http接口，" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://hanzhihua.cn/post/io_1/" />
-<meta property="article:published_time" content="2019-08-24T10:56:11+08:00" />
-<meta property="article:modified_time" content="2019-08-24T10:56:11+08:00" />
-<meta itemprop="name" content="写文件性能总结">
-<meta itemprop="description" content="最近在项目中，看到一个已经离职同事写的关于写日志服务的代码 写性能提升 使用缓存，必要的时候在落盘 预先定义文件大小，在生成文件生成一个长度固定的">
+<meta property="og:url" content="https://hanzhihua.cn/post/prom_1/" />
+<meta property="article:published_time" content="2019-08-24T16:44:39+08:00" />
+<meta property="article:modified_time" content="2019-08-24T16:44:39+08:00" />
+<meta itemprop="name" content="Mysql Exporter代码分析">
+<meta itemprop="description" content="今天闲来无事看看 promthues的mysqlexporter 监控组件是如何实现的 实现原理 遵循promethues的规范，提供http接口，">
 
 
-<meta itemprop="datePublished" content="2019-08-24T10:56:11&#43;08:00" />
-<meta itemprop="dateModified" content="2019-08-24T10:56:11&#43;08:00" />
-<meta itemprop="wordCount" content="131">
+<meta itemprop="datePublished" content="2019-08-24T16:44:39&#43;08:00" />
+<meta itemprop="dateModified" content="2019-08-24T16:44:39&#43;08:00" />
+<meta itemprop="wordCount" content="206">
 
 
 
-<meta itemprop="keywords" content="java,io," />
+<meta itemprop="keywords" content="golang,promethues," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="写文件性能总结"/>
-<meta name="twitter:description" content="最近在项目中，看到一个已经离职同事写的关于写日志服务的代码 写性能提升 使用缓存，必要的时候在落盘 预先定义文件大小，在生成文件生成一个长度固定的"/>
+<meta name="twitter:title" content="Mysql Exporter代码分析"/>
+<meta name="twitter:description" content="今天闲来无事看看 promthues的mysqlexporter 监控组件是如何实现的 实现原理 遵循promethues的规范，提供http接口，"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -295,14 +295,14 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">写文件性能总结</h1>
+      <h1 class="post-title">Mysql Exporter代码分析</h1>
       
       <div class="post-meta">
         <time datetime="2019-08-24" class="post-time">
           2019-08-24
         </time>
         <div class="post-category">
-            <a href="https://hanzhihua.cn/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"> 编程语言 </a>
+            <a href="https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/"> 基础组件 </a>
             
           </div>
         
@@ -322,19 +322,52 @@
     <div class="post-content">
       
 
-<p>最近在项目中，看到一个已经离职同事写的关于写日志服务的代码</p>
+<p>今天闲来无事看看 promthues的<a href="https://github.com/prometheus/mysqld_exporter">mysqlexporter</a>
+监控组件是如何实现的</p>
 
-<h1 id="写性能提升">写性能提升</h1>
+<h2 id="实现原理">实现原理</h2>
 
 <ul>
-<li>使用缓存，必要的时候在落盘</li>
-<li>预先定义文件大小，在生成文件生成一个长度固定的空文件</li>
+<li>遵循promethues的规范，提供http接口，返回标准的结果集</li>
 
-<li><p>使用zero copy,可以是sendfile或者mmap方式,下面是mmap的例子</p>
+<li><p>主要<strong>运行mysql命令采集指标</strong>，包括以下指标，false默认不采集</p>
 
-<pre><code class="language-java">FileChannel fileChannel = new RandomAccessFile(this.file, &quot;rw&quot;).getChannel();
-MappedByteBuffer mappedByteBuffer = fileChannel.map(MapMode.READ_WRITE, 0, 文件大小);
+<pre><code class="language-golang">var scrapers = map[collector.Scraper]bool{
+	collector.ScrapeGlobalStatus{}:                        true,
+	collector.ScrapeGlobalVariables{}:                     true,
+	collector.ScrapeSlaveStatus{}:                         true,
+	collector.ScrapeProcesslist{}:                         false,
+	collector.ScrapeUser{}:                                false,
+	collector.ScrapeTableSchema{}:                         false,
+	collector.ScrapeInfoSchemaInnodbTablespaces{}:         false,
+	collector.ScrapeInnodbMetrics{}:                       false,
+	collector.ScrapeAutoIncrementColumns{}:                false,
+	collector.ScrapeBinlogSize{}:                          false,
+	collector.ScrapePerfTableIOWaits{}:                    false,
+	collector.ScrapePerfIndexIOWaits{}:                    false,
+	collector.ScrapePerfTableLockWaits{}:                  false,
+	collector.ScrapePerfEventsStatements{}:                false,
+	collector.ScrapePerfEventsStatementsSum{}:             false,
+	collector.ScrapePerfEventsWaits{}:                     false,
+	collector.ScrapePerfFileEvents{}:                      false,
+	collector.ScrapePerfFileInstances{}:                   false,
+	collector.ScrapePerfReplicationGroupMemberStats{}:     false,
+	collector.ScrapePerfReplicationApplierStatsByWorker{}: false,
+	collector.ScrapeUserStat{}:                            false,
+	collector.ScrapeClientStat{}:                          false,
+	collector.ScrapeTableStat{}:                           false,
+	collector.ScrapeSchemaStat{}:                          false,
+	collector.ScrapeInnodbCmp{}:                           true,
+	collector.ScrapeInnodbCmpMem{}:                        true,
+	collector.ScrapeQueryResponseTime{}:                   true,
+	collector.ScrapeEngineTokudbStatus{}:                  false,
+	collector.ScrapeEngineInnodbStatus{}:                  false,
+	collector.ScrapeHeartbeat{}:                           false,
+	collector.ScrapeSlaveHosts{}:                          false,
+}
 </code></pre></li>
+
+<li><p>比如ScrapeGlobalStatus，就是运行 <code>SHOW GLOBAL STATUS</code></p></li>
 </ul>
 
     </div>
@@ -348,30 +381,17 @@ MappedByteBuffer mappedByteBuffer = fileChannel.map(MapMode.READ_WRITE, 0, 文�
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://hanzhihua.cn/tags/java/">java</a>
-          <a href="https://hanzhihua.cn/tags/io/">io</a>
+          <a href="https://hanzhihua.cn/tags/golang/">golang</a>
+          <a href="https://hanzhihua.cn/tags/promethues/">promethues</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/prom_1/">
-            
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
-</svg>
-
-            </i>
-            <span class="prev-text nav-default">Mysql Exporter代码分析</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
         
-          <a class="next" href="/post/shell_1/">
-            <span class="next-text nav-default">发布脚本问题</span>
+          <a class="next" href="/post/io_1/">
+            <span class="next-text nav-default">写文件性能总结</span>
             <span class="prev-text nav-mobile">Next</span>
             
             <i class="iconfont">

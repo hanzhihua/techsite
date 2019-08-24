@@ -7,10 +7,70 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 24 Aug 2019 10:56:11 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 24 Aug 2019 16:44:39 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mysql Exporter代码分析</title>
+      <link>https://hanzhihua.cn/post/prom_1/</link>
+      <pubDate>Sat, 24 Aug 2019 16:44:39 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/prom_1/</guid>
+      
+        <description>
+
+&lt;p&gt;今天闲来无事看看 promthues的&lt;a href=&#34;https://github.com/prometheus/mysqld_exporter&#34;&gt;mysqlexporter&lt;/a&gt;
+监控组件是如何实现的&lt;/p&gt;
+
+&lt;h2 id=&#34;实现原理&#34;&gt;实现原理&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;遵循promethues的规范，提供http接口，返回标准的结果集&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;主要&lt;strong&gt;运行mysql命令采集指标&lt;/strong&gt;，包括以下指标，false默认不采集&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-golang&#34;&gt;var scrapers = map[collector.Scraper]bool{
+	collector.ScrapeGlobalStatus{}:                        true,
+	collector.ScrapeGlobalVariables{}:                     true,
+	collector.ScrapeSlaveStatus{}:                         true,
+	collector.ScrapeProcesslist{}:                         false,
+	collector.ScrapeUser{}:                                false,
+	collector.ScrapeTableSchema{}:                         false,
+	collector.ScrapeInfoSchemaInnodbTablespaces{}:         false,
+	collector.ScrapeInnodbMetrics{}:                       false,
+	collector.ScrapeAutoIncrementColumns{}:                false,
+	collector.ScrapeBinlogSize{}:                          false,
+	collector.ScrapePerfTableIOWaits{}:                    false,
+	collector.ScrapePerfIndexIOWaits{}:                    false,
+	collector.ScrapePerfTableLockWaits{}:                  false,
+	collector.ScrapePerfEventsStatements{}:                false,
+	collector.ScrapePerfEventsStatementsSum{}:             false,
+	collector.ScrapePerfEventsWaits{}:                     false,
+	collector.ScrapePerfFileEvents{}:                      false,
+	collector.ScrapePerfFileInstances{}:                   false,
+	collector.ScrapePerfReplicationGroupMemberStats{}:     false,
+	collector.ScrapePerfReplicationApplierStatsByWorker{}: false,
+	collector.ScrapeUserStat{}:                            false,
+	collector.ScrapeClientStat{}:                          false,
+	collector.ScrapeTableStat{}:                           false,
+	collector.ScrapeSchemaStat{}:                          false,
+	collector.ScrapeInnodbCmp{}:                           true,
+	collector.ScrapeInnodbCmpMem{}:                        true,
+	collector.ScrapeQueryResponseTime{}:                   true,
+	collector.ScrapeEngineTokudbStatus{}:                  false,
+	collector.ScrapeEngineInnodbStatus{}:                  false,
+	collector.ScrapeHeartbeat{}:                           false,
+	collector.ScrapeSlaveHosts{}:                          false,
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;比如ScrapeGlobalStatus，就是运行 &lt;code&gt;SHOW GLOBAL STATUS&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>写文件性能总结</title>
