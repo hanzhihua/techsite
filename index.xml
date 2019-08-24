@@ -21,15 +21,15 @@
       
         <description>
 
-&lt;p&gt;今天遇到一个nginx转发丢失客户端ip问题，原来的配置是这样的&lt;/p&gt;
+&lt;p&gt;今天遇到一个nginx多次转发丢失客户端ip问题，原来的配置是这样的&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;proxy_set_header        X-Real-IP $remote_addr;
 proxy_set_header        X-Forwarded-For $remote_addr;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;每一层nginx配置都是这样的，应用取得的客户端是上一层nginx的配置&lt;/p&gt;
+&lt;p&gt;每一层nginx配置都是这样的，最后应用取得的客户端IP是上一层nginx的IP&lt;/p&gt;
 
-&lt;p&gt;后来发现X-Real-IP被覆盖了&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;根因是nginx的X-Real-IP被覆盖了&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;标准玩法&#34;&gt;标准玩法&lt;/h2&gt;
 

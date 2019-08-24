@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="今天遇到一个nginx转发丢失客户端ip问题，原来的配置是这样的 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $remote_addr; 每一层nginx配置都是这样的，应用取得的客户端是上一层ngin" />
+  <meta name="description" content="今天遇到一个nginx多次转发丢失客户端ip问题，原来的配置是这样的 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $remote_addr; 每一层nginx配置都是这样的，最后应用取得的客户端IP是上" />
 
 
 
@@ -57,25 +57,25 @@
 
 
 <meta property="og:title" content="Nginx多次转发问题" />
-<meta property="og:description" content="今天遇到一个nginx转发丢失客户端ip问题，原来的配置是这样的 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $remote_addr; 每一层nginx配置都是这样的，应用取得的客户端是上一层ngin" />
+<meta property="og:description" content="今天遇到一个nginx多次转发丢失客户端ip问题，原来的配置是这样的 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $remote_addr; 每一层nginx配置都是这样的，最后应用取得的客户端IP是上" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hanzhihua.cn/post/proxy_1/" />
 <meta property="article:published_time" content="2019-08-24T18:49:06+08:00" />
 <meta property="article:modified_time" content="2019-08-24T18:49:06+08:00" />
 <meta itemprop="name" content="Nginx多次转发问题">
-<meta itemprop="description" content="今天遇到一个nginx转发丢失客户端ip问题，原来的配置是这样的 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $remote_addr; 每一层nginx配置都是这样的，应用取得的客户端是上一层ngin">
+<meta itemprop="description" content="今天遇到一个nginx多次转发丢失客户端ip问题，原来的配置是这样的 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $remote_addr; 每一层nginx配置都是这样的，最后应用取得的客户端IP是上">
 
 
 <meta itemprop="datePublished" content="2019-08-24T18:49:06&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-24T18:49:06&#43;08:00" />
-<meta itemprop="wordCount" content="205">
+<meta itemprop="wordCount" content="216">
 
 
 
 <meta itemprop="keywords" content="nginx," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Nginx多次转发问题"/>
-<meta name="twitter:description" content="今天遇到一个nginx转发丢失客户端ip问题，原来的配置是这样的 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $remote_addr; 每一层nginx配置都是这样的，应用取得的客户端是上一层ngin"/>
+<meta name="twitter:description" content="今天遇到一个nginx多次转发丢失客户端ip问题，原来的配置是这样的 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $remote_addr; 每一层nginx配置都是这样的，最后应用取得的客户端IP是上"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -322,15 +322,15 @@
     <div class="post-content">
       
 
-<p>今天遇到一个nginx转发丢失客户端ip问题，原来的配置是这样的</p>
+<p>今天遇到一个nginx多次转发丢失客户端ip问题，原来的配置是这样的</p>
 
 <pre><code>proxy_set_header        X-Real-IP $remote_addr;
 proxy_set_header        X-Forwarded-For $remote_addr;
 </code></pre>
 
-<p>每一层nginx配置都是这样的，应用取得的客户端是上一层nginx的配置</p>
+<p>每一层nginx配置都是这样的，最后应用取得的客户端IP是上一层nginx的IP</p>
 
-<p>后来发现X-Real-IP被覆盖了</p>
+<p><em>根因是nginx的X-Real-IP被覆盖了</em></p>
 
 <h2 id="标准玩法">标准玩法</h2>
 
