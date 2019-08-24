@@ -324,7 +324,7 @@
 
 <p>今天遇到一个nginx多次转发丢失客户端ip问题，原来的配置是这样的</p>
 
-<pre><code>proxy_set_header        X-Real-IP $remote_addr;
+<pre><code class="language-bash">proxy_set_header        X-Real-IP $remote_addr;
 proxy_set_header        X-Forwarded-For $remote_addr;
 </code></pre>
 
@@ -337,7 +337,7 @@ proxy_set_header        X-Forwarded-For $remote_addr;
 <ul>
 <li><p>第一层nginx</p>
 
-<pre><code>proxy_set_header        X-Real-IP $remote_addr;
+<pre><code class="language-bash">proxy_set_header        X-Real-IP $remote_addr;
 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 </code></pre></li>
 
