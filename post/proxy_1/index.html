@@ -330,7 +330,7 @@ proxy_set_header        X-Forwarded-For $remote_addr;
 
 <p>每一层nginx配置都是这样的，最后应用取得的客户端IP是上一层nginx的IP</p>
 
-<p><em>根因是nginx的X-Real-IP被覆盖了</em></p>
+<p><strong>根因是nginx的X-Real-IP被覆盖了</strong></p>
 
 <h2 id="标准玩法">标准玩法</h2>
 
