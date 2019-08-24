@@ -7,10 +7,51 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 24 Aug 2019 16:44:39 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 24 Aug 2019 18:49:06 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Nginx多次转发问题</title>
+      <link>https://hanzhihua.cn/post/proxy_1/</link>
+      <pubDate>Sat, 24 Aug 2019 18:49:06 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/proxy_1/</guid>
+      
+        <description>
+
+&lt;p&gt;今天遇到一个nginx转发丢失客户端ip问题，原来的配置是这样的&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;proxy_set_header        X-Real-IP $remote_addr;
+proxy_set_header        X-Forwarded-For $remote_addr;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;每一层nginx配置都是这样的，应用取得的客户端是上一层nginx的配置&lt;/p&gt;
+
+&lt;p&gt;后来发现X-Real-IP被覆盖了&lt;/p&gt;
+
+&lt;h2 id=&#34;标准玩法&#34;&gt;标准玩法&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;第一层nginx&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;proxy_set_header        X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;后面几层&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;应用方&lt;br /&gt;
+通过x_real_ip/x-real-ip拿到客户端ip&lt;br /&gt;
+通过x-forwarded-for/x_forwarded_for获得ip列表，包括客户端IP、所有nginx的ip&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>Mysql Exporter代码分析</title>

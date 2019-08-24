@@ -3,7 +3,44 @@
   
   <url>
     <loc>https://hanzhihua.cn/categories/</loc>
-    <lastmod>2019-08-24T16:44:39+08:00</lastmod>
+    <lastmod>2019-08-24T18:49:06+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/post/proxy_1/</loc>
+    <lastmod>2019-08-24T18:49:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/post/</loc>
+    <lastmod>2019-08-24T18:49:06+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/tags/</loc>
+    <lastmod>2019-08-24T18:49:06+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/tags/nginx/</loc>
+    <lastmod>2019-08-24T18:49:06+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/</loc>
+    <lastmod>2019-08-24T18:49:06+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/</loc>
+    <lastmod>2019-08-24T18:49:06+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -15,18 +52,6 @@
   </url>
   
   <url>
-    <loc>https://hanzhihua.cn/post/</loc>
-    <lastmod>2019-08-24T16:44:39+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hanzhihua.cn/tags/</loc>
-    <lastmod>2019-08-24T16:44:39+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://hanzhihua.cn/tags/golang/</loc>
     <lastmod>2019-08-24T16:44:39+08:00</lastmod>
     <priority>0</priority>
@@ -34,12 +59,6 @@
   
   <url>
     <loc>https://hanzhihua.cn/tags/promethues/</loc>
-    <lastmod>2019-08-24T16:44:39+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hanzhihua.cn/</loc>
     <lastmod>2019-08-24T16:44:39+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -92,12 +111,6 @@
     <lastmod>2019-08-21T20:51:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/</loc>
-    <lastmod>2019-08-21T20:51:15+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

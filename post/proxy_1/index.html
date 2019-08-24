@@ -3,10 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>一个码农 工作点滴</title>
+  <title>Nginx多次转发问题 - 一个码农 工作点滴</title>
   
-<link rel="alternate" hreflang="cn" href="https://hanzhihua.cn/cn/" />
-
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -25,7 +23,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="Hanzhihua 工作点滴." />
+  <meta name="description" content="今天遇到一个nginx转发丢失客户端ip问题，原来的配置是这样的 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $remote_addr; 每一层nginx配置都是这样的，应用取得的客户端是上一层ngin" />
+
 
 
 
@@ -35,8 +34,7 @@
 <meta name="generator" content="Hugo 0.56.0" />
 
 
-<link rel="canonical" href="https://hanzhihua.cn/" />
-<link href="%7balternate%20%7bRSS%20application/rss&#43;xml%20%20index%20alternate%20%20false%20false%20true%20false%20false%200%7d%20/index.xml%20https://hanzhihua.cn/index.xml%7d" rel="alternate" type="application/rss+xml" title="一个码农 工作点滴" />
+<link rel="canonical" href="https://hanzhihua.cn/post/proxy_1/" />
 
 
 
@@ -58,18 +56,26 @@
 
 
 
-<meta property="og:title" content="一个码农 工作点滴" />
-<meta property="og:description" content="Hanzhihua 工作点滴." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://hanzhihua.cn/" />
+<meta property="og:title" content="Nginx多次转发问题" />
+<meta property="og:description" content="今天遇到一个nginx转发丢失客户端ip问题，原来的配置是这样的 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $remote_addr; 每一层nginx配置都是这样的，应用取得的客户端是上一层ngin" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanzhihua.cn/post/proxy_1/" />
+<meta property="article:published_time" content="2019-08-24T18:49:06+08:00" />
+<meta property="article:modified_time" content="2019-08-24T18:49:06+08:00" />
+<meta itemprop="name" content="Nginx多次转发问题">
+<meta itemprop="description" content="今天遇到一个nginx转发丢失客户端ip问题，原来的配置是这样的 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $remote_addr; 每一层nginx配置都是这样的，应用取得的客户端是上一层ngin">
 
-<meta property="og:updated_time" content="2019-08-24T18:49:06+08:00" />
-<meta itemprop="name" content="一个码农 工作点滴">
-<meta itemprop="description" content="Hanzhihua 工作点滴.">
 
+<meta itemprop="datePublished" content="2019-08-24T18:49:06&#43;08:00" />
+<meta itemprop="dateModified" content="2019-08-24T18:49:06&#43;08:00" />
+<meta itemprop="wordCount" content="205">
+
+
+
+<meta itemprop="keywords" content="nginx," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="一个码农 工作点滴"/>
-<meta name="twitter:description" content="Hanzhihua 工作点滴."/>
+<meta name="twitter:title" content="Nginx多次转发问题"/>
+<meta name="twitter:description" content="今天遇到一个nginx转发丢失客户端ip问题，原来的配置是这样的 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $remote_addr; 每一层nginx配置都是这样的，应用取得的客户端是上一层ngin"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -217,7 +223,7 @@
   <ul id="menu" class="menu">
     
     
-        <li class="menu-item active">
+        <li class="menu-item">
         
           
           
@@ -286,362 +292,100 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          
-  <section id="posts" class="posts">
+          <article class="post bg-white">
     
-    
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
+    <header class="post-header">
+      <h1 class="post-title">Nginx多次转发问题</h1>
       
-      <a class="post-link" href="/post/proxy_1/">Nginx多次转发问题</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2019-08-24" class="post-time">
-        2019-08-24
-      </time>
-      <div class="post-category">
-          <a href="https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/"> 基础设施 </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      今天遇到一个nginx转发丢失客户端ip问题，原来的配置是这样的 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $remote_addr; 每一层nginx配置都是这样的，应用取得的客户端是上一层ngin
-    </div>
-    <div class="read-more">
-      <a href="/post/proxy_1/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
+      <div class="post-meta">
+        <time datetime="2019-08-24" class="post-time">
+          2019-08-24
+        </time>
+        <div class="post-category">
+            <a href="https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/"> 基础设施 </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
 
     
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/prom_1/">Mysql Exporter代码分析</a>
-    </h1>
     
-    <div class="post-meta">
-      <time datetime="2019-08-24" class="post-time">
-        2019-08-24
-      </time>
-      <div class="post-category">
-          <a href="https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/"> 基础组件 </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      今天闲来无事看看 promthues的mysqlexporter 监控组件是如何实现的 实现原理 遵循promethues的规范，提供http接口，
-    </div>
-    <div class="read-more">
-      <a href="/post/prom_1/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
 
     
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
+    <div class="post-content">
       
-      <a class="post-link" href="/post/io_1/">写文件性能总结</a>
-    </h1>
+
+<p>今天遇到一个nginx转发丢失客户端ip问题，原来的配置是这样的</p>
+
+<pre><code>proxy_set_header        X-Real-IP $remote_addr;
+proxy_set_header        X-Forwarded-For $remote_addr;
+</code></pre>
+
+<p>每一层nginx配置都是这样的，应用取得的客户端是上一层nginx的配置</p>
+
+<p>后来发现X-Real-IP被覆盖了</p>
+
+<h2 id="标准玩法">标准玩法</h2>
+
+<ul>
+<li><p>第一层nginx</p>
+
+<pre><code>proxy_set_header        X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</code></pre></li>
+
+<li><p>后面几层</p>
+
+<pre><code>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</code></pre></li>
+
+<li><p>应用方<br />
+通过x_real_ip/x-real-ip拿到客户端ip<br />
+通过x-forwarded-for/x_forwarded_for获得ip列表，包括客户端IP、所有nginx的ip</p></li>
+</ul>
+
+    </div>
+
     
-    <div class="post-meta">
-      <time datetime="2019-08-24" class="post-time">
-        2019-08-24
-      </time>
-      <div class="post-category">
-          <a href="https://hanzhihua.cn/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"> 编程语言 </a>
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://hanzhihua.cn/tags/nginx/">nginx</a>
           
         </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      最近在项目中，看到一个已经离职同事写的关于写日志服务的代码 写性能提升 使用缓存，必要的时候在落盘 预先定义文件大小，在生成文件生成一个长度固定的
-    </div>
-    <div class="read-more">
-      <a href="/post/io_1/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
 
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
       
-      <a class="post-link" href="/post/shell_1/">发布脚本问题</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2019-08-21" class="post-time">
-        2019-08-21
-      </time>
-      <div class="post-category">
-          <a href="https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/"> 基础设施 </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      今天一个应用系统在发布新版本过程中，发布系统在关闭应用的时候，随便也把其他应用关闭了 背景 公司规模比较大，大部分项目是跑在k8s上面，部分项目
-    </div>
-    <div class="read-more">
-      <a href="/post/shell_1/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/prom_1/">
+            <span class="next-text nav-default">Mysql Exporter代码分析</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
 
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/lb_1/">负载均衡的问题</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2019-08-20" class="post-time">
-        2019-08-20
-      </time>
-      <div class="post-category">
-          <a href="https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"> 大数据 </a>
-          <a href="https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/"> 基础设施 </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      最近线上出现一个故障，DAG系统调用hiveserver集群时，hiveserver集群有一个节点出现了crash ，造成了DAG系统出现大量
-    </div>
-    <div class="read-more">
-      <a href="/post/lb_1/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/jarconflict/">Jar包冲突问题</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2019-08-16" class="post-time">
-        2019-08-16
-      </time>
-      <div class="post-category">
-          <a href="https://hanzhihua.cn/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"> 编程语言 </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      今天发现了上线版本出现jar冲突问题 jar包冲突 一般是下面两种情况 项目中依赖同一个jar的不同版本 同一个class存在在不同的jar包中 上述
-    </div>
-    <div class="read-more">
-      <a href="/post/jarconflict/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/dag_1/">hive语句太长问题</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2019-08-15" class="post-time">
-        2019-08-15
-      </time>
-      <div class="post-category">
-          <a href="https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"> 大数据 </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      今天有一个同学写了一个超长的hive脚本， &gt; 1000行，在执行ADHOC的时候出现错误 分析原因，因为DAG系统的作业信息是存在mysql，作
-    </div>
-    <div class="read-more">
-      <a href="/post/dag_1/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/mqtask/">使用消息中间件来均分任务</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2019-08-11" class="post-time">
-        2019-08-11
-      </time>
-      <div class="post-category">
-          <a href="https://hanzhihua.cn/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"> 分布式 </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      业务场景 需要把一下大任务，均分到不同节点中去计算，利用集群规模来快速完成任务 解决方案 利用消息中间件的消息分配（任务分配）、容错、消费者（计算
-    </div>
-    <div class="read-more">
-      <a href="/post/mqtask/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/control_shell/">服务进程管理脚本</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2019-08-10" class="post-time">
-        2019-08-10
-      </time>
-      <div class="post-category">
-          <a href="https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/"> 基础设施 </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      在生成环境中，一般是使用supervisor来管理服务进程（运行在k8s平台上的服务，那就不需要了） 但有的时候，我们可能采用简单的方式处理，
-    </div>
-    <div class="read-more">
-      <a href="/post/control_shell/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/goreplay1/">使用Goreplay来做压测</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2019-08-09" class="post-time">
-        2019-08-09
-      </time>
-      <div class="post-category">
-          <a href="https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/"> 基础设施 </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 解决方案 使用goreplay来录制用户请求，来做压测
-    </div>
-    <div class="read-more">
-      <a href="/post/goreplay1/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-    
-  </section>
-
-  
-  
-
-
-
-  
-  
-  
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
 
   
   
@@ -649,31 +393,33 @@
   
   
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+const gitalk = new Gitalk({
+  clientID: '6fdacbf5308d1aa661b4',
+  clientSecret: '11a93eb514c765f17225deb68c486ce18e9f54cb',
+  repo: 'techsite',
+  owner: 'hanzhihua',
+  admin: ['hanzhihua'],
+  id: location.pathname, 
+  distractionFreeMode: false 
+})
+gitalk.render('gitalk-container')
+</script>
+  
+
   
   
 
   
-  
-  <nav class="pagination">
-    <ul>
-      
-      <li  class="active" >
-        <a href="/">1</a>
-      </li>
-      
-      <li >
-        <a href="/page/2/">2</a>
-      </li>
-      
-    </ul>
-  </nav>
 
   
-  
 
 
 
-
+    
 
         </div>
       </div>
