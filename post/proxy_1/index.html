@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-08-24T18:49:06&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-24T18:49:06&#43;08:00" />
-<meta itemprop="wordCount" content="216">
+<meta itemprop="wordCount" content="273">
 
 
 
@@ -332,12 +332,14 @@ proxy_set_header        X-Forwarded-For $remote_addr;
 
 <p><strong>根因是nginx的X-Real-IP被覆盖了</strong></p>
 
-<h2 id="标准玩法">标准玩法</h2>
+<h2 id="一般玩法">一般玩法</h2>
 
 <ul>
+<li>可定义一个私有的变量 如 <em>x-backend-公司名-real-ip</em></li>
+
 <li><p>第一层nginx</p>
 
-<pre><code class="language-bash">proxy_set_header        X-Real-IP $remote_addr;
+<pre><code class="language-bash">proxy_set_header        x-backend-公司名-real-ip $remote_addr;
 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 </code></pre></li>
 
@@ -347,8 +349,8 @@ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 </code></pre></li>
 
 <li><p>应用方<br />
-通过x_real_ip/x-real-ip拿到客户端ip<br />
-通过x-forwarded-for/x_forwarded_for获得ip列表，包括客户端IP、所有nginx的ip</p></li>
+通过x-backend-公司名-real-ip拿到客户端ip<br />
+通过X-Forwarded-For获得ip列表，(包括客户端IP、所有nginx的ip,通过逗号分隔，第一个为客户端IP）</p></li>
 </ul>
 
     </div>

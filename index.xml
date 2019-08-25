@@ -31,12 +31,14 @@ proxy_set_header        X-Forwarded-For $remote_addr;
 
 &lt;p&gt;&lt;strong&gt;根因是nginx的X-Real-IP被覆盖了&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;标准玩法&#34;&gt;标准玩法&lt;/h2&gt;
+&lt;h2 id=&#34;一般玩法&#34;&gt;一般玩法&lt;/h2&gt;
 
 &lt;ul&gt;
+&lt;li&gt;可定义一个私有的变量 如 &lt;em&gt;x-backend-公司名-real-ip&lt;/em&gt;&lt;/li&gt;
+
 &lt;li&gt;&lt;p&gt;第一层nginx&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;proxy_set_header        X-Real-IP $remote_addr;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;proxy_set_header        x-backend-公司名-real-ip $remote_addr;
 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
@@ -46,8 +48,8 @@ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;应用方&lt;br /&gt;
-通过x_real_ip/x-real-ip拿到客户端ip&lt;br /&gt;
-通过x-forwarded-for/x_forwarded_for获得ip列表，包括客户端IP、所有nginx的ip&lt;/p&gt;&lt;/li&gt;
+通过x-backend-公司名-real-ip拿到客户端ip&lt;br /&gt;
+通过X-Forwarded-For获得ip列表，(包括客户端IP、所有nginx的ip,通过逗号分隔，第一个为客户端IP）&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
