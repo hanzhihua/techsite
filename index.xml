@@ -7,10 +7,38 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 24 Aug 2019 18:49:06 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 26 Aug 2019 20:57:22 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mvn_1</title>
+      <link>https://hanzhihua.cn/post/mvn_1/</link>
+      <pubDate>Mon, 26 Aug 2019 20:57:22 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/mvn_1/</guid>
+      
+        <description>
+
+&lt;p&gt;因为是大数据部门，我们的应用基本上使用java语言开发，采用maven做项目管理
+目前我们的项目版本都是snaphost的，线上发布也是这样的&lt;/p&gt;
+
+&lt;p&gt;本来想做一次整改，采用在线应用标准来要求，但发现效果并不好，会增加比较多的工作量&lt;/p&gt;
+
+&lt;p&gt;因为公司与之配套的工具平台缺少，公司项目主要以golang为主，对java支持的比较弱&lt;/p&gt;
+
+&lt;h2 id=&#34;考虑数据平台项目的特点-我们内部达成一个共识&#34;&gt;考虑数据平台项目的特点，我们内部达成一个共识：&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;只使用snapshot版本，放弃release版本&lt;/li&gt;
+&lt;li&gt;小功能开发，迭代不修改项目版本&lt;/li&gt;
+&lt;li&gt;大功能修改或者对外接口变化才修改项目版本，仍采用snaphost版本&lt;/li&gt;
+&lt;li&gt;版本回滚，依赖发布系统&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>Nginx多次转发问题</title>
