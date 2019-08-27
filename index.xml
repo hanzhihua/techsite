@@ -21,9 +21,9 @@
       
         <description>
 
-&lt;p&gt;上次进程被莫名杀掉，为了避免同样错误的发送，现在我们统一接入supervisor，通过它来管理进程的启停&lt;/p&gt;
+&lt;p&gt;上次进程被莫名杀掉，为了避免同样错误的发生，现在我们统一接入supervisor，通过它来管理进程的启停&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;supervisor玩法有正确的姿势，也不正确的姿势（只有痛过才能真正体会）&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;supervisor玩法有正确的姿势，也不正确的姿势（只有痛过才能真正体会）&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;不正确的姿势&#34;&gt;不正确的姿势&lt;/h2&gt;
 
@@ -37,7 +37,7 @@
 
 &lt;ul&gt;
 &lt;li&gt;应用owner提供启动脚本&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;应用owner提供supervisor配置文件&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;应用owner提供supervisor配置文件&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;运维同学安装supervisor,标准化目录结构&lt;/li&gt;
 &lt;/ul&gt;
 
