@@ -18,7 +18,7 @@
       <pubDate>Tue, 27 Aug 2019 19:55:20 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/post/supervisor_1/</guid>
-      <description>上次进程被莫名杀掉，为了避免同样错误的发生，现在我们统一接入supervisor，通过它来管理进程的启停 supervisor玩法有正确的姿势</description>
+      <description>上次进程被莫名杀掉，为了避免同样错误的发生，现在我们统一接入supervisor，通过它来管理进程的启停 supervisor玩法有正确的玩法</description>
     </item>
     
   </channel>
