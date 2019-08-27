@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>supervisor on 一个码农 工作点滴</title>
+    <link>https://hanzhihua.cn/tags/supervisor/</link>
+    <description>Recent content in supervisor on 一个码农 工作点滴</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
+    <lastBuildDate>Tue, 27 Aug 2019 19:55:20 +0800</lastBuildDate>
+    
+	<atom:link href="https://hanzhihua.cn/tags/supervisor/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Supervisor_1</title>
+      <link>https://hanzhihua.cn/post/supervisor_1/</link>
+      <pubDate>Tue, 27 Aug 2019 19:55:20 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/supervisor_1/</guid>
+      <description>上次进程被莫名杀掉，为了避免同样错误的发送，现在我们统一接入supervisor，通过它来管理进程的启停 supervisor玩法有正确的姿势</description>
+    </item>
+    
+  </channel>
+</rss>
