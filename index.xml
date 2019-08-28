@@ -29,16 +29,16 @@
 
 &lt;ul&gt;
 &lt;li&gt;应用owner提供启动脚本（停止脚本一般是标配如kill -2 pid）&lt;/li&gt;
-&lt;li&gt;运维同学提供supervisor配置文件&lt;/li&gt;
 &lt;li&gt;运维同学安装supervisor,标准化目录结构&lt;/li&gt;
+&lt;li&gt;运维同学提供supervisor配置文件&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;正确的玩法&#34;&gt;正确的玩法&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;应用owner提供启动脚本&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;em&gt;应用owner提供supervisor配置文件&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;运维同学安装supervisor,标准化目录结构&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;应用owner提供supervisor配置文件&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;启动脚本例子&lt;/p&gt;
@@ -48,6 +48,11 @@ cp supervisor配置 /etc/supervisor/conf.d/
 supervisorctl update
 supervisorctl start 应用名
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;上面的脚本也可以写在发布系统中&lt;/li&gt;
+&lt;li&gt;还有一种玩法就是发布系统只是负责应用的发布，不负责应用的启停，看官可以自选&lt;/li&gt;
+&lt;/ul&gt;
 </description>
       
     </item>

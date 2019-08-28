@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-08-27T19:55:20&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-27T19:55:20&#43;08:00" />
-<meta itemprop="wordCount" content="266">
+<meta itemprop="wordCount" content="318">
 
 
 
@@ -330,16 +330,16 @@
 
 <ul>
 <li>应用owner提供启动脚本（停止脚本一般是标配如kill -2 pid）</li>
-<li>运维同学提供supervisor配置文件</li>
 <li>运维同学安装supervisor,标准化目录结构</li>
+<li>运维同学提供supervisor配置文件</li>
 </ul>
 
 <h2 id="正确的玩法">正确的玩法</h2>
 
 <ul>
 <li>应用owner提供启动脚本</li>
-<li><strong><em>应用owner提供supervisor配置文件</em></strong></li>
 <li>运维同学安装supervisor,标准化目录结构</li>
+<li><strong><em>应用owner提供supervisor配置文件</em></strong></li>
 </ul>
 
 <p>启动脚本例子</p>
@@ -349,6 +349,11 @@ cp supervisor配置 /etc/supervisor/conf.d/
 supervisorctl update
 supervisorctl start 应用名
 </code></pre>
+
+<ul>
+<li>上面的脚本也可以写在发布系统中</li>
+<li>还有一种玩法就是发布系统只是负责应用的发布，不负责应用的启停，看官可以自选</li>
+</ul>
 
     </div>
 
