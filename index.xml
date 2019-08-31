@@ -7,10 +7,50 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 27 Aug 2019 19:55:20 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 31 Aug 2019 22:56:31 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>状态设计一点想法</title>
+      <link>https://hanzhihua.cn/post/state_1/</link>
+      <pubDate>Sat, 31 Aug 2019 22:56:31 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/state_1/</guid>
+      
+        <description>
+
+&lt;p&gt;最近看到同事写的一段关于状态设计的代码（DAG项目，用java语言开发）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;ERROR(-1, &amp;quot;说明...&amp;quot;),
+INIT(0, &amp;quot;说明...&amp;quot;),
+SUCCESS(1, &amp;quot;说明...&amp;quot;),
+FAILED(2, &amp;quot;说明...&amp;quot;),
+RUNNING(3, &amp;quot;说明...&amp;quot;),
+ON_QUEUE(4, &amp;quot;说明...&amp;quot;),
+WAIT(6, &amp;quot;说明...&amp;quot;),
+STOP(5, &amp;quot;说明...&amp;quot;),
+ON_SUBMIT(7, &amp;quot;说明...&amp;quot;),,
+WITH_RESULT(9, &amp;quot;说明...&amp;quot;),
+FINISH(8, &amp;quot;说明...&amp;quot;),
+DISPATCHED(10, &amp;quot;说明...&amp;quot;),
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;个人觉得有点问题，请各位看官分析&lt;/p&gt;
+
+&lt;h2 id=&#34;有几个问题&#34;&gt;有几个问题&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;设计了一些不存在的状态，如finish状态，没有这个状态，结束态可以是成功、失败（里面包括人工kill掉），由方法来判断&lt;/li&gt;
+&lt;li&gt;缺少一些状态，如何runing-&amp;gt;stop,缺失stoping状态&lt;/li&gt;
+&lt;li&gt;stop状态换成killed状态跟确切&lt;/li&gt;
+&lt;li&gt;状态enum的value，设计混乱，没有业务语义&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>Supervisor的正确玩法</title>

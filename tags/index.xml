@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 27 Aug 2019 19:55:20 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 31 Aug 2019 22:56:31 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>java</title>
+      <link>https://hanzhihua.cn/tags/java/</link>
+      <pubDate>Sat, 31 Aug 2019 22:56:31 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>状态设计</title>
+      <link>https://hanzhihua.cn/tags/%E7%8A%B6%E6%80%81%E8%AE%BE%E8%AE%A1/</link>
+      <pubDate>Sat, 31 Aug 2019 22:56:31 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/tags/%E7%8A%B6%E6%80%81%E8%AE%BE%E8%AE%A1/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>supervisor</title>
@@ -72,15 +90,6 @@
       <pubDate>Sat, 24 Aug 2019 10:56:11 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/tags/io/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java</title>
-      <link>https://hanzhihua.cn/tags/java/</link>
-      <pubDate>Sat, 24 Aug 2019 10:56:11 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/tags/java/</guid>
       <description></description>
     </item>
     

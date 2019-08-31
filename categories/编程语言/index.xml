@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 24 Aug 2019 10:56:11 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 31 Aug 2019 22:56:31 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>状态设计一点想法</title>
+      <link>https://hanzhihua.cn/post/state_1/</link>
+      <pubDate>Sat, 31 Aug 2019 22:56:31 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/state_1/</guid>
+      <description>最近看到同事写的一段关于状态设计的代码（DAG项目，用java语言开发） ERROR(-1, &amp;quot;说明...&amp;quot;), INIT(0, &amp;quot;说明...&amp;q</description>
+    </item>
     
     <item>
       <title>写文件性能总结</title>
