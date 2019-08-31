@@ -44,8 +44,8 @@ DISPATCHED(10, &amp;quot;说明...&amp;quot;),
 
 &lt;ul&gt;
 &lt;li&gt;设计了一些不存在的状态，如finish状态，没有这个状态，结束态可以是成功、失败（里面包括人工kill掉），由方法来判断&lt;/li&gt;
-&lt;li&gt;缺少一些状态，如何runing-&amp;gt;stop,缺失stoping状态&lt;/li&gt;
-&lt;li&gt;stop状态换成killed状态更确切&lt;/li&gt;
+&lt;li&gt;缺失了一些中间状态，如runing-&amp;gt;stop,缺失stoping状态&lt;/li&gt;
+&lt;li&gt;stop状态换成killed状态语义更确切&lt;/li&gt;
 &lt;li&gt;状态enum的value，设计混乱，没有业务语义&lt;/li&gt;
 &lt;/ul&gt;
 </description>

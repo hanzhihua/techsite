@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-08-31T22:56:31&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-31T22:56:31&#43;08:00" />
-<meta itemprop="wordCount" content="437">
+<meta itemprop="wordCount" content="441">
 
 
 
@@ -345,8 +345,8 @@ DISPATCHED(10, &quot;说明...&quot;),
 
 <ul>
 <li>设计了一些不存在的状态，如finish状态，没有这个状态，结束态可以是成功、失败（里面包括人工kill掉），由方法来判断</li>
-<li>缺少一些状态，如何runing-&gt;stop,缺失stoping状态</li>
-<li>stop状态换成killed状态更确切</li>
+<li>缺失了一些中间状态，如runing-&gt;stop,缺失stoping状态</li>
+<li>stop状态换成killed状态语义更确切</li>
 <li>状态enum的value，设计混乱，没有业务语义</li>
 </ul>
 
