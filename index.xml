@@ -21,7 +21,7 @@
       
         <description>
 
-&lt;p&gt;DATAX是阿里开源的一个优秀的ETL工具，区分框架+PLUGIN方式，使用classload来隔离荣凑，总体设计还不错，被很多公司的数据团队使用&lt;/p&gt;
+&lt;p&gt;DATAX是阿里开源的一个优秀的ETL工具，使用框架+PLUGIN设计方式，通过依赖ClassLoader来隔离容错，总体设计还不错，被很多公司的数据团队使用&lt;/p&gt;
 
 &lt;p&gt;做一个完整的数据平台的ETL工具，完全依靠DATAX也是不够，它只能算是一个引擎,一个基础,需要做二次开发&lt;/p&gt;
 
