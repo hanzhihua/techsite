@@ -7,10 +7,36 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 31 Aug 2019 22:56:31 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 01 Sep 2019 22:56:50 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Datax使用</title>
+      <link>https://hanzhihua.cn/post/etl_1/</link>
+      <pubDate>Sun, 01 Sep 2019 22:56:50 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/etl_1/</guid>
+      
+        <description>
+
+&lt;p&gt;DATAX是阿里开源的一个优秀的ETL工具，区分框架+PLUGIN方式，使用classload来隔离荣凑，总体设计还不错，被很多公司的数据团队使用&lt;/p&gt;
+
+&lt;p&gt;做一个完整的数据平台的ETL工具，完全依靠DATAX也是不够，它只能算是一个引擎,一个基础,需要二次开发&lt;/p&gt;
+
+&lt;h2 id=&#34;二次开发功能点&#34;&gt;二次开发功能点&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ETL主要是被DAG系统使用，所以数据的输入、描述是有DAG系统或者由统一的元信息服务来承担&lt;/li&gt;
+&lt;li&gt;ETL需要被DAG的调度管理，一般都是依赖任务&lt;/li&gt;
+&lt;li&gt;DAG系统承担着ETL任务引擎集群管理工作，包括路由、容错、服务发现等&lt;/li&gt;
+&lt;li&gt;ETL引擎需要提供接口来接受DAG系统的指令，同时还需要上报任务状态、健康状态等工作&lt;/li&gt;
+&lt;li&gt;多进程多节点的任务类型没有开源，需要自己实现&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>状态设计一点想法</title>

@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 31 Aug 2019 22:56:31 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 01 Sep 2019 22:56:50 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DATAX</title>
+      <link>https://hanzhihua.cn/tags/datax/</link>
+      <pubDate>Sun, 01 Sep 2019 22:56:50 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/tags/datax/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ETL</title>
+      <link>https://hanzhihua.cn/tags/etl/</link>
+      <pubDate>Sun, 01 Sep 2019 22:56:50 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/tags/etl/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>java</title>

@@ -3,30 +3,55 @@
   
   <url>
     <loc>https://hanzhihua.cn/categories/</loc>
-    <lastmod>2019-08-31T22:56:31+08:00</lastmod>
+    <lastmod>2019-09-01T22:56:50+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/tags/datax/</loc>
+    <lastmod>2019-09-01T22:56:50+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/post/etl_1/</loc>
+    <lastmod>2019-09-01T22:56:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/tags/etl/</loc>
+    <lastmod>2019-09-01T22:56:50+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hanzhihua.cn/post/</loc>
-    <lastmod>2019-08-31T22:56:31+08:00</lastmod>
+    <lastmod>2019-09-01T22:56:50+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hanzhihua.cn/tags/</loc>
-    <lastmod>2019-08-31T22:56:31+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hanzhihua.cn/tags/java/</loc>
-    <lastmod>2019-08-31T22:56:31+08:00</lastmod>
+    <lastmod>2019-09-01T22:56:50+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hanzhihua.cn/</loc>
+    <lastmod>2019-09-01T22:56:50+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
+    <lastmod>2019-09-01T22:56:50+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/tags/java/</loc>
     <lastmod>2019-08-31T22:56:31+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -160,12 +185,6 @@
   
   <url>
     <loc>https://hanzhihua.cn/tags/loadbalance/</loc>
-    <lastmod>2019-08-20T20:00:11+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
     <lastmod>2019-08-20T20:00:11+08:00</lastmod>
     <priority>0</priority>
   </url>
