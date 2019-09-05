@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sun, 01 Sep 2019 22:56:50 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 05 Sep 2019 14:06:22 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DAG系统一个故障</title>
+      <link>https://hanzhihua.cn/post/cs_2/</link>
+      <pubDate>Thu, 05 Sep 2019 14:06:22 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cs_2/</guid>
+      <description>昨天线上DAG系统一个工作节点出现了OOM。 线上处理问题流程：先止损，后定位 现象重放 收到DAG系统一个工作节点的OOM告警 查看DAG系统工作</description>
+    </item>
     
     <item>
       <title>DATAX的玩法</title>

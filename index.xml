@@ -7,10 +7,70 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sun, 01 Sep 2019 22:56:50 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 05 Sep 2019 14:06:22 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DAG系统一个故障</title>
+      <link>https://hanzhihua.cn/post/cs_2/</link>
+      <pubDate>Thu, 05 Sep 2019 14:06:22 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cs_2/</guid>
+      
+        <description>
+
+&lt;p&gt;昨天线上DAG系统一个工作节点出现了OOM。
+线上处理问题流程：&lt;strong&gt;先止损，后定位&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;现象重放&#34;&gt;现象重放&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;收到DAG系统一个工作节点的OOM告警&lt;/li&gt;
+&lt;li&gt;查看DAG系统工作状态，发现DAG系统的调度任务工作正常&lt;/li&gt;
+&lt;li&gt;查看监控系统，系统层面正常，该节点已经重启&lt;/li&gt;
+&lt;li&gt;通过查看该节点的日志，没有发现特别的地方&lt;/li&gt;
+&lt;li&gt;查找JVM crash的日志，但没有找到&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;问题分析-节点oom原因&#34;&gt;问题分析（节点OOM原因）&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;通过监控系统，发现该节点接受的工作请求与其他工作节点没有什么区别，而且crash 节点日志没有特别的地方。
+多个工作节点，但只有一个工作节点出现了OOM，感觉是由于任务造成的&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;该节点重启时，并没有dump出内存快照?&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;该节点重启是由于OOM而退出，supervisor又把它拉起来&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;进程启动脚本（部分）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;-XX:+UseG1GC -XX:ParallelGCThreads=24 
+-XX:ConcGCThreads=16 -XX:InitiatingHeapOccupancyPercent=45 
+-XX:NewRatio=2 -XX:SurvivorRatio=4 -XX:MaxTenuringThreshold=15 
+-XX:-UseAdaptiveSizePolicy -Xms16G -Xmx16G -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/log/目录/应用_%p.hprof 
+-XX:+PrintGCDetails -Xloggc:/data/log/目录/应用.log -XX:+PrintGCTimeStamps 
+-Djava.security.egd=file:/dev/./urandom -Dfile.encoding=utf-8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;主要的原因，TMD的 &lt;strong&gt;目录/data/log/目录&lt;/strong&gt; 不存在，下面是supervisor日志&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Java HotSpot(TM) 64-Bit Server VM warning: Cannot open file /data/log/目录/... due to No such file or directory
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;哎，最宝贵的crash的内存快照、异常信息就没有了
+留给我们的，只有痛苦的梳理crash节点当时运行过的每个任务了，静态的分析是否可能存在内存泄露情况&lt;/p&gt;
+
+&lt;h2 id=&#34;改善措施&#34;&gt;改善措施&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;建立/data/log/目录/，（目录要建的，不然就是&amp;rsquo;带病&amp;rsquo;工作）&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>DATAX的玩法</title>
