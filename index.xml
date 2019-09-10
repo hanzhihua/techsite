@@ -7,10 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Thu, 05 Sep 2019 14:06:22 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 10 Sep 2019 11:09:03 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sre_1</title>
+      <link>https://hanzhihua.cn/post/sre_1/</link>
+      <pubDate>Tue, 10 Sep 2019 11:09:03 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/sre_1/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;hadoop集群-健康状态检测方案&#34;&gt;HADOOP集群 健康状态检测方案&lt;/h2&gt;
+
+&lt;p&gt;流程：对linux的日志进行监控，当发生错误时候，对硬盘或者机器做下线处理&lt;/p&gt;
+
+&lt;h3 id=&#34;监控方法&#34;&gt;监控方法&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;文件:/var/log/syslog  ,内容: &amp;ldquo;NIC Link is Down&amp;rdquo;,直接下线该机器&lt;/li&gt;
+&lt;li&gt;文件::/var/log/syslog ,内容: &amp;ldquo;I/O error&amp;rdquo; 下线该磁盘&lt;/li&gt;
+&lt;li&gt;文件::/var/log/syslog ,内容: &amp;ldquo;blk_update_request: critical medium error&amp;rdquo; 下线该磁盘&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>一个DAG系统的故障</title>
@@ -974,34 +998,6 @@ TCP层会对报文重传，分超时重传、快速重传，如果当重传报�
   &lt;/figure&gt;
 &lt;/div&gt;
 
-</description>
-      
-    </item>
-    
-    <item>
-      <title>关于</title>
-      <link>https://hanzhihua.cn/about/</link>
-      <pubDate>Thu, 25 Jul 2019 00:38:52 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/about/</guid>
-      
-        <description>
-
-&lt;p&gt;我叫韩志华，很高兴你能找到这里，这是我的个人站点。这个站点的域名是 hanzhihua.cn ，我名字的拼音 hanzhihua ，再加上 .cn 后缀。&lt;/p&gt;
-
-&lt;h2 id=&#34;关于我&#34;&gt;关于我&lt;/h2&gt;
-
-&lt;p&gt;近20年软件开发经验，一直就职于各个大型互联网公司，带过中间件团队，基础服务团队，负责过大数据平台。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;目前在一家互联网公司，负责大数据平台&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;本人爱好比较少，主要就是两个爱好，写代码和与朋友聊天（主要是闲扯）。另外也喜欢玩狼人杀，但因为组织起来太费劲，基本上也不怎么玩了&lt;/p&gt;
-
-&lt;h2 id=&#34;关于本站的建站目的&#34;&gt;建站目的&lt;/h2&gt;
-
-&lt;p&gt;本站的内容都是原创，记录我工作中技术遇到各种点滴及趣味，主要分 分布式、大数据、人工智能、基础设施、编程语言、其他 六个模块
-希望大家能喜欢，大家有什么技术问题也可以咨询我。&lt;br /&gt;
-QQ: 8187347&lt;/p&gt;
 </description>
       
     </item>

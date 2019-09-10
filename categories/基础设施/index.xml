@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 27 Aug 2019 19:55:20 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 10 Sep 2019 11:09:03 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sre_1</title>
+      <link>https://hanzhihua.cn/post/sre_1/</link>
+      <pubDate>Tue, 10 Sep 2019 11:09:03 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/sre_1/</guid>
+      <description>HADOOP集群 健康状态检测方案 流程：对linux的日志进行监控，当发生错误时候，对硬盘或者机器做下线处理 监控方法 文件:/var/log/s</description>
+    </item>
     
     <item>
       <title>Supervisor的正确玩法</title>
