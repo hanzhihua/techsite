@@ -13,12 +13,12 @@
     
     
     <item>
-      <title>Sre_1</title>
+      <title>HADOOP集群 健康状况检测方案</title>
       <link>https://hanzhihua.cn/post/sre_1/</link>
       <pubDate>Tue, 10 Sep 2019 11:09:03 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/post/sre_1/</guid>
-      <description>HADOOP集群 健康状态检测方案 流程：对linux的日志进行监控，当发生错误时候，对硬盘或者机器做下线处理 监控方法 文件:/var/log/s</description>
+      <description>HADOOP集群 健康状况检测方案 流程：对linux的日志进行监控，当发生错误时候，对硬盘或者机器做下线处理 监控方法 文件:/var/log/s</description>
     </item>
     
   </channel>
