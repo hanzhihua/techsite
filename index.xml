@@ -7,10 +7,107 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 10 Sep 2019 11:09:03 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Sep 2019 14:22:59 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>hive2server重启后的BUG</title>
+      <link>https://hanzhihua.cn/post/hive_bug1/</link>
+      <pubDate>Wed, 11 Sep 2019 14:22:59 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/hive_bug1/</guid>
+      
+        <description>
+
+&lt;p&gt;昨天晚上，hiveserver2重启发布了，线上DAG系统查询hive时出现大量的broken pipe错误&lt;/p&gt;
+
+&lt;p&gt;DAG系统使用了jdbc连接池方式来访问hiveserver2，感觉使用了无效的连接，而这些无效的连接一直保留在连接池中，不能被回收&lt;/p&gt;
+
+&lt;h2 id=&#34;问题分析&#34;&gt;问题分析&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;jdbc协议使用了连接池，利用第三方连接池(druid)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;配置如下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;jdbc.driver=org.apache.hive.jdbc.HiveDriver
+jdbc.url=***
+jdbc.user=***
+jdbc.pwd=***
+jdbc.initialSize=16
+jdbc.maxActive=64
+jdbc.maxIdle=60000
+jdbc.maxWait=10000
+jdbc.eviction_interval = 60000L
+jdbc.testOnBorrow = false
+jdbc.testOnReturn = false
+jdbc.testWhileIdle = true
+jdbc.validation_query  = &amp;quot;select 1&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;配置说明&#34;&gt;配置说明&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;连接池中的连接只有在空闲的时候做检查，如果该连接一直在使用，则不做检查，空闲时间超过(eviction_interval) 60s则会做连接检查&lt;/li&gt;
+&lt;li&gt;检查语句为 &amp;ldquo;select 1&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;说明一个问题，如果hiveserver2重启后，如果1分钟内没有进行adhoc查询，那么什么事情也不会发生，你好我好，1分钟后所有坏的连接都被回收,重新建立&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;很不巧，昨天我们的thriftserver2重启后，不停的有人来访问，搞的大家紧张兮兮&lt;/p&gt;
+
+&lt;p&gt;另外连接池有一个非常中的东西是*ExceptionSorter*，它会根据SQLException中的errorCode来判断是否要真正的关闭连接。
+我们选择的是Druid连接池，它的逻辑如下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt; for (Class&amp;lt;?&amp;gt; driverClass = driver.getClass();;) {
+            String realDriverClassName = driverClass.getName();
+            if (realDriverClassName.equals(JdbcConstants.MYSQL_DRIVER) //
+                    || realDriverClassName.equals(JdbcConstants.MYSQL_DRIVER_6)) {
+                this.exceptionSorter = new MySqlExceptionSorter();
+                this.isMySql = true;
+            } else if (realDriverClassName.equals(JdbcConstants.ORACLE_DRIVER)
+                    || realDriverClassName.equals(JdbcConstants.ORACLE_DRIVER2)) {
+                this.exceptionSorter = new OracleExceptionSorter();
+            } else if (realDriverClassName.equals(&amp;quot;com.informix.jdbc.IfxDriver&amp;quot;)) {
+                this.exceptionSorter = new InformixExceptionSorter();
+
+            } else if (realDriverClassName.equals(&amp;quot;com.sybase.jdbc2.jdbc.SybDriver&amp;quot;)) {
+                this.exceptionSorter = new SybaseExceptionSorter();
+
+            } else if (realDriverClassName.equals(JdbcConstants.POSTGRESQL_DRIVER)
+                    || realDriverClassName.equals(JdbcConstants.ENTERPRISEDB_DRIVER)) {
+                this.exceptionSorter = new PGExceptionSorter();
+
+            } else if (realDriverClassName.equals(&amp;quot;com.alibaba.druid.mock.MockDriver&amp;quot;)) {
+                this.exceptionSorter = new MockExceptionSorter();
+            } else if (realDriverClassName.contains(&amp;quot;DB2&amp;quot;)) {
+                this.exceptionSorter = new DB2ExceptionSorter();
+
+            } else {
+                Class&amp;lt;?&amp;gt; superClass = driverClass.getSuperclass();
+                if (superClass != null &amp;amp;&amp;amp; superClass != Object.class) {
+                    driverClass = superClass;
+                    continue;
+                }
+            }
+
+            break;
+        }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们使用的是org.apache.hive.jdbc.HiveDriver，算出来的ExceptionSort为空，那么这个补救的门也被关闭了，如果一直在使用，那么就只有一直的错下去&lt;/p&gt;
+
+&lt;h2 id=&#34;bug修复方法&#34;&gt;bug修复方法&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;因为写一个ExceptionSort成本比较高，所以就在取的连接的时候，做一次连接可用性的检查，testOnBorrow设置为true&lt;/li&gt;
+&lt;li&gt;validation_query  = &amp;ldquo;select 1&amp;rdquo;,对于普通的关系型数据库是一个比较好的选择，但对应hive就非常慢了,改成 &amp;ldquo;show databases&amp;rdquo; 就会快很多&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>HADOOP集群 健康状况检测方案</title>
@@ -961,43 +1058,6 @@ java.io.IOException: Operation timed out
 而是TCP层 &lt;strong&gt;报文失败重传 timeout&lt;/strong&gt;&lt;br /&gt;
 可以使用tcpdump来查看就明白了&lt;br /&gt;
 TCP层会对报文重传，分超时重传、快速重传，如果当重传报文多次没有收到ack，kernel会reset连接,对应应用层就收到了上述的异常&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>对话机器人设计</title>
-      <link>https://hanzhihua.cn/post/chatbot/</link>
-      <pubDate>Sat, 03 Aug 2019 22:43:59 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/chatbot/</guid>
-      
-        <description>
-
-&lt;p&gt;最近在研究机器人对话场景，里面涉及的内容比较多，主要以工程的角度去简单实现。&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;使用word2vec(利用&lt;a href=&#34;https://github.com/hankcs/HanLP&#34;&gt;hanlp&lt;/a&gt;)，以概率论的方式简单实现&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;支持词槽判断&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;支持流程意图判断&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;组件图&#34;&gt;组件图&lt;/h1&gt;
-
-
-
-&lt;div class=&#34;box&#34;&gt;
-&lt;figure  itemprop=&#34;associatedMedia&#34;
-  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
-    &lt;div class=&#34;img&#34;&gt;
-      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/chatbot.jpg&#34; /&gt;
-    &lt;/div&gt;
-    &lt;a href=&#34;https://hanzhihua.cn/chatbot.jpg&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-
 </description>
       
     </item>

@@ -3,10 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>一个码农 工作点滴</title>
+  <title>hive2server重启后的BUG - 一个码农 工作点滴</title>
   
-<link rel="alternate" hreflang="cn" href="https://hanzhihua.cn/cn/" />
-
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -25,7 +23,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="Hanzhihua 工作点滴." />
+  <meta name="description" content="昨天晚上，hiveserver2重启发布了，线上DAG系统查询hive时出现大量的broken pipe错误 DAG系统使用了jdbc连接池方式" />
+
 
 
 
@@ -35,8 +34,7 @@
 <meta name="generator" content="Hugo 0.56.0" />
 
 
-<link rel="canonical" href="https://hanzhihua.cn/" />
-<link href="%7balternate%20%7bRSS%20application/rss&#43;xml%20%20index%20alternate%20%20false%20false%20true%20false%20false%200%7d%20/index.xml%20https://hanzhihua.cn/index.xml%7d" rel="alternate" type="application/rss+xml" title="一个码农 工作点滴" />
+<link rel="canonical" href="https://hanzhihua.cn/post/hive_bug1/" />
 
 
 
@@ -58,18 +56,26 @@
 
 
 
-<meta property="og:title" content="一个码农 工作点滴" />
-<meta property="og:description" content="Hanzhihua 工作点滴." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://hanzhihua.cn/" />
+<meta property="og:title" content="hive2server重启后的BUG" />
+<meta property="og:description" content="昨天晚上，hiveserver2重启发布了，线上DAG系统查询hive时出现大量的broken pipe错误 DAG系统使用了jdbc连接池方式" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanzhihua.cn/post/hive_bug1/" />
+<meta property="article:published_time" content="2019-09-11T14:22:59+08:00" />
+<meta property="article:modified_time" content="2019-09-11T14:22:59+08:00" />
+<meta itemprop="name" content="hive2server重启后的BUG">
+<meta itemprop="description" content="昨天晚上，hiveserver2重启发布了，线上DAG系统查询hive时出现大量的broken pipe错误 DAG系统使用了jdbc连接池方式">
 
-<meta property="og:updated_time" content="2019-09-11T14:22:59+08:00" />
-<meta itemprop="name" content="一个码农 工作点滴">
-<meta itemprop="description" content="Hanzhihua 工作点滴.">
 
+<meta itemprop="datePublished" content="2019-09-11T14:22:59&#43;08:00" />
+<meta itemprop="dateModified" content="2019-09-11T14:22:59&#43;08:00" />
+<meta itemprop="wordCount" content="802">
+
+
+
+<meta itemprop="keywords" content="hive," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="一个码农 工作点滴"/>
-<meta name="twitter:description" content="Hanzhihua 工作点滴."/>
+<meta name="twitter:title" content="hive2server重启后的BUG"/>
+<meta name="twitter:description" content="昨天晚上，hiveserver2重启发布了，线上DAG系统查询hive时出现大量的broken pipe错误 DAG系统使用了jdbc连接池方式"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -217,7 +223,7 @@
   <ul id="menu" class="menu">
     
     
-        <li class="menu-item active">
+        <li class="menu-item">
         
           
           
@@ -286,91 +292,190 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          
-  <section id="posts" class="posts">
+          <article class="post bg-white">
     
-    
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
+    <header class="post-header">
+      <h1 class="post-title">hive2server重启后的BUG</h1>
       
-      <a class="post-link" href="/post/chatbot/">对话机器人设计</a>
-    </h1>
+      <div class="post-meta">
+        <time datetime="2019-09-11" class="post-time">
+          2019-09-11
+        </time>
+        <div class="post-category">
+            <a href="https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"> 大数据 </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
     
-    <div class="post-meta">
-      <time datetime="2019-08-03" class="post-time">
-        2019-08-03
-      </time>
-      <div class="post-category">
-          <a href="https://hanzhihua.cn/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"> 人工智能 </a>
+    
+
+    
+    <div class="post-content">
+      
+
+<p>昨天晚上，hiveserver2重启发布了，线上DAG系统查询hive时出现大量的broken pipe错误</p>
+
+<p>DAG系统使用了jdbc连接池方式来访问hiveserver2，感觉使用了无效的连接，而这些无效的连接一直保留在连接池中，不能被回收</p>
+
+<h2 id="问题分析">问题分析</h2>
+
+<ul>
+<li>jdbc协议使用了连接池，利用第三方连接池(druid)</li>
+</ul>
+
+<p>配置如下</p>
+
+<pre><code class="language-bash">jdbc.driver=org.apache.hive.jdbc.HiveDriver
+jdbc.url=***
+jdbc.user=***
+jdbc.pwd=***
+jdbc.initialSize=16
+jdbc.maxActive=64
+jdbc.maxIdle=60000
+jdbc.maxWait=10000
+jdbc.eviction_interval = 60000L
+jdbc.testOnBorrow = false
+jdbc.testOnReturn = false
+jdbc.testWhileIdle = true
+jdbc.validation_query  = &quot;select 1&quot;
+</code></pre>
+
+<h3 id="配置说明">配置说明</h3>
+
+<ul>
+<li>连接池中的连接只有在空闲的时候做检查，如果该连接一直在使用，则不做检查，空闲时间超过(eviction_interval) 60s则会做连接检查</li>
+<li>检查语句为 &ldquo;select 1&rdquo;</li>
+<li>说明一个问题，如果hiveserver2重启后，如果1分钟内没有进行adhoc查询，那么什么事情也不会发生，你好我好，1分钟后所有坏的连接都被回收,重新建立</li>
+</ul>
+
+<p>很不巧，昨天我们的thriftserver2重启后，不停的有人来访问，搞的大家紧张兮兮</p>
+
+<p>另外连接池有一个非常中的东西是*ExceptionSorter*，它会根据SQLException中的errorCode来判断是否要真正的关闭连接。
+我们选择的是Druid连接池，它的逻辑如下</p>
+
+<pre><code class="language-java"> for (Class&lt;?&gt; driverClass = driver.getClass();;) {
+            String realDriverClassName = driverClass.getName();
+            if (realDriverClassName.equals(JdbcConstants.MYSQL_DRIVER) //
+                    || realDriverClassName.equals(JdbcConstants.MYSQL_DRIVER_6)) {
+                this.exceptionSorter = new MySqlExceptionSorter();
+                this.isMySql = true;
+            } else if (realDriverClassName.equals(JdbcConstants.ORACLE_DRIVER)
+                    || realDriverClassName.equals(JdbcConstants.ORACLE_DRIVER2)) {
+                this.exceptionSorter = new OracleExceptionSorter();
+            } else if (realDriverClassName.equals(&quot;com.informix.jdbc.IfxDriver&quot;)) {
+                this.exceptionSorter = new InformixExceptionSorter();
+
+            } else if (realDriverClassName.equals(&quot;com.sybase.jdbc2.jdbc.SybDriver&quot;)) {
+                this.exceptionSorter = new SybaseExceptionSorter();
+
+            } else if (realDriverClassName.equals(JdbcConstants.POSTGRESQL_DRIVER)
+                    || realDriverClassName.equals(JdbcConstants.ENTERPRISEDB_DRIVER)) {
+                this.exceptionSorter = new PGExceptionSorter();
+
+            } else if (realDriverClassName.equals(&quot;com.alibaba.druid.mock.MockDriver&quot;)) {
+                this.exceptionSorter = new MockExceptionSorter();
+            } else if (realDriverClassName.contains(&quot;DB2&quot;)) {
+                this.exceptionSorter = new DB2ExceptionSorter();
+
+            } else {
+                Class&lt;?&gt; superClass = driverClass.getSuperclass();
+                if (superClass != null &amp;&amp; superClass != Object.class) {
+                    driverClass = superClass;
+                    continue;
+                }
+            }
+
+            break;
+        }
+</code></pre>
+
+<p>我们使用的是org.apache.hive.jdbc.HiveDriver，算出来的ExceptionSort为空，那么这个补救的门也被关闭了，如果一直在使用，那么就只有一直的错下去</p>
+
+<h2 id="bug修复方法">bug修复方法</h2>
+
+<ul>
+<li>因为写一个ExceptionSort成本比较高，所以就在取的连接的时候，做一次连接可用性的检查，testOnBorrow设置为true</li>
+<li>validation_query  = &ldquo;select 1&rdquo;,对于普通的关系型数据库是一个比较好的选择，但对应hive就非常慢了,改成 &ldquo;show databases&rdquo; 就会快很多</li>
+</ul>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://hanzhihua.cn/tags/hive/">hive</a>
           
         </div>
+
       
-      
-      
-    </div>
-  </header>
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/sre_1/">
+            <span class="next-text nav-default">HADOOP集群 健康状况检测方案</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
   
-  <div class="post-content">
+  
+
+  
+  
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+const gitalk = new Gitalk({
+  clientID: '6fdacbf5308d1aa661b4',
+  clientSecret: '11a93eb514c765f17225deb68c486ce18e9f54cb',
+  repo: 'techsite',
+  owner: 'hanzhihua',
+  admin: ['hanzhihua'],
+  id: location.pathname, 
+  distractionFreeMode: false 
+})
+gitalk.render('gitalk-container')
+</script>
+  
+
+  
+  
+
+  
+
+  
+
+
+
     
-    <div class="post-summary">
-      最近在研究机器人对话场景，里面涉及的内容比较多，主要以工程的角度去简单实现。 使用word2vec(利用hanlp)，以概率论的方式简单实现 支
-    </div>
-    <div class="read-more">
-      <a href="/post/chatbot/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-    
-  </section>
-
-  
-  
-
-
-
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  <nav class="pagination">
-    <ul>
-      
-      <li >
-        <a href="/">1</a>
-      </li>
-      
-      <li >
-        <a href="/page/2/">2</a>
-      </li>
-      
-      <li  class="active" >
-        <a href="/page/3/">3</a>
-      </li>
-      
-    </ul>
-  </nav>
-
-  
-  
-
-
-
-
 
         </div>
       </div>

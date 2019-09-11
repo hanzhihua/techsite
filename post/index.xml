@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 10 Sep 2019 11:09:03 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Sep 2019 14:22:59 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>hive2server重启后的BUG</title>
+      <link>https://hanzhihua.cn/post/hive_bug1/</link>
+      <pubDate>Wed, 11 Sep 2019 14:22:59 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/hive_bug1/</guid>
+      <description>昨天晚上，hiveserver2重启发布了，线上DAG系统查询hive时出现大量的broken pipe错误 DAG系统使用了jdbc连接池方式</description>
+    </item>
     
     <item>
       <title>HADOOP集群 健康状况检测方案</title>
@@ -181,15 +190,6 @@
       
       <guid>https://hanzhihua.cn/post/zkchange/</guid>
       <description>最近在重构一个DAG系统，遇到一个组件节点通信、及节点发现的问题。 原方案 基本上就是传统的解决方案，服务发现、调用依赖zookeeper 部署图</description>
-    </item>
-    
-    <item>
-      <title>对话机器人设计</title>
-      <link>https://hanzhihua.cn/post/chatbot/</link>
-      <pubDate>Sat, 03 Aug 2019 22:43:59 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/chatbot/</guid>
-      <description>最近在研究机器人对话场景，里面涉及的内容比较多，主要以工程的角度去简单实现。 使用word2vec(利用hanlp)，以概率论的方式简单实现 支</description>
     </item>
     
   </channel>

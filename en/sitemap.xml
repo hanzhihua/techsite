@@ -3,7 +3,44 @@
   
   <url>
     <loc>https://hanzhihua.cn/categories/</loc>
-    <lastmod>2019-09-10T11:09:03+08:00</lastmod>
+    <lastmod>2019-09-11T14:22:59+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/post/</loc>
+    <lastmod>2019-09-11T14:22:59+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/tags/</loc>
+    <lastmod>2019-09-11T14:22:59+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/tags/hive/</loc>
+    <lastmod>2019-09-11T14:22:59+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/post/hive_bug1/</loc>
+    <lastmod>2019-09-11T14:22:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/</loc>
+    <lastmod>2019-09-11T14:22:59+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
+    <lastmod>2019-09-11T14:22:59+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -12,24 +49,6 @@
     <lastmod>2019-09-10T11:09:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hanzhihua.cn/post/</loc>
-    <lastmod>2019-09-10T11:09:03+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hanzhihua.cn/tags/</loc>
-    <lastmod>2019-09-10T11:09:03+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hanzhihua.cn/</loc>
-    <lastmod>2019-09-10T11:09:03+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -61,12 +80,6 @@
     <lastmod>2019-09-05T14:06:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
-    <lastmod>2019-09-05T14:06:22+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

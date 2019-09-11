@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hive on 一个码农 工作点滴</title>
+    <link>https://hanzhihua.cn/tags/hive/</link>
+    <description>Recent content in hive on 一个码农 工作点滴</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
+    <lastBuildDate>Wed, 11 Sep 2019 14:22:59 +0800</lastBuildDate>
+    
+	<atom:link href="https://hanzhihua.cn/tags/hive/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hive2server重启后的BUG</title>
+      <link>https://hanzhihua.cn/post/hive_bug1/</link>
+      <pubDate>Wed, 11 Sep 2019 14:22:59 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/hive_bug1/</guid>
+      <description>昨天晚上，hiveserver2重启发布了，线上DAG系统查询hive时出现大量的broken pipe错误 DAG系统使用了jdbc连接池方式</description>
+    </item>
+    
+  </channel>
+</rss>

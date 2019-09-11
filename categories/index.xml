@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 10 Sep 2019 11:09:03 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Sep 2019 14:22:59 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>大数据</title>
+      <link>https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
+      <pubDate>Wed, 11 Sep 2019 14:22:59 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>基础设施</title>
@@ -18,15 +27,6 @@
       <pubDate>Tue, 10 Sep 2019 11:09:03 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>大数据</title>
-      <link>https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
-      <pubDate>Thu, 05 Sep 2019 14:06:22 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</guid>
       <description></description>
     </item>
     
