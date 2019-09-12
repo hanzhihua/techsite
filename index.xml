@@ -7,10 +7,81 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Wed, 11 Sep 2019 14:22:59 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 12 Sep 2019 19:21:33 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>线上zookeeper使用中的一个坑</title>
+      <link>https://hanzhihua.cn/post/zk_3/</link>
+      <pubDate>Thu, 12 Sep 2019 19:21:33 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/zk_3/</guid>
+      
+        <description>
+
+&lt;p&gt;线上DAG又出现BUG了，这个系统BUG还真多&lt;/p&gt;
+
+&lt;h2 id=&#34;现象重放&#34;&gt;现象重放&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;DAG系统的执行节点重启发布&lt;/li&gt;
+&lt;li&gt;正常流程 执行节点stop，自动摘掉zookeeper上面的EPHEMERAL节点，执行节点start，再重新挂上zookeeper EPHEMERAL节点，接受控制节点的调度。&lt;/li&gt;
+&lt;li&gt;但这次发布过程中stop流程耗时比较长，最后发布系统采用kill -9 方式结束进程&lt;/li&gt;
+&lt;li&gt;start流程正常启动，zookeeper 节点正常挂上&lt;/li&gt;
+&lt;li&gt;但该zookeeper节点会莫名消失，而应用却是一切正常的，所以该执行节点无法被控制节点发现，也就无法正常工作&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;问题分析&#34;&gt;问题分析&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;问题找到了，主要出现在挂节点流程中，代码如下:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;private void registerExecuteNode() throws Exception {
+    // 启动 重试
+    int retryTimes = 0;
+    do {
+        retryTimes++;
+        upsertExecuteZNode(convert(currentNode));
+        LOGGER.info(&amp;quot;register execute node {} tries&amp;quot;, retryTimes);
+    } while (zNodeDao.getExecuteZNode(currentNode.getId()) == null &amp;amp;&amp;amp; retryTimes &amp;lt; REGISTER_RETRY_COUNTS);
+    if (zNodeDao.getExecuteZNode(currentNode.getId()) == null) {
+        throw new RegisterFailedException(&amp;quot;register execute node error&amp;quot;);
+    }
+}
+public void upsertExecuteZNode(ExecuteZNode executeZNode) throws Exception {
+
+    try {
+        String path = ...;
+        zkClientTemplate.writeData(path, false, serialization(executeZNode)); //问题出现在这里
+    } catch (Exception e) {
+        LOGGER.error(&amp;quot;create or update execute znode error {}&amp;quot;, BilibiliSerializeUtils.toJSON(executeZNode), e);
+        throw e;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;问题主要出现在zkClientTemplate.writeData，该方法会检查path是否存在，如果存在，那么就更新该节点内容。&lt;/p&gt;
+
+&lt;p&gt;因为进程是被kill -9 强制关闭的，那么zookeeper上的节点就可能是由被kill的进程建立，新进程只是简单的更新了改节点的内容，而这个节点会因为zookeeper的session过期被zookeeper移除&lt;/p&gt;
+
+&lt;h2 id=&#34;修复&#34;&gt;修复&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;应用启动时，先检查zookeeper是否有该节点，如果有，就先删除，然后重新建立新的节点&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;zookeeper的坑&#34;&gt;zookeeper的坑&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;zookeeper的EPHEMERAL的节点是有过期时间的，如果进程没有正确的告知zookeeper删除该节点（主要是正常的执行完成zookeepr.close 方法）
+那么该节点不会因为进程的消失而马上消失&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>hiveserver2重启后的BUG</title>
@@ -972,92 +1043,6 @@ public class HealthController {
 &lt;h1 id=&#34;如何做&#34;&gt;如何做&lt;/h1&gt;
 
 &lt;p&gt;TODO&amp;hellip;&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>去zk网络分区容错方案</title>
-      <link>https://hanzhihua.cn/post/zkchange/</link>
-      <pubDate>Mon, 05 Aug 2019 20:32:50 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/zkchange/</guid>
-      
-        <description>
-
-&lt;p&gt;最近在重构一个DAG系统，遇到一个组件节点通信、及节点发现的问题。&lt;/p&gt;
-
-&lt;h1 id=&#34;原方案&#34;&gt;原方案&lt;/h1&gt;
-
-&lt;p&gt;基本上就是传统的解决方案，服务发现、调用依赖zookeeper&lt;br /&gt;
-部署图&lt;br /&gt;
-
-
-&lt;div class=&#34;box&#34;&gt;
-&lt;figure  itemprop=&#34;associatedMedia&#34;
-  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
-    &lt;div class=&#34;img&#34;&gt;
-      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/Snip20190805_207.png&#34; /&gt;
-    &lt;/div&gt;
-    &lt;a href=&#34;https://hanzhihua.cn/Snip20190805_207.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-&lt;br /&gt;
-这个方案，有一个致命问题就是当执行节点与zk出现网络不稳定时，会造成控制节点做出错误的决定&lt;br /&gt;
-这个时候也许控制节点与执行节点的通信是非常正常，这就是典型的网络分区问题&lt;br /&gt;
-考虑到 控制节点与执行节点之间的通信还是主要，而与zk的通信就不是那么的重要，所以减少对zk的依赖，
-只处理zk的节点上线通知，对于下线通知就不处理了，改成依赖节点间的心跳&lt;/p&gt;
-
-&lt;h1 id=&#34;新方案&#34;&gt;新方案&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;只侦听zk的节点新增通知，忽略节点下线的通知&lt;/li&gt;
-&lt;li&gt;在执行节点与通信节点新增心跳&lt;/li&gt;
-&lt;li&gt;节点下线，由心跳超时来确定&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;div class=&#34;box&#34;&gt;
-&lt;figure  itemprop=&#34;associatedMedia&#34;
-  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
-    &lt;div class=&#34;img&#34;&gt;
-      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/Snip20190805_210.png&#34; /&gt;
-    &lt;/div&gt;
-    &lt;a href=&#34;https://hanzhihua.cn/Snip20190805_210.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-
-
-&lt;h1 id=&#34;附加知识点&#34;&gt;附加知识点&lt;/h1&gt;
-
-&lt;p&gt;在开发节点心跳功能时，需要对网络timeout类型完全理解。&lt;/p&gt;
-
-&lt;p&gt;案例分析，出现下面异常：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;2019-08-02 18:44:59.476 controlnode [nioEventLoopGroup-2-1] c.b.a.c.j.i.net.NettyChannelClient.exceptionCaught ERROR - error while pipeline: {}
-java.io.IOException: Operation timed out
-	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
-	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
-	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
-	at sun.nio.ch.IOUtil.read(IOUtil.java:192)
-	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
-	at io.netty.buffer.PooledUnsafeDirectByteBuf.setBytes(PooledUnsafeDirectByteBuf.java:311)
-	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:881)
-	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:241)
-	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:119)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:511)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:468)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:382)
-	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:354)
-	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)
-	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:137)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;很多同学会认为是应用层中设置的connectiontimeout,或者sotimeout,其实&lt;strong&gt;可能&lt;/strong&gt;都不是&lt;br /&gt;
-而是TCP层 &lt;strong&gt;报文失败重传 timeout&lt;/strong&gt;&lt;br /&gt;
-可以使用tcpdump来查看就明白了&lt;br /&gt;
-TCP层会对报文重传，分超时重传、快速重传，如果当重传报文多次没有收到ack，kernel会reset连接,对应应用层就收到了上述的异常&lt;/p&gt;
 </description>
       
     </item>
