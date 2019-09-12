@@ -58,7 +58,7 @@ jdbc.validation_query  = &amp;quot;select 1&amp;quot;
 
 &lt;p&gt;很不巧，昨天我们的thriftserver2重启后，不停的有人来访问，搞的大家紧张兮兮&lt;/p&gt;
 
-&lt;p&gt;另外连接池有一个非常中的东西是*ExceptionSorter*，它会根据SQLException中的errorCode来判断是否要真正的关闭连接。
+&lt;p&gt;另外连接池有一个非常重要的东西是*ExceptionSorter*，它会根据SQLException中的errorCode来判断是否要真正的关闭连接。
 我们选择的是Druid连接池，它的逻辑如下&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt; for (Class&amp;lt;?&amp;gt; driverClass = driver.getClass();;) {
