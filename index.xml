@@ -7,10 +7,53 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Thu, 12 Sep 2019 19:21:33 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 14 Sep 2019 17:27:28 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>java信号量处理</title>
+      <link>https://hanzhihua.cn/post/sig_1/</link>
+      <pubDate>Sat, 14 Sep 2019 17:27:28 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/sig_1/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;信号&#34;&gt;信号&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在终端查看所有的信号，可以通过 &lt;code&gt;kill -l&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;给指定进程发送信号，&lt;code&gt;kill -s ** pid&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;详情 &lt;code&gt;man kill&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;java中处理信号方法&#34;&gt;java中处理信号方法&lt;/h2&gt;
+
+&lt;h3 id=&#34;注册信号&#34;&gt;注册信号&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;try {
+            Class.forName(&amp;quot;sun.misc.Signal&amp;quot;);
+        } catch (final Throwable t) {
+            if (LOG.isWarnEnabled()) {
+                LOG.warn(&amp;quot;sun.misc.Signal: unavailable, {}.&amp;quot;, t);
+            }
+            return;
+        }
+final sun.misc.Signal signal = new sun.misc.Signal(signalName);
+final sun.misc.SignalHandler handler = ...;
+sun.misc.Signal.handle(signal, handler);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;处理信号&#34;&gt;处理信号&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;实现 sun.misc.SignalHandler接口 即可&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>线上zookeeper使用中的一个坑</title>
@@ -977,72 +1020,6 @@ public class HealthController {
 &lt;li&gt;发布，启动应用&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;请求 /active，挂到nginx上面，接受流量&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>血缘分析</title>
-      <link>https://hanzhihua.cn/post/table_relate/</link>
-      <pubDate>Thu, 08 Aug 2019 12:43:34 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/table_relate/</guid>
-      
-        <description>
-
-&lt;p&gt;数据血缘就是分析数据之间的关系，是数据平台中元信息管理重要组成部分&lt;/p&gt;
-
-&lt;p&gt;元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管理，一般包括 hive、hbase、mysql、ES、mongo、kafka(&lt;em&gt;topic及内部数据格式&lt;/em&gt;)&lt;/p&gt;
-
-&lt;h1 id=&#34;概念&#34;&gt;概念：&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;表： hive表，BI报表。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;作业：对应一个sql文件，或者数据收集，数据转移任务，一个可以独立执行的程序；&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;项目： DAG系统中概念，包含多个作业；&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;数据的血缘关系&#34;&gt;数据的血缘关系：&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;作业跟作业之间的血缘追溯&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;表跟作业之间的血缘追溯&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;表跟表之间的血缘追溯&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;字段级别的血缘追溯&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;功能图&#34;&gt;功能图&lt;/h1&gt;
-
-
-
-&lt;div class=&#34;box&#34;&gt;
-&lt;figure  itemprop=&#34;associatedMedia&#34;
-  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
-    &lt;div class=&#34;img&#34;&gt;
-      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/Snip20190808_213.png&#34; /&gt;
-    &lt;/div&gt;
-    &lt;a href=&#34;https://hanzhihua.cn/Snip20190808_213.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-
-
-&lt;h1 id=&#34;怎么做&#34;&gt;怎么做&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;在DAG任务平台对sql语句、非sql（spark,MR）进行血缘挖掘&lt;/li&gt;
-&lt;li&gt;DAG平台中，项目依赖关系&lt;/li&gt;
-&lt;li&gt;对BI报表使用的数据源与DAG任务生成的数据源进行管理&lt;/li&gt;
-&lt;li&gt;对存储引擎进行元信息同步&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;如何做&#34;&gt;如何做&lt;/h1&gt;
-
-&lt;p&gt;TODO&amp;hellip;&lt;/p&gt;
 </description>
       
     </item>

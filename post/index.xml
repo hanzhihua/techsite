@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Thu, 12 Sep 2019 19:21:33 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 14 Sep 2019 17:27:28 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>java信号量处理</title>
+      <link>https://hanzhihua.cn/post/sig_1/</link>
+      <pubDate>Sat, 14 Sep 2019 17:27:28 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/sig_1/</guid>
+      <description>信号 在终端查看所有的信号，可以通过 kill -l 给指定进程发送信号，kill -s ** pid 详情 man kill java中处理信号方法 注册信号 try { Class.forName(&amp;quot;sun.misc.Signal&amp;quot;); } catch (final Throwable t) { if (LOG.isWarnEnabled()) { LOG.warn(&amp;quot;sun.misc.Signal: unavailable, {}.&amp;quot;,</description>
+    </item>
     
     <item>
       <title>线上zookeeper使用中的一个坑</title>
@@ -181,15 +190,6 @@
       
       <guid>https://hanzhihua.cn/post/ha/</guid>
       <description>WEB服务高可用设计 主要是从以下几个方面去考虑，设计不考虑dns,动静态CDN 架构是slb+keepalived+web服务（针对运维高可用</description>
-    </item>
-    
-    <item>
-      <title>血缘分析</title>
-      <link>https://hanzhihua.cn/post/table_relate/</link>
-      <pubDate>Thu, 08 Aug 2019 12:43:34 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/table_relate/</guid>
-      <description>数据血缘就是分析数据之间的关系，是数据平台中元信息管理重要组成部分 元信息是指数据平台中存储数据的元信息，就是各种类型表的元信息管理，一般包括</description>
     </item>
     
   </channel>
