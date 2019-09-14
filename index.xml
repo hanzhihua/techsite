@@ -33,6 +33,8 @@
 
 &lt;h3 id=&#34;注册信号&#34;&gt;注册信号&lt;/h3&gt;
 
+&lt;p&gt;需要预先判断rt.jar中是否包含sun.misc.Signal&lt;/p&gt;
+
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;try {
             Class.forName(&amp;quot;sun.misc.Signal&amp;quot;);
         } catch (final Throwable t) {

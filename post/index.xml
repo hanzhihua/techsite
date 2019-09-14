@@ -18,7 +18,7 @@
       <pubDate>Sat, 14 Sep 2019 17:27:28 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/post/sig_1/</guid>
-      <description>信号 在终端查看所有的信号，可以通过 kill -l 给指定进程发送信号，kill -s ** pid 详情 man kill java中处理信号方法 注册信号 try { Class.forName(&amp;quot;sun.misc.Signal&amp;quot;); } catch (final Throwable t) { if (LOG.isWarnEnabled()) { LOG.warn(&amp;quot;sun.misc.Signal: unavailable, {}.&amp;quot;,</description>
+      <description>信号 在终端查看所有的信号，可以通过 kill -l 给指定进程发送信号，kill -s ** pid 详情 man kill java中处理信号方法 注册信号 需要预先判断rt.jar中是否</description>
     </item>
     
     <item>
