@@ -40,7 +40,7 @@
 &lt;ul&gt;
 &lt;li&gt;软件选择 &lt;a href=&#34;https://github.com/shadowsocks/go-shadowsocks2&#34;&gt;go-shadowsocks2&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;可直接下载已经编译完成的包，如果了解golang,可自行编译&lt;/li&gt;
-&lt;li&gt;启动软件 &lt;code&gt;shadowsocks2 -s &#39;ss://AEAD_AES_128_GCM:你的密码@[]:你的端口&#39; -verbose&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;启动软件 &lt;code&gt;shadowsocks2 -s &#39;ss://AES-128-CFB:你的密码@[]:你的端口&#39; -verbose&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;安装ss 客户端即可&lt;/li&gt;
 &lt;/ul&gt;
 </description>
