@@ -7,10 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 14 Sep 2019 17:27:28 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 18 Sep 2019 14:00:34 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>个人搭建VPN代理</title>
+      <link>https://hanzhihua.cn/post/ss_1/</link>
+      <pubDate>Wed, 18 Sep 2019 14:00:34 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/ss_1/</guid>
+      
+        <description>
+
+&lt;p&gt;作为一个技术人员，不能上google的话，工作效率会下降很多，所以我们需要一个VPN&lt;br /&gt;
+可以通过购买VPN服务，或者自行搭建VPN服务
+因为购买的VPN服务经常会被墙，所以选择自行搭建VPN服务，
+缺点：最好只上Google,其他需要考虑流量成本&lt;/p&gt;
+
+&lt;h2 id=&#34;搭建vpn方法&#34;&gt;搭建VPN方法&lt;/h2&gt;
+
+&lt;h3 id=&#34;申请aws-免费空间&#34;&gt;申请AWS 免费空间&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;选择Amazon EC2免费套餐(1年内免费)，实例类型 t2.micro，可以选择东京或者韩国地区&lt;/li&gt;
+&lt;li&gt;下载pem文件，需要通过它来做ssh登录，命令 &lt;code&gt;ssh -i &amp;quot;***.pem&amp;quot; ec2-user@****.compute.amazonaws.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在安全组中加上一个自定义 TCP 规则，配置你的VPN端口&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;vpn-软件安装&#34;&gt;VPN 软件安装&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;软件选择 &lt;a href=&#34;https://github.com/shadowsocks/go-shadowsocks2&#34;&gt;go-shadowsocks2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;可直接下载已经编译完成的包，如果了解golang,可自行编译&lt;/li&gt;
+&lt;li&gt;启动软件 &lt;code&gt;shadowsocks2 -s &#39;ss://AEAD_AES_128_GCM:你的密码@[]:你的端口&#39; -verbose&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;安装ss 客户端即可&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>JAVA 处理信号</title>
@@ -912,115 +948,6 @@ fi
 ./gor &amp;ndash;input-raw :线上端口 &amp;ndash;output-file=input.gor &amp;ndash;output-file-append&lt;/li&gt;
 &lt;li&gt;在压测机，放大流量压测&lt;br /&gt;
 ./gor &amp;ndash;input-file &amp;ldquo;input.gor|450000% &amp;ndash;output-http http://测试服务器IP:测试服务器port &amp;ndash;input-file-loop &amp;ndash;exit-after 60m&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>WEB端高可用默认玩法</title>
-      <link>https://hanzhihua.cn/post/ha/</link>
-      <pubDate>Thu, 08 Aug 2019 18:50:43 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/ha/</guid>
-      
-        <description>
-
-&lt;h1 id=&#34;web服务高可用设计&#34;&gt;WEB服务高可用设计&lt;/h1&gt;
-
-&lt;p&gt;主要是从以下几个方面去考虑，设计不考虑dns,动静态CDN&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;架构是slb+keepalived+web服务（针对运维高可用，需要做少量工作）&lt;/li&gt;
-&lt;li&gt;slb开源可选方案lvs、haproxy、nginx&lt;/li&gt;
-&lt;li&gt;slb是可以分层的,主要看项目规模&lt;/li&gt;
-&lt;li&gt;高可用要需要跟CICD配合，web端需要做点工作&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;标准部署架构&#34;&gt;标准部署架构&lt;/h1&gt;
-
-
-
-&lt;div class=&#34;box&#34;&gt;
-&lt;figure  itemprop=&#34;associatedMedia&#34;
-  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
-    &lt;div class=&#34;img&#34;&gt;
-      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/Snip20190814_238.png&#34; /&gt;
-    &lt;/div&gt;
-    &lt;a href=&#34;https://hanzhihua.cn/Snip20190814_238.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-
-
-&lt;h1 id=&#34;标准玩法&#34;&gt;标准玩法&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Nginx 配置&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;upstream api {
-server *:8080 weight=5;
-server *:8080 weight=5;
-server *:8080 weight=5;
-server *:8080 weight=5;
-check interval=3000 rise=2 fall=3 timeout=1000 type=http;
-check_http_send &amp;quot;HEAD /health/status HTTP/1.0\r\n\r\n&amp;quot;;
-check_http_expect_alive http_2xx http_3xx;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;web端改造(java语言)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Controller
-@RequestMapping(&amp;quot;/health&amp;quot;)
-public class HealthController {
-
-	private static boolean healthFlag = false;
-
-	//白名单
-	private static Set&amp;lt;String&amp;gt; ipSet = new HashSet&amp;lt;String&amp;gt;();
-
-	static {
-		ipSet.add(&amp;quot;******&amp;quot;);
-	}
-
-	//项目启动时触发 （由运维发布时触发）
-	@RequestMapping(&amp;quot;/active&amp;quot;)
-	public void active(HttpServletRequest request, HttpServletResponse response) {
-		String ip = HttpUtils.getRemoteIP(request);
-		if (ipSet.contains(ip)) {
-			healthFlag = true;
-		} else {
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-		}
-	}
-
-	//项目关闭时触发 由运维发布时触发）
-	@RequestMapping(&amp;quot;/offline&amp;quot;)
-	public void offline(HttpServletRequest request, HttpServletResponse response) {
-		String ip = HttpUtils.getRemoteIP(request);
-		if (ipSet.contains(ip)) {
-			healthFlag = false;
-		} else {
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-		}
-	}
-	
-	//nginx来探测的URL，来判断web端是否上下线
-	@RequestMapping(&amp;quot;/status&amp;quot;)
-	public void status(HttpServletRequest request, HttpServletResponse response) {
-		response.setStatus(healthFlag ? HttpServletResponse.SC_OK : HttpServletResponse.SC_FORBIDDEN);
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;发布流程流程&#34;&gt;发布流程流程&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;请求 /offline，在等待3-5s （nginx摘掉服务器和处理完已接受的请求）&lt;/li&gt;
-&lt;li&gt;停应用&lt;/li&gt;
-&lt;li&gt;发布，启动应用&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;请求 /active，挂到nginx上面，接受流量&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
