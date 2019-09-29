@@ -7,10 +7,49 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Wed, 18 Sep 2019 14:00:34 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 29 Sep 2019 14:13:34 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>线上死锁问题分析</title>
+      <link>https://hanzhihua.cn/post/dl_1/</link>
+      <pubDate>Sun, 29 Sep 2019 14:13:34 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/dl_1/</guid>
+      
+        <description>
+
+&lt;p&gt;最近线上DAG系统居然出现了死锁问题&lt;/p&gt;
+
+&lt;h2 id=&#34;现象重放&#34;&gt;现象重放&lt;/h2&gt;
+
+&lt;p&gt;DAG系统新版本发布，系统启动过程中在获取连接时出现了hang住的现象&lt;/p&gt;
+
+&lt;h2 id=&#34;问题分析&#34;&gt;问题分析&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;DAG系统包括两个组件（控制节点和工作节点），控制节点在接受用户请求或者启动时都会主动连接工作节点&lt;br /&gt;
+连接过程中，包括一个session建立的初始化请求（类似于zookeeper 客户端连接服务），session init后连接工作才算完成&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;过程中两把锁，一个是连接建立是需要的socket锁和一个是节点track是需要的session锁&lt;/li&gt;
+&lt;li&gt;代码中使用了jvm锁机制，使用了synchronized 关键字&lt;/li&gt;
+&lt;li&gt;系统启动时，需要节点track初始化session，需要获得session锁，而同时又需要接受用户请求需要初始化连接,使用的是socket锁&lt;/li&gt;
+&lt;li&gt;节点track需要初始化连接，需要socket锁&lt;/li&gt;
+&lt;li&gt;初始化连接又需要初始化session，需要session锁&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;解决方案&#34;&gt;解决方案&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;尽量避免锁的嵌套&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;session,socket两把锁在业务语义上是一样的，可以直接修改成一把锁&lt;/li&gt;
+&lt;li&gt;也可以用concurrent包lock对象，利用超时机制避免死锁出现&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>个人搭建VPN代理</title>
@@ -919,34 +958,6 @@ else
 help
 fi
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>使用Goreplay来做压测</title>
-      <link>https://hanzhihua.cn/post/goreplay1/</link>
-      <pubDate>Fri, 09 Aug 2019 16:07:22 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/goreplay1/</guid>
-      
-        <description>
-
-&lt;h1 id=&#34;背景&#34;&gt;背景&lt;/h1&gt;
-
-&lt;p&gt;项目要做一个性能测试，希望能最大限度的模拟用户真实请求。&lt;/p&gt;
-
-&lt;p&gt;项目特点弱安全性，无用户标识&lt;/p&gt;
-
-&lt;h1 id=&#34;解决方案&#34;&gt;解决方案&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;使用&lt;a href=&#34;https://github.com/buger/goreplay&#34;&gt;goreplay&lt;/a&gt;来录制用户请求，来做压测样本&lt;/li&gt;
-&lt;li&gt;登录线上服务器，录制请求&lt;br /&gt;
-./gor &amp;ndash;input-raw :线上端口 &amp;ndash;output-file=input.gor &amp;ndash;output-file-append&lt;/li&gt;
-&lt;li&gt;在压测机，放大流量压测&lt;br /&gt;
-./gor &amp;ndash;input-file &amp;ldquo;input.gor|450000% &amp;ndash;output-http http://测试服务器IP:测试服务器port &amp;ndash;input-file-loop &amp;ndash;exit-after 60m&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Wed, 18 Sep 2019 14:00:34 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 29 Sep 2019 14:13:34 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>多线程</title>
+      <link>https://hanzhihua.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Sun, 29 Sep 2019 14:13:34 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>vpn</title>
@@ -180,15 +189,6 @@
       <pubDate>Tue, 20 Aug 2019 20:00:11 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/tags/loadbalance/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>DAG</title>
-      <link>https://hanzhihua.cn/tags/dag/</link>
-      <pubDate>Thu, 15 Aug 2019 20:30:17 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/tags/dag/</guid>
       <description></description>
     </item>
     

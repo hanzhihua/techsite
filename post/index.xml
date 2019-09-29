@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Wed, 18 Sep 2019 14:00:34 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 29 Sep 2019 14:13:34 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>线上死锁问题分析</title>
+      <link>https://hanzhihua.cn/post/dl_1/</link>
+      <pubDate>Sun, 29 Sep 2019 14:13:34 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/dl_1/</guid>
+      <description>最近线上DAG系统居然出现了死锁问题 现象重放 DAG系统新版本发布，系统启动过程中在获取连接时出现了hang住的现象 问题分析 DAG系统包括两个</description>
+    </item>
     
     <item>
       <title>个人搭建VPN代理</title>
@@ -181,15 +190,6 @@
       
       <guid>https://hanzhihua.cn/post/control_shell/</guid>
       <description>在生成环境中，一般是使用supervisor来管理服务进程（运行在k8s平台上的服务，那就不需要了） 但有的时候，我们可能采用简单的方式处理，</description>
-    </item>
-    
-    <item>
-      <title>使用Goreplay来做压测</title>
-      <link>https://hanzhihua.cn/post/goreplay1/</link>
-      <pubDate>Fri, 09 Aug 2019 16:07:22 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/goreplay1/</guid>
-      <description>背景 项目要做一个性能测试，希望能最大限度的模拟用户真实请求。 项目特点弱安全性，无用户标识 解决方案 使用goreplay来录制用户请求，来做压测</description>
     </item>
     
   </channel>

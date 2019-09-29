@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Archive - 一个码农 工作点滴</title>
+  <title>线上死锁问题分析 - 一个码农 工作点滴</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="Hanzhihua 工作点滴." />
+  <meta name="description" content="最近线上DAG系统居然出现了死锁问题 现象重放 DAG系统新版本发布，系统启动过程中在获取连接时出现了hang住的现象 问题分析 DAG系统包括两个" />
+
 
 
 
@@ -33,8 +34,7 @@
 <meta name="generator" content="Hugo 0.56.0" />
 
 
-<link rel="canonical" href="https://hanzhihua.cn/post/" />
-<link href="%7balternate%20%7bRSS%20application/rss&#43;xml%20%20index%20alternate%20%20false%20false%20true%20false%20false%200%7d%20/post/index.xml%20https://hanzhihua.cn/post/index.xml%7d" rel="alternate" type="application/rss+xml" title="一个码农 工作点滴" />
+<link rel="canonical" href="https://hanzhihua.cn/post/dl_1/" />
 
 
 
@@ -56,18 +56,26 @@
 
 
 
-<meta property="og:title" content="Posts" />
-<meta property="og:description" content="Hanzhihua 工作点滴." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://hanzhihua.cn/post/" />
+<meta property="og:title" content="线上死锁问题分析" />
+<meta property="og:description" content="最近线上DAG系统居然出现了死锁问题 现象重放 DAG系统新版本发布，系统启动过程中在获取连接时出现了hang住的现象 问题分析 DAG系统包括两个" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanzhihua.cn/post/dl_1/" />
+<meta property="article:published_time" content="2019-09-29T14:13:34+08:00" />
+<meta property="article:modified_time" content="2019-09-29T14:13:34+08:00" />
+<meta itemprop="name" content="线上死锁问题分析">
+<meta itemprop="description" content="最近线上DAG系统居然出现了死锁问题 现象重放 DAG系统新版本发布，系统启动过程中在获取连接时出现了hang住的现象 问题分析 DAG系统包括两个">
 
-<meta property="og:updated_time" content="2019-09-29T14:13:34+08:00" />
-<meta itemprop="name" content="Posts">
-<meta itemprop="description" content="Hanzhihua 工作点滴.">
 
+<meta itemprop="datePublished" content="2019-09-29T14:13:34&#43;08:00" />
+<meta itemprop="dateModified" content="2019-09-29T14:13:34&#43;08:00" />
+<meta itemprop="wordCount" content="463">
+
+
+
+<meta itemprop="keywords" content="多线程," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content="Hanzhihua 工作点滴."/>
+<meta name="twitter:title" content="线上死锁问题分析"/>
+<meta name="twitter:description" content="最近线上DAG系统居然出现了死锁问题 现象重放 DAG系统新版本发布，系统启动过程中在获取连接时出现了hang住的现象 问题分析 DAG系统包括两个"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -226,7 +234,7 @@
 
       </li>
     
-        <li class="menu-item active">
+        <li class="menu-item">
         
           
           
@@ -284,176 +292,132 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          
-<section id="archive" class="archive">
+          <article class="post bg-white">
     
-      <div class="collection-title">
-        <h2 class="archive-year">2019</h2>
+    <header class="post-header">
+      <h1 class="post-title">线上死锁问题分析</h1>
+      
+      <div class="post-meta">
+        <time datetime="2019-09-29" class="post-time">
+          2019-09-29
+        </time>
+        <div class="post-category">
+            <a href="https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"> 大数据 </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
       </div>
+    </header>
 
-    <div class="archive-post">
-      <time datetime="2019-08-26" class="archive-post-time">
-        2019-08-26
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/mvn_1/" class="archive-post-link">
-          采用snaphost版本
-        </a>
-      </span>
-    </div>
+    
     
 
-    <div class="archive-post">
-      <time datetime="2019-08-24" class="archive-post-time">
-        2019-08-24
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/proxy_1/" class="archive-post-link">
-          Nginx多次转发问题
-        </a>
-      </span>
-    </div>
     
-
-    <div class="archive-post">
-      <time datetime="2019-08-24" class="archive-post-time">
-        2019-08-24
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/prom_1/" class="archive-post-link">
-          Mysql Exporter代码分析
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2019-08-24" class="archive-post-time">
-        2019-08-24
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/io_1/" class="archive-post-link">
-          写文件性能总结
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2019-08-21" class="archive-post-time">
-        2019-08-21
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/shell_1/" class="archive-post-link">
-          发布脚本问题
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2019-08-20" class="archive-post-time">
-        2019-08-20
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/lb_1/" class="archive-post-link">
-          负载均衡的问题
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2019-08-16" class="archive-post-time">
-        2019-08-16
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/jarconflict/" class="archive-post-link">
-          Jar包冲突问题
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2019-08-15" class="archive-post-time">
-        2019-08-15
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/dag_1/" class="archive-post-link">
-          hive语句太长问题
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2019-08-11" class="archive-post-time">
-        2019-08-11
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/mqtask/" class="archive-post-link">
-          使用消息中间件来均分任务
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2019-08-10" class="archive-post-time">
-        2019-08-10
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/control_shell/" class="archive-post-link">
-          服务进程管理脚本
-        </a>
-      </span>
-    </div></section>
-
-
-
-
-
-
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  <nav class="pagination">
-    <ul>
+    <div class="post-content">
       
-      <li >
-        <a href="/post/">1</a>
-      </li>
+
+<p>最近线上DAG系统居然出现了死锁问题</p>
+
+<h2 id="现象重放">现象重放</h2>
+
+<p>DAG系统新版本发布，系统启动过程中在获取连接时出现了hang住的现象</p>
+
+<h2 id="问题分析">问题分析</h2>
+
+<p><em>DAG系统包括两个组件（控制节点和工作节点），控制节点在接受用户请求或者启动时都会主动连接工作节点<br />
+连接过程中，包括一个session建立的初始化请求（类似于zookeeper 客户端连接服务），session init后连接工作才算完成</em></p>
+
+<ul>
+<li>过程中两把锁，一个是连接建立是需要的socket锁和一个是节点track是需要的session锁</li>
+<li>代码中使用了jvm锁机制，使用了synchronized 关键字</li>
+<li>系统启动时，需要节点track初始化session，需要获得session锁，而同时又需要接受用户请求需要初始化连接,使用的是socket锁</li>
+<li>节点track需要初始化连接，需要socket锁</li>
+<li>初始化连接又需要初始化session，需要session锁</li>
+</ul>
+
+<h2 id="解决方案">解决方案</h2>
+
+<ul>
+<li><strong>尽量避免锁的嵌套</strong></li>
+<li>session,socket两把锁在业务语义上是一样的，可以直接修改成一把锁</li>
+<li>也可以用concurrent包lock对象，利用超时机制避免死锁出现</li>
+</ul>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://hanzhihua.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+          
+        </div>
+
       
-      <li  class="active" >
-        <a href="/post/page/2/">2</a>
-      </li>
-      
-      <li >
-        <a href="/post/page/3/">3</a>
-      </li>
-      
-    </ul>
-  </nav>
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/ss_1/">
+            <span class="next-text nav-default">个人搭建VPN代理</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
 
   
   
 
+  
+  
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+const gitalk = new Gitalk({
+  clientID: '6fdacbf5308d1aa661b4',
+  clientSecret: '11a93eb514c765f17225deb68c486ce18e9f54cb',
+  repo: 'techsite',
+  owner: 'hanzhihua',
+  admin: ['hanzhihua'],
+  id: location.pathname, 
+  distractionFreeMode: false 
+})
+gitalk.render('gitalk-container')
+</script>
+  
+
+  
+  
+
+  
+
+  
 
 
 
+    
 
         </div>
       </div>

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Wed, 11 Sep 2019 14:22:59 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 29 Sep 2019 14:13:34 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>线上死锁问题分析</title>
+      <link>https://hanzhihua.cn/post/dl_1/</link>
+      <pubDate>Sun, 29 Sep 2019 14:13:34 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/dl_1/</guid>
+      <description>最近线上DAG系统居然出现了死锁问题 现象重放 DAG系统新版本发布，系统启动过程中在获取连接时出现了hang住的现象 问题分析 DAG系统包括两个</description>
+    </item>
     
     <item>
       <title>hiveserver2重启后的BUG</title>
