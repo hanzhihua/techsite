@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-08-24T10:56:11&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-24T10:56:11&#43;08:00" />
-<meta itemprop="wordCount" content="131">
+<meta itemprop="wordCount" content="281">
 
 
 
@@ -334,6 +334,20 @@
 
 <pre><code class="language-java">FileChannel fileChannel = new RandomAccessFile(this.file, &quot;rw&quot;).getChannel();
 MappedByteBuffer mappedByteBuffer = fileChannel.map(MapMode.READ_WRITE, 0, 文件大小);
+</code></pre>
+
+<h1 id="pagecache-刷盘策略">Pagecache 刷盘策略</h1></li>
+
+<li><p>调用fsync等。</p></li>
+
+<li><p>脏页太多（相关参数：dirty_background_ratio与dirty_ratio）。</p></li>
+
+<li><p>脏页太久（相关参数：dirty_expire_centisecs）
+rocketmq 配置</p>
+
+<pre><code class="language-sh">sudo sysctl -w vm.dirty_background_ratio=50 //当脏页占用的内存百分比超过此值
+sudo sysctl -w vm.dirty_ratio=50 //当脏页占用的内存百分比超过此值
+sudo sysctl -w vm.dirty_writeback_centisecs=360000 //一个小时回写
 </code></pre></li>
 </ul>
 

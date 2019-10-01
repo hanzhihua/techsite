@@ -644,6 +644,20 @@ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;FileChannel fileChannel = new RandomAccessFile(this.file, &amp;quot;rw&amp;quot;).getChannel();
 MappedByteBuffer mappedByteBuffer = fileChannel.map(MapMode.READ_WRITE, 0, 文件大小);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;pagecache-刷盘策略&#34;&gt;Pagecache 刷盘策略&lt;/h1&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;调用fsync等。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;脏页太多（相关参数：dirty_background_ratio与dirty_ratio）。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;脏页太久（相关参数：dirty_expire_centisecs）
+rocketmq 配置&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;sudo sysctl -w vm.dirty_background_ratio=50 //当脏页占用的内存百分比超过此值
+sudo sysctl -w vm.dirty_ratio=50 //当脏页占用的内存百分比超过此值
+sudo sysctl -w vm.dirty_writeback_centisecs=360000 //一个小时回写
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
