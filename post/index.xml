@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sun, 29 Sep 2019 14:13:34 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 05 Oct 2019 23:26:57 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Raft简介</title>
+      <link>https://hanzhihua.cn/post/raft_2/</link>
+      <pubDate>Sat, 05 Oct 2019 23:26:57 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/raft_2/</guid>
+      <description>什么是Raft协议 一致性算法 解决分布式系统多副本的一致性 集群高可用（在部分节点不工作时） 状态机 响应外部请求的 管理内部的状态 例子：Memcac</description>
+    </item>
     
     <item>
       <title>线上死锁问题分析</title>
@@ -181,15 +190,6 @@
       
       <guid>https://hanzhihua.cn/post/mqtask/</guid>
       <description>业务场景 需要把一下大任务，均分到不同节点中去计算，利用集群规模来快速完成任务 解决方案 利用消息中间件的消息分配（任务分配）、容错、消费者（计算</description>
-    </item>
-    
-    <item>
-      <title>服务进程管理脚本</title>
-      <link>https://hanzhihua.cn/post/control_shell/</link>
-      <pubDate>Sat, 10 Aug 2019 18:09:05 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/control_shell/</guid>
-      <description>在生成环境中，一般是使用supervisor来管理服务进程（运行在k8s平台上的服务，那就不需要了） 但有的时候，我们可能采用简单的方式处理，</description>
     </item>
     
   </channel>

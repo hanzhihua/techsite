@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>raft on 一个码农 工作点滴</title>
+    <link>https://hanzhihua.cn/tags/raft/</link>
+    <description>Recent content in raft on 一个码农 工作点滴</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
+    <lastBuildDate>Sat, 05 Oct 2019 23:26:57 +0800</lastBuildDate>
+    
+	<atom:link href="https://hanzhihua.cn/tags/raft/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Raft简介</title>
+      <link>https://hanzhihua.cn/post/raft_2/</link>
+      <pubDate>Sat, 05 Oct 2019 23:26:57 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/raft_2/</guid>
+      <description>什么是Raft协议 一致性算法 解决分布式系统多副本的一致性 集群高可用（在部分节点不工作时） 状态机 响应外部请求的 管理内部的状态 例子：Memcac</description>
+    </item>
+    
+  </channel>
+</rss>

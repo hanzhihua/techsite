@@ -7,10 +7,50 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sun, 29 Sep 2019 14:13:34 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 05 Oct 2019 23:26:57 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Raft简介</title>
+      <link>https://hanzhihua.cn/post/raft_2/</link>
+      <pubDate>Sat, 05 Oct 2019 23:26:57 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/raft_2/</guid>
+      
+        <description>
+
+&lt;h1 id=&#34;什么是raft协议&#34;&gt;什么是Raft协议&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;一致性算法&lt;/li&gt;
+&lt;li&gt;解决分布式系统多副本的一致性&lt;/li&gt;
+&lt;li&gt;集群高可用（在部分节点不工作时）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;状态机&#34;&gt;状态机&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;响应外部请求的&lt;/li&gt;
+&lt;li&gt;管理内部的状态&lt;/li&gt;
+&lt;li&gt;例子：Memcache、redis
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/raft_sm.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/raft_sm.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>线上死锁问题分析</title>
@@ -872,107 +912,6 @@ fi
   &lt;/figure&gt;
 &lt;/div&gt;
 
-</description>
-      
-    </item>
-    
-    <item>
-      <title>服务进程管理脚本</title>
-      <link>https://hanzhihua.cn/post/control_shell/</link>
-      <pubDate>Sat, 10 Aug 2019 18:09:05 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/control_shell/</guid>
-      
-        <description>&lt;p&gt;在生成环境中，一般是使用&lt;a href=&#34;http://supervisord.org/&#34;&gt;supervisor&lt;/a&gt;来管理服务进程（运行在k8s平台上的服务，那就不需要了）&lt;/p&gt;
-
-&lt;p&gt;但有的时候，我们可能采用简单的方式处理，对服务进程进行管理，就是简单的写一个control.sh&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;模板：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;#!/bin/bash
-
-WORK_DIR=$(cd $(dirname $0)/; pwd)
-cd $WORK_DIR
-
-SERVICE_NAME=服务名
-PID_FILE=$SERVICE_NAME.pid
-LOG_FILE=$SERVICE_NAME.out
-SERVICE_CMD=服务启动脚本
-
-function check_pid() {
-if [ -f $PID_FILE ];then
-    pid=`cat $PID_FILE`
-    if [ -n $pid ]; then
-        running=`ps -p $pid|grep -v &amp;quot;PID TTY&amp;quot; |wc -l`
-        return $running
-    fi
-fi
-return 0
-}
-
-function start() {
-check_pid
-running=$?
-if [ $running -gt 0 ];then
-    echo -n &amp;quot;$SERVICE_NAME now is running already, pid=&amp;quot;
-    cat $PID_FILE
-    return 1
-fi
-
-nohup $SERVICE_CMD   &amp;amp;&amp;gt; $LOG_FILE &amp;amp;
-echo $! &amp;gt; $PID_FILE
-echo &amp;quot;$SERVICE_NAME started..., pid=$!&amp;quot;
-}
-
-function stop() {
-pid=`cat $PID_FILE`
-kill $pid
-echo &amp;quot;$SERVICE_NAME stoped...&amp;quot;
-}
-
-function restart() {
-stop
-sleep 1
-start
-}
-
-function status() {
-check_pid
-running=$?
-if [ $running -gt 0 ];then
-    echo -n &amp;quot;$SERVICE_NAME now is running, pid=&amp;quot;
-    cat $PID_FILE
-else
-    echo &amp;quot;$SERVICE_NAME is stoped&amp;quot;
-fi
-}
-
-function tailf() {
-tail -f $logfile
-}
-
-function help() {
-echo &amp;quot;$0 start|stop|restart|status|tail&amp;quot;
-}
-
-if [ &amp;quot;$1&amp;quot; == &amp;quot;&amp;quot; ]; then
-help
-elif [ &amp;quot;$1&amp;quot; == &amp;quot;stop&amp;quot; ];then
-stop
-elif [ &amp;quot;$1&amp;quot; == &amp;quot;start&amp;quot; ];then
-start
-elif [ &amp;quot;$1&amp;quot; == &amp;quot;restart&amp;quot; ];then
-restart
-elif [ &amp;quot;$1&amp;quot; == &amp;quot;status&amp;quot; ];then
-status
-elif [ &amp;quot;$1&amp;quot; == &amp;quot;tail&amp;quot; ];then
-tailf
-else
-help
-fi
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
       
     </item>

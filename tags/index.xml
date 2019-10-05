@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sun, 29 Sep 2019 14:13:34 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 05 Oct 2019 23:26:57 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>raft</title>
+      <link>https://hanzhihua.cn/tags/raft/</link>
+      <pubDate>Sat, 05 Oct 2019 23:26:57 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/tags/raft/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>多线程</title>
@@ -180,15 +189,6 @@
       <pubDate>Wed, 21 Aug 2019 20:51:15 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/tags/shell/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>loadbalance</title>
-      <link>https://hanzhihua.cn/tags/loadbalance/</link>
-      <pubDate>Tue, 20 Aug 2019 20:00:11 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/tags/loadbalance/</guid>
       <description></description>
     </item>
     

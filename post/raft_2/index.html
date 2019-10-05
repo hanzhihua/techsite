@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>分布式 · 一个码农 工作点滴</title>
+  <title>Raft简介 - 一个码农 工作点滴</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="Hanzhihua 工作点滴." />
+  <meta name="description" content="什么是Raft协议 一致性算法 解决分布式系统多副本的一致性 集群高可用（在部分节点不工作时） 状态机 响应外部请求的 管理内部的状态 例子：Memcac" />
+
 
 
 
@@ -33,8 +34,7 @@
 <meta name="generator" content="Hugo 0.56.0" />
 
 
-<link rel="canonical" href="https://hanzhihua.cn/categories/%E5%88%86%E5%B8%83%E5%BC%8F/" />
-<link href="%7balternate%20%7bRSS%20application/rss&#43;xml%20%20index%20alternate%20%20false%20false%20true%20false%20false%200%7d%20/categories/%E5%88%86%E5%B8%83%E5%BC%8F/index.xml%20https://hanzhihua.cn/categories/%E5%88%86%E5%B8%83%E5%BC%8F/index.xml%7d" rel="alternate" type="application/rss+xml" title="一个码农 工作点滴" />
+<link rel="canonical" href="https://hanzhihua.cn/post/raft_2/" />
 
 
 
@@ -56,18 +56,26 @@
 
 
 
-<meta property="og:title" content="分布式" />
-<meta property="og:description" content="Hanzhihua 工作点滴." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://hanzhihua.cn/categories/%E5%88%86%E5%B8%83%E5%BC%8F/" />
+<meta property="og:title" content="Raft简介" />
+<meta property="og:description" content="什么是Raft协议 一致性算法 解决分布式系统多副本的一致性 集群高可用（在部分节点不工作时） 状态机 响应外部请求的 管理内部的状态 例子：Memcac" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanzhihua.cn/post/raft_2/" />
+<meta property="article:published_time" content="2019-10-05T23:26:57+08:00" />
+<meta property="article:modified_time" content="2019-10-05T23:26:57+08:00" />
+<meta itemprop="name" content="Raft简介">
+<meta itemprop="description" content="什么是Raft协议 一致性算法 解决分布式系统多副本的一致性 集群高可用（在部分节点不工作时） 状态机 响应外部请求的 管理内部的状态 例子：Memcac">
 
-<meta property="og:updated_time" content="2019-10-05T23:26:57+08:00" />
-<meta itemprop="name" content="分布式">
-<meta itemprop="description" content="Hanzhihua 工作点滴.">
 
+<meta itemprop="datePublished" content="2019-10-05T23:26:57&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-05T23:26:57&#43;08:00" />
+<meta itemprop="wordCount" content="78">
+
+
+
+<meta itemprop="keywords" content="raft," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="分布式"/>
-<meta name="twitter:description" content="Hanzhihua 工作点滴."/>
+<meta name="twitter:title" content="Raft简介"/>
+<meta name="twitter:description" content="什么是Raft协议 一致性算法 解决分布式系统多副本的一致性 集群高可用（在部分节点不工作时） 状态机 响应外部请求的 管理内部的状态 例子：Memcac"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -284,75 +292,99 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          
-
-<section id="archive" class="archive">
-  
+          <article class="post bg-white">
     
-      <div class="archive-title category">
-        <h2 class="archive-name">Category: 分布式</h2>
+    <header class="post-header">
+      <h1 class="post-title">Raft简介</h1>
+      
+      <div class="post-meta">
+        <time datetime="2019-10-05" class="post-time">
+          2019-10-05
+        </time>
+        <div class="post-category">
+            <a href="https://hanzhihua.cn/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"> 分布式 </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
       </div>
+    </header>
+
     
-  
+    
 
-  
-    <div class="archive-post">
-      <time datetime="2019-10-05" class="archive-post-time">
-        2019-10-05
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/raft_2/" class="archive-post-link">
-          Raft简介
-        </a>
-      </span>
+    
+    <div class="post-content">
+      
+
+<h1 id="什么是raft协议">什么是Raft协议</h1>
+
+<ul>
+<li>一致性算法</li>
+<li>解决分布式系统多副本的一致性</li>
+<li>集群高可用（在部分节点不工作时）</li>
+</ul>
+
+<h1 id="状态机">状态机</h1>
+
+<ul>
+<li>响应外部请求的</li>
+<li>管理内部的状态</li>
+<li>例子：Memcache、redis
+
+<link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
+<div class="box">
+<figure  itemprop="associatedMedia"
+  itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="/raft_sm.png" />
     </div>
-  
-    <div class="archive-post">
-      <time datetime="2019-09-12" class="archive-post-time">
-        2019-09-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/zk_3/" class="archive-post-link">
-          线上zookeeper使用中的一个坑
-        </a>
-      </span>
+    <a href="/raft_sm.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+</li>
+</ul>
+
     </div>
-  
-    <div class="archive-post">
-      <time datetime="2019-08-11" class="archive-post-time">
-        2019-08-11
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/mqtask/" class="archive-post-link">
-          使用消息中间件来均分任务
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2019-08-05" class="archive-post-time">
-        2019-08-05
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/zkchange/" class="archive-post-link">
-          去zk网络分区容错方案
-        </a>
-      </span>
-    </div>
-  
-</section>
+
+    
+    
 
 
+    
+    
 
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://hanzhihua.cn/tags/raft/">raft</a>
+          
+        </div>
 
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/dl_1/">
+            <span class="next-text nav-default">线上死锁问题分析</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
 
-
-  
-  
-  
-
-  
-  
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
 
   
   
@@ -360,12 +392,33 @@
   
   
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+const gitalk = new Gitalk({
+  clientID: '6fdacbf5308d1aa661b4',
+  clientSecret: '11a93eb514c765f17225deb68c486ce18e9f54cb',
+  repo: 'techsite',
+  owner: 'hanzhihua',
+  admin: ['hanzhihua'],
+  id: location.pathname, 
+  distractionFreeMode: false 
+})
+gitalk.render('gitalk-container')
+</script>
+  
+
   
   
 
+  
+
+  
 
 
 
+    
 
         </div>
       </div>
