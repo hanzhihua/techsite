@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-10-05T23:26:57&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-05T23:26:57&#43;08:00" />
-<meta itemprop="wordCount" content="1161">
+<meta itemprop="wordCount" content="1175">
 
 
 
@@ -335,8 +335,7 @@
 <ul>
 <li>响应外部请求的</li>
 <li>管理内部的状态</li>
-
-<li><p>例子：Memcache、redis
+<li>例子：Memcache、redis
 
 <link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
 <div class="box">
@@ -348,17 +347,16 @@
     <a href="/raft_sm.png" itemprop="contentUrl"></a>
   </figure>
 </div>
-</p>
+</li>
+</ul>
 
-<h2 id="复制状态机">复制状态机</h2></li>
+<h2 id="复制状态机">复制状态机</h2>
 
-<li><p>日志复制确保各个节点状态机执行相同的命令及相同的顺序</p></li>
-
-<li><p>一致性模块确保日志正确的复制</p></li>
-
-<li><p>在大部分机器存活时，系统能正常工作，</p></li>
-
-<li><p>故障模型：丢消息、消息验收，fail-stop，不会产生随机故障（Byzantine）
+<ul>
+<li>日志复制确保各个节点状态机执行相同的命令及相同的顺序</li>
+<li>一致性模块确保日志正确的复制</li>
+<li>在大部分机器存活时，系统能正常工作，</li>
+<li>故障模型：丢消息、消息验收，fail-stop，不会产生随机故障（Byzantine）
 
 
 <div class="box">
@@ -370,30 +368,31 @@
     <a href="/raft_rp_sm.png" itemprop="contentUrl"></a>
   </figure>
 </div>
-</p>
+</li>
+</ul>
 
-<h2 id="raft分解">Raft分解</h2></li>
+<h2 id="raft分解">Raft分解</h2>
 
-<li><p>Leader选举</p>
+<ul>
+<li>Leader选举
 
 <ul>
 <li>只有一个节点可以做为Leader</li>
 <li>侦测crashes, 选择新的Leader</li>
 </ul></li>
-
-<li><p>日志复制</p>
+<li>日志复制
 
 <ul>
 <li>Leader接受Client请求，转成日志</li>
 <li>Leader复制日志到其他的节点</li>
 </ul></li>
-
-<li><p>安全性</p>
+<li>安全性
 
 <ul>
 <li>日志的一致性</li>
-
-<li><p>只有拥有最新的日志的节点才可以成为Leader</p>
+<li>只有拥有最新的日志的节点才可以成为Leader</li>
+</ul></li>
+</ul>
 
 <h2 id="节点状态和rpc">节点状态和RPC</h2>
 
@@ -412,7 +411,7 @@
 
 <h2 id="terms">Terms</h2>
 
-
+<p>
 
 <div class="box">
 <figure  itemprop="associatedMedia"
@@ -423,24 +422,17 @@
     <a href="/raft_term.png" itemprop="contentUrl"></a>
   </figure>
 </div>
-</li>
-</ul></li>
 
-<li><p>每一个term最多只有一个leader</p></li>
-
-<li><p>有的term没有leader（选举失败）</p></li>
-
-<li><p>每个节点维护自己的term</p>
-
-<ul>
-<li>在每次rpc过程中交换</li>
-<li>Peer有更大的term,setpdown成为follower</li>
-
-<li><p>请求包含无效的term，就丢弃</p>
+* 每一个term最多只有一个leader
+* 有的term没有leader（选举失败）
+* 每个节点维护自己的term
+    * 在每次rpc过程中交换
+    * Peer有更大的term,setpdown成为follower
+    * 请求包含无效的term，就丢弃</p>
 
 <h2 id="leader选举">Leader选举</h2>
 
-<p>
+
 
 <div class="box">
 <figure  itemprop="associatedMedia"
@@ -452,26 +444,16 @@
   </figure>
 </div>
 
-##选举的正确性</p></li>
-</ul></li>
 
-<li><p>安全性：允许每个term最多一个winner</p>
-
-<ul>
-<li>每个节点每个term只能头一次票</li>
-<li>获得大多数票才能赢得选举</li>
-</ul></li>
-
-<li><p>Liveness：要有一个Candidate获得选举</p>
-
-<ul>
-<li>选举超时时间是随机在[T,2T]</li>
-<li>一个节点可以依赖timeout来赢得选举</li>
-<li>T &gt;&gt; 广播时间</li>
-</ul></li>
-
-<li><p>随机timeout方法比Ranking方法简单</p></li>
-</ul>
+<p>##选举的正确性
+* 安全性：允许每个term最多一个winner
+    * 每个节点每个term只能头一次票
+    * 获得大多数票才能赢得选举
+* Liveness：要有一个Candidate获得选举
+    * 选举超时时间是随机在[T,2T]
+    * 一个节点可以依赖timeout来赢得选举
+    * T &gt;&gt; 广播时间
+* 随机timeout方法比Ranking方法简单</p>
 
 <h2 id="操作流程">操作流程</h2>
 

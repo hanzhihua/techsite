@@ -34,8 +34,7 @@
 &lt;ul&gt;
 &lt;li&gt;响应外部请求的&lt;/li&gt;
 &lt;li&gt;管理内部的状态&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;例子：Memcache、redis
+&lt;li&gt;例子：Memcache、redis
 
 
 &lt;div class=&#34;box&#34;&gt;
@@ -47,17 +46,16 @@
     &lt;a href=&#34;https://hanzhihua.cn/raft_sm.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
   &lt;/figure&gt;
 &lt;/div&gt;
-&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h2 id=&#34;复制状态机&#34;&gt;复制状态机&lt;/h2&gt;&lt;/li&gt;
+&lt;h2 id=&#34;复制状态机&#34;&gt;复制状态机&lt;/h2&gt;
 
-&lt;li&gt;&lt;p&gt;日志复制确保各个节点状态机执行相同的命令及相同的顺序&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;一致性模块确保日志正确的复制&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;在大部分机器存活时，系统能正常工作，&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;故障模型：丢消息、消息验收，fail-stop，不会产生随机故障（Byzantine）
+&lt;ul&gt;
+&lt;li&gt;日志复制确保各个节点状态机执行相同的命令及相同的顺序&lt;/li&gt;
+&lt;li&gt;一致性模块确保日志正确的复制&lt;/li&gt;
+&lt;li&gt;在大部分机器存活时，系统能正常工作，&lt;/li&gt;
+&lt;li&gt;故障模型：丢消息、消息验收，fail-stop，不会产生随机故障（Byzantine）
 
 
 &lt;div class=&#34;box&#34;&gt;
@@ -69,30 +67,31 @@
     &lt;a href=&#34;https://hanzhihua.cn/raft_rp_sm.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
   &lt;/figure&gt;
 &lt;/div&gt;
-&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h2 id=&#34;raft分解&#34;&gt;Raft分解&lt;/h2&gt;&lt;/li&gt;
+&lt;h2 id=&#34;raft分解&#34;&gt;Raft分解&lt;/h2&gt;
 
-&lt;li&gt;&lt;p&gt;Leader选举&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Leader选举
 
 &lt;ul&gt;
 &lt;li&gt;只有一个节点可以做为Leader&lt;/li&gt;
 &lt;li&gt;侦测crashes, 选择新的Leader&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;日志复制&lt;/p&gt;
+&lt;li&gt;日志复制
 
 &lt;ul&gt;
 &lt;li&gt;Leader接受Client请求，转成日志&lt;/li&gt;
 &lt;li&gt;Leader复制日志到其他的节点&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;安全性&lt;/p&gt;
+&lt;li&gt;安全性
 
 &lt;ul&gt;
 &lt;li&gt;日志的一致性&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;只有拥有最新的日志的节点才可以成为Leader&lt;/p&gt;
+&lt;li&gt;只有拥有最新的日志的节点才可以成为Leader&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;节点状态和rpc&#34;&gt;节点状态和RPC&lt;/h2&gt;
 
@@ -111,7 +110,7 @@
 
 &lt;h2 id=&#34;terms&#34;&gt;Terms&lt;/h2&gt;
 
-
+&lt;p&gt;
 
 &lt;div class=&#34;box&#34;&gt;
 &lt;figure  itemprop=&#34;associatedMedia&#34;
@@ -122,24 +121,17 @@
     &lt;a href=&#34;https://hanzhihua.cn/raft_term.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
   &lt;/figure&gt;
 &lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;每一个term最多只有一个leader&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;有的term没有leader（选举失败）&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;每个节点维护自己的term&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;在每次rpc过程中交换&lt;/li&gt;
-&lt;li&gt;Peer有更大的term,setpdown成为follower&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;请求包含无效的term，就丢弃&lt;/p&gt;
+* 每一个term最多只有一个leader
+* 有的term没有leader（选举失败）
+* 每个节点维护自己的term
+    * 在每次rpc过程中交换
+    * Peer有更大的term,setpdown成为follower
+    * 请求包含无效的term，就丢弃&lt;/p&gt;
 
 &lt;h2 id=&#34;leader选举&#34;&gt;Leader选举&lt;/h2&gt;
 
-&lt;p&gt;
+
 
 &lt;div class=&#34;box&#34;&gt;
 &lt;figure  itemprop=&#34;associatedMedia&#34;
@@ -151,26 +143,16 @@
   &lt;/figure&gt;
 &lt;/div&gt;
 
-##选举的正确性&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;安全性：允许每个term最多一个winner&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;每个节点每个term只能头一次票&lt;/li&gt;
-&lt;li&gt;获得大多数票才能赢得选举&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Liveness：要有一个Candidate获得选举&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;选举超时时间是随机在[T,2T]&lt;/li&gt;
-&lt;li&gt;一个节点可以依赖timeout来赢得选举&lt;/li&gt;
-&lt;li&gt;T &amp;gt;&amp;gt; 广播时间&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;随机timeout方法比Ranking方法简单&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;##选举的正确性
+* 安全性：允许每个term最多一个winner
+    * 每个节点每个term只能头一次票
+    * 获得大多数票才能赢得选举
+* Liveness：要有一个Candidate获得选举
+    * 选举超时时间是随机在[T,2T]
+    * 一个节点可以依赖timeout来赢得选举
+    * T &amp;gt;&amp;gt; 广播时间
+* 随机timeout方法比Ranking方法简单&lt;/p&gt;
 
 &lt;h2 id=&#34;操作流程&#34;&gt;操作流程&lt;/h2&gt;
 
