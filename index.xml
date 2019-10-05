@@ -110,7 +110,7 @@
 
 &lt;h2 id=&#34;terms&#34;&gt;Terms&lt;/h2&gt;
 
-&lt;p&gt;
+
 
 &lt;div class=&#34;box&#34;&gt;
 &lt;figure  itemprop=&#34;associatedMedia&#34;
@@ -122,12 +122,18 @@
   &lt;/figure&gt;
 &lt;/div&gt;
 
-* 每一个term最多只有一个leader
-* 有的term没有leader（选举失败）
-* 每个节点维护自己的term
-    * 在每次rpc过程中交换
-    * Peer有更大的term,setpdown成为follower
-    * 请求包含无效的term，就丢弃&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;每一个term最多只有一个leader&lt;/li&gt;
+&lt;li&gt;有的term没有leader（选举失败）&lt;/li&gt;
+&lt;li&gt;每个节点维护自己的term
+
+&lt;ul&gt;
+&lt;li&gt;在每次rpc过程中交换&lt;/li&gt;
+&lt;li&gt;Peer有更大的term,setpdown成为follower&lt;/li&gt;
+&lt;li&gt;请求包含无效的term，就丢弃&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;leader选举&#34;&gt;Leader选举&lt;/h2&gt;
 

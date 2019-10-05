@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-10-05T23:26:57&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-05T23:26:57&#43;08:00" />
-<meta itemprop="wordCount" content="1175">
+<meta itemprop="wordCount" content="1169">
 
 
 
@@ -411,7 +411,7 @@
 
 <h2 id="terms">Terms</h2>
 
-<p>
+
 
 <div class="box">
 <figure  itemprop="associatedMedia"
@@ -423,12 +423,18 @@
   </figure>
 </div>
 
-* 每一个term最多只有一个leader
-* 有的term没有leader（选举失败）
-* 每个节点维护自己的term
-    * 在每次rpc过程中交换
-    * Peer有更大的term,setpdown成为follower
-    * 请求包含无效的term，就丢弃</p>
+
+<ul>
+<li>每一个term最多只有一个leader</li>
+<li>有的term没有leader（选举失败）</li>
+<li>每个节点维护自己的term
+
+<ul>
+<li>在每次rpc过程中交换</li>
+<li>Peer有更大的term,setpdown成为follower</li>
+<li>请求包含无效的term，就丢弃</li>
+</ul></li>
+</ul>
 
 <h2 id="leader选举">Leader选举</h2>
 
