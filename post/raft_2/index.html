@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-10-05T23:26:57&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-05T23:26:57&#43;08:00" />
-<meta itemprop="wordCount" content="1169">
+<meta itemprop="wordCount" content="1159">
 
 
 
@@ -451,15 +451,24 @@
 </div>
 
 
-<p>##选举的正确性
-* 安全性：允许每个term最多一个winner
-    * 每个节点每个term只能头一次票
-    * 获得大多数票才能赢得选举
-* Liveness：要有一个Candidate获得选举
-    * 选举超时时间是随机在[T,2T]
-    * 一个节点可以依赖timeout来赢得选举
-    * T &gt;&gt; 广播时间
-* 随机timeout方法比Ranking方法简单</p>
+<h2 id="选举的正确性">选举的正确性</h2>
+
+<ul>
+<li>安全性：允许每个term最多一个winner
+
+<ul>
+<li>每个节点每个term只能头一次票</li>
+<li>获得大多数票才能赢得选举</li>
+</ul></li>
+<li>Liveness：要有一个Candidate获得选举
+
+<ul>
+<li>选举超时时间是随机在[T,2T]</li>
+<li>一个节点可以依赖timeout来赢得选举</li>
+<li>T &gt;&gt; 广播时间</li>
+</ul></li>
+<li>随机timeout方法比Ranking方法简单</li>
+</ul>
 
 <h2 id="操作流程">操作流程</h2>
 
