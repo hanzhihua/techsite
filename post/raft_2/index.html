@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-10-05T23:26:57&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-05T23:26:57&#43;08:00" />
-<meta itemprop="wordCount" content="78">
+<meta itemprop="wordCount" content="1161">
 
 
 
@@ -322,7 +322,7 @@
     <div class="post-content">
       
 
-<h1 id="什么是raft协议">什么是Raft协议</h1>
+<h2 id="什么是raft协议">什么是Raft协议</h2>
 
 <ul>
 <li>一致性算法</li>
@@ -330,12 +330,13 @@
 <li>集群高可用（在部分节点不工作时）</li>
 </ul>
 
-<h1 id="状态机">状态机</h1>
+<h2 id="状态机">状态机</h2>
 
 <ul>
 <li>响应外部请求的</li>
 <li>管理内部的状态</li>
-<li>例子：Memcache、redis
+
+<li><p>例子：Memcache、redis
 
 <link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
 <div class="box">
@@ -347,7 +348,253 @@
     <a href="/raft_sm.png" itemprop="contentUrl"></a>
   </figure>
 </div>
+</p>
+
+<h2 id="复制状态机">复制状态机</h2></li>
+
+<li><p>日志复制确保各个节点状态机执行相同的命令及相同的顺序</p></li>
+
+<li><p>一致性模块确保日志正确的复制</p></li>
+
+<li><p>在大部分机器存活时，系统能正常工作，</p></li>
+
+<li><p>故障模型：丢消息、消息验收，fail-stop，不会产生随机故障（Byzantine）
+
+
+<div class="box">
+<figure  itemprop="associatedMedia"
+  itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="/raft_rp_sm.png" />
+    </div>
+    <a href="/raft_rp_sm.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+</p>
+
+<h2 id="raft分解">Raft分解</h2></li>
+
+<li><p>Leader选举</p>
+
+<ul>
+<li>只有一个节点可以做为Leader</li>
+<li>侦测crashes, 选择新的Leader</li>
+</ul></li>
+
+<li><p>日志复制</p>
+
+<ul>
+<li>Leader接受Client请求，转成日志</li>
+<li>Leader复制日志到其他的节点</li>
+</ul></li>
+
+<li><p>安全性</p>
+
+<ul>
+<li>日志的一致性</li>
+
+<li><p>只有拥有最新的日志的节点才可以成为Leader</p>
+
+<h2 id="节点状态和rpc">节点状态和RPC</h2>
+
+
+
+<div class="box">
+<figure  itemprop="associatedMedia"
+  itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="/raft_s_rpc.png" />
+    </div>
+    <a href="/raft_s_rpc.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+
+<h2 id="terms">Terms</h2>
+
+
+
+<div class="box">
+<figure  itemprop="associatedMedia"
+  itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="/raft_term.png" />
+    </div>
+    <a href="/raft_term.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
 </li>
+</ul></li>
+
+<li><p>每一个term最多只有一个leader</p></li>
+
+<li><p>有的term没有leader（选举失败）</p></li>
+
+<li><p>每个节点维护自己的term</p>
+
+<ul>
+<li>在每次rpc过程中交换</li>
+<li>Peer有更大的term,setpdown成为follower</li>
+
+<li><p>请求包含无效的term，就丢弃</p>
+
+<h2 id="leader选举">Leader选举</h2>
+
+<p>
+
+<div class="box">
+<figure  itemprop="associatedMedia"
+  itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="/raft_l_ele.png" />
+    </div>
+    <a href="/raft_l_ele.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+##选举的正确性</p></li>
+</ul></li>
+
+<li><p>安全性：允许每个term最多一个winner</p>
+
+<ul>
+<li>每个节点每个term只能头一次票</li>
+<li>获得大多数票才能赢得选举</li>
+</ul></li>
+
+<li><p>Liveness：要有一个Candidate获得选举</p>
+
+<ul>
+<li>选举超时时间是随机在[T,2T]</li>
+<li>一个节点可以依赖timeout来赢得选举</li>
+<li>T &gt;&gt; 广播时间</li>
+</ul></li>
+
+<li><p>随机timeout方法比Ranking方法简单</p></li>
+</ul>
+
+<h2 id="操作流程">操作流程</h2>
+
+<ul>
+<li>Client 发送命令到Leader</li>
+<li>Leader 把命令 append到它的log中</li>
+<li>Leader 发送 AppendEntries RPCs 给所有的followers</li>
+<li>一旦命令 提交：
+
+<ul>
+<li>Leader 在它的状态机中执行命令，返回结果给Client</li>
+<li>Leader 在下一次AppendEntriesRPS通知followers，提交命令</li>
+<li>Followers在它的状态机中执行命令</li>
+</ul></li>
+<li>Crashed/slow followers
+
+<ul>
+<li>Leader 重试 AppendEntries RPCs 直到它们成功
+<br /></li>
+</ul></li>
+</ul>
+
+<h2 id="日志结构">日志结构</h2>
+
+<p>
+
+<div class="box">
+<figure  itemprop="associatedMedia"
+  itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="/raft_l_s.png" />
+    </div>
+    <a href="/raft_l_s.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+* 当节点crash时，日志必须保存（需要落盘）
+* Committed的entry必须被状态机执行过
+   * 当日志存在多个节点上（被复制）</p>
+
+<h2 id="日志不一致性">日志不一致性</h2>
+
+<ul>
+<li>节点crash造成了日志的不一致性
+
+
+<div class="box">
+<figure  itemprop="associatedMedia"
+  itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="/raft_l_i.png" />
+    </div>
+    <a href="/raft_l_i.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+</li>
+<li>Raft修复日志不一致方法
+
+<ul>
+<li>Leader的日志是正确的</li>
+<li>Leader会帮助follower使用修复日志</li>
+</ul></li>
+</ul>
+
+<h2 id="日志匹配特征">日志匹配特征</h2>
+
+<ul>
+<li>如果日志记录在不同节点有相同的index和term
+
+<ul>
+<li>他们存储相同的命令</li>
+<li>之前的日志记录也是完全相同的
+
+
+<div class="box">
+<figure  itemprop="associatedMedia"
+  itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="/raft_l_m.png" />
+    </div>
+    <a href="/raft_l_m.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+<br /></li>
+</ul></li>
+<li>如果一个日志记录被Committed过，那么所有之前的日志记录都被Committed</li>
+</ul>
+
+<h2 id="appendentries-一致性检查">AppendEntries 一致性检查</h2>
+
+<ul>
+<li>AppendEntries RPCs 包含当前日志及前一个日志<index,term></li>
+<li>Follower需要匹配前一个的日志的，否则将拒绝请求
+
+<ul>
+<li>Leader 使用前一个日志重试</li>
+</ul></li>
+<li>实现，需要满足日志匹配特征
+
+
+<div class="box">
+<figure  itemprop="associatedMedia"
+  itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="/raft_l_c.png" />
+    </div>
+    <a href="/raft_l_c.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+</li>
+</ul>
+
+<h2 id="安全性-leader完整性">安全性：Leader完整性</h2>
+
+<ul>
+<li>一旦日志记录committed,后面的Leader必须存储这个日志记录</li>
+<li>节点包含没有完成的日志记录不能赢得选举
+
+<ul>
+<li>Candidate包含最后日志记录</li>
+<li>Voting 服务器拒绝投票，如果它的日志是更新</li>
+<li>日志排序根据最后的term和index</li>
+</ul></li>
 </ul>
 
     </div>

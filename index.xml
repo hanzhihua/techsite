@@ -21,7 +21,7 @@
       
         <description>
 
-&lt;h1 id=&#34;什么是raft协议&#34;&gt;什么是Raft协议&lt;/h1&gt;
+&lt;h2 id=&#34;什么是raft协议&#34;&gt;什么是Raft协议&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;一致性算法&lt;/li&gt;
@@ -29,12 +29,13 @@
 &lt;li&gt;集群高可用（在部分节点不工作时）&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;状态机&#34;&gt;状态机&lt;/h1&gt;
+&lt;h2 id=&#34;状态机&#34;&gt;状态机&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;响应外部请求的&lt;/li&gt;
 &lt;li&gt;管理内部的状态&lt;/li&gt;
-&lt;li&gt;例子：Memcache、redis
+
+&lt;li&gt;&lt;p&gt;例子：Memcache、redis
 
 
 &lt;div class=&#34;box&#34;&gt;
@@ -46,7 +47,253 @@
     &lt;a href=&#34;https://hanzhihua.cn/raft_sm.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
   &lt;/figure&gt;
 &lt;/div&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&#34;复制状态机&#34;&gt;复制状态机&lt;/h2&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;日志复制确保各个节点状态机执行相同的命令及相同的顺序&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;一致性模块确保日志正确的复制&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;在大部分机器存活时，系统能正常工作，&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;故障模型：丢消息、消息验收，fail-stop，不会产生随机故障（Byzantine）
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/raft_rp_sm.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/raft_rp_sm.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&#34;raft分解&#34;&gt;Raft分解&lt;/h2&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Leader选举&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;只有一个节点可以做为Leader&lt;/li&gt;
+&lt;li&gt;侦测crashes, 选择新的Leader&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;日志复制&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Leader接受Client请求，转成日志&lt;/li&gt;
+&lt;li&gt;Leader复制日志到其他的节点&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;安全性&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;日志的一致性&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;只有拥有最新的日志的节点才可以成为Leader&lt;/p&gt;
+
+&lt;h2 id=&#34;节点状态和rpc&#34;&gt;节点状态和RPC&lt;/h2&gt;
+
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/raft_s_rpc.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/raft_s_rpc.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;h2 id=&#34;terms&#34;&gt;Terms&lt;/h2&gt;
+
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/raft_term.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/raft_term.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;每一个term最多只有一个leader&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;有的term没有leader（选举失败）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;每个节点维护自己的term&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在每次rpc过程中交换&lt;/li&gt;
+&lt;li&gt;Peer有更大的term,setpdown成为follower&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;请求包含无效的term，就丢弃&lt;/p&gt;
+
+&lt;h2 id=&#34;leader选举&#34;&gt;Leader选举&lt;/h2&gt;
+
+&lt;p&gt;
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/raft_l_ele.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/raft_l_ele.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+##选举的正确性&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;安全性：允许每个term最多一个winner&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;每个节点每个term只能头一次票&lt;/li&gt;
+&lt;li&gt;获得大多数票才能赢得选举&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Liveness：要有一个Candidate获得选举&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;选举超时时间是随机在[T,2T]&lt;/li&gt;
+&lt;li&gt;一个节点可以依赖timeout来赢得选举&lt;/li&gt;
+&lt;li&gt;T &amp;gt;&amp;gt; 广播时间&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;随机timeout方法比Ranking方法简单&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;操作流程&#34;&gt;操作流程&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Client 发送命令到Leader&lt;/li&gt;
+&lt;li&gt;Leader 把命令 append到它的log中&lt;/li&gt;
+&lt;li&gt;Leader 发送 AppendEntries RPCs 给所有的followers&lt;/li&gt;
+&lt;li&gt;一旦命令 提交：
+
+&lt;ul&gt;
+&lt;li&gt;Leader 在它的状态机中执行命令，返回结果给Client&lt;/li&gt;
+&lt;li&gt;Leader 在下一次AppendEntriesRPS通知followers，提交命令&lt;/li&gt;
+&lt;li&gt;Followers在它的状态机中执行命令&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Crashed/slow followers
+
+&lt;ul&gt;
+&lt;li&gt;Leader 重试 AppendEntries RPCs 直到它们成功
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;日志结构&#34;&gt;日志结构&lt;/h2&gt;
+
+&lt;p&gt;
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/raft_l_s.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/raft_l_s.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+* 当节点crash时，日志必须保存（需要落盘）
+* Committed的entry必须被状态机执行过
+   * 当日志存在多个节点上（被复制）&lt;/p&gt;
+
+&lt;h2 id=&#34;日志不一致性&#34;&gt;日志不一致性&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;节点crash造成了日志的不一致性
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/raft_l_i.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/raft_l_i.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;Raft修复日志不一致方法
+
+&lt;ul&gt;
+&lt;li&gt;Leader的日志是正确的&lt;/li&gt;
+&lt;li&gt;Leader会帮助follower使用修复日志&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;日志匹配特征&#34;&gt;日志匹配特征&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;如果日志记录在不同节点有相同的index和term
+
+&lt;ul&gt;
+&lt;li&gt;他们存储相同的命令&lt;/li&gt;
+&lt;li&gt;之前的日志记录也是完全相同的
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/raft_l_m.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/raft_l_m.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;如果一个日志记录被Committed过，那么所有之前的日志记录都被Committed&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;appendentries-一致性检查&#34;&gt;AppendEntries 一致性检查&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AppendEntries RPCs 包含当前日志及前一个日志&lt;index,term&gt;&lt;/li&gt;
+&lt;li&gt;Follower需要匹配前一个的日志的，否则将拒绝请求
+
+&lt;ul&gt;
+&lt;li&gt;Leader 使用前一个日志重试&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;实现，需要满足日志匹配特征
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/raft_l_c.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/raft_l_c.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;安全性-leader完整性&#34;&gt;安全性：Leader完整性&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;一旦日志记录committed,后面的Leader必须存储这个日志记录&lt;/li&gt;
+&lt;li&gt;节点包含没有完成的日志记录不能赢得选举
+
+&lt;ul&gt;
+&lt;li&gt;Candidate包含最后日志记录&lt;/li&gt;
+&lt;li&gt;Voting 服务器拒绝投票，如果它的日志是更新&lt;/li&gt;
+&lt;li&gt;日志排序根据最后的term和index&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
