@@ -14,13 +14,6 @@
   </url>
   
   <url>
-    <loc>https://hanzhihua.cn/post/sec_1/</loc>
-    <lastmod>2019-10-06T10:25:14+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://hanzhihua.cn/tags/</loc>
     <lastmod>2019-10-06T10:25:14+08:00</lastmod>
     <priority>0</priority>
@@ -42,6 +35,13 @@
     <loc>https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/</loc>
     <lastmod>2019-10-06T10:25:14+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/post/sec_1/</loc>
+    <lastmod>2019-10-06T10:25:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
