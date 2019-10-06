@@ -7,10 +7,136 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 05 Oct 2019 23:26:57 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 06 Oct 2019 10:25:14 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sec_1</title>
+      <link>https://hanzhihua.cn/post/sec_1/</link>
+      <pubDate>Sun, 06 Oct 2019 10:25:14 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/sec_1/</guid>
+      
+        <description>
+
+&lt;h1 id=&#34;安全分类&#34;&gt;安全分类&lt;/h1&gt;
+
+&lt;h2 id=&#34;waf相关&#34;&gt;WAF相关&lt;/h2&gt;
+
+&lt;p&gt;Web APP 防火墙：恶意攻击拦截、拦截数据分析、限制 API 访问频率等&lt;/p&gt;
+
+&lt;h3 id=&#34;流量访问频率限制&#34;&gt;流量访问频率限制&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;IP 访问频率限制&amp;amp;封禁&lt;/li&gt;
+&lt;li&gt;Session 访问频率限制&amp;amp;封禁&lt;/li&gt;
+&lt;li&gt;默认无频率限制，需对域名或URL进行配置&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;主机入侵检测系统&#34;&gt;主机入侵检测系统&lt;/h2&gt;
+
+&lt;p&gt;安装部署、问题跟进、主机安全相关&lt;/p&gt;
+
+&lt;h2 id=&#34;业务风控&#34;&gt;业务风控&lt;/h2&gt;
+
+&lt;p&gt;帐号体系、内容体系、高频业务流量等&lt;/p&gt;
+
+&lt;h2 id=&#34;网络准入&#34;&gt;网络准入&lt;/h2&gt;
+
+&lt;p&gt;公司办公楼网络安全准入控制相关问题&lt;/p&gt;
+
+&lt;h2 id=&#34;数据安全&#34;&gt;数据安全&lt;/h2&gt;
+
+&lt;p&gt;加密传输、数据脱敏、数据销毁、DLP、数据加密、数据使用规范等&lt;/p&gt;
+
+&lt;h2 id=&#34;舆情监控&#34;&gt;舆情监控&lt;/h2&gt;
+
+&lt;p&gt;监控 Github&amp;amp;Gitlab 代码泄露、微博发表安全相关言论监控等&lt;/p&gt;
+
+&lt;h1 id=&#34;最佳实践&#34;&gt;最佳实践&lt;/h1&gt;
+
+&lt;h2 id=&#34;生产网络安全&#34;&gt;生产网络安全&lt;/h2&gt;
+
+&lt;h3 id=&#34;ddos&#34;&gt;DDOS&lt;/h3&gt;
+
+&lt;h3 id=&#34;系统后门告警排查&#34;&gt;系统后门告警排查&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;排查方向&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;挖矿程序 服务器CPU资源使用情况&lt;/li&gt;
+&lt;li&gt;DDOS木马 服务器出流量情况
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;可疑文件创建时间，以此时间排查其他文件是否有改动：stat filename（modify与change时间相差过大以change时间为主）&lt;/p&gt;
+
+&lt;p&gt;可疑文件句柄：lsof&lt;/p&gt;
+
+&lt;p&gt;可疑进程运行权限：ps（排查相应权限运行的 服务/应用 是否存在漏洞等）&lt;/p&gt;
+
+&lt;p&gt;命令是否被篡改： ps/ls/netstat/ss/top 等命令（排查命令文件修改时间/md5、ls -alt &amp;ndash;sort=time /bin/）&lt;/p&gt;
+
+&lt;p&gt;服务器登录记录：auth.log/secure/sshd.log、last&lt;/p&gt;
+
+&lt;p&gt;cron任务排查：/etc/cron*、/var/spool/cron&lt;/p&gt;
+
+&lt;p&gt;可疑用户：/etc/passwd&lt;/p&gt;
+
+&lt;p&gt;SSH 公钥：/root/.ssh/authorized_keys（文件是否有改动）&lt;/p&gt;
+
+&lt;p&gt;SSH 配置：/etc/ssh/sshd_config（文件是否有改动、是否运行密码登录）&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;主机安全&#34;&gt;主机安全&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;账号排查
+
+&lt;ul&gt;
+&lt;li&gt;启用账号列表：root，ansible&lt;/li&gt;
+&lt;li&gt;是否支持使用密码登录主机：root 允许key和密码登录，但无弱口令情况&lt;/li&gt;
+&lt;li&gt;系统内各个账号的公钥是否异常：否&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;端口排查
+
+&lt;ul&gt;
+&lt;li&gt;端口监听程序是否为已知程序&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;进程排查
+
+&lt;ul&gt;
+&lt;li&gt;是否为已知业务的正常进&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;操作审计
+
+&lt;ul&gt;
+&lt;li&gt;近期内可疑的命令行操作记录：30 天内未发现敏感操作&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;入侵检测
+
+&lt;ul&gt;
+&lt;li&gt;是否部署主机入侵检测系统&lt;/li&gt;
+&lt;li&gt;是否支持 BASH 安全审计&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;定时任务
+
+&lt;ul&gt;
+&lt;li&gt;排查未发现可疑定时任务&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;外网端口访问:&lt;/li&gt;
+&lt;li&gt;标准进程和标准端口&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;弱口令修复方案&#34;&gt;弱口令修复方案&lt;/h3&gt;
+
+&lt;p&gt;弱口令主要包含 SSH、MySQL、Redis、rsync、ftp等服务。&lt;/p&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>Raft简介</title>
@@ -1114,48 +1240,6 @@ fi
 报错误了&lt;/p&gt;
 
 &lt;p&gt;考虑到作业的命令是多条hql语句(以逗号分隔)，都比较长，后续将采用小文件方式来存放&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>使用消息中间件来均分任务</title>
-      <link>https://hanzhihua.cn/post/mqtask/</link>
-      <pubDate>Sun, 11 Aug 2019 15:04:12 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/mqtask/</guid>
-      
-        <description>
-
-&lt;h2 id=&#34;业务场景&#34;&gt;业务场景&lt;/h2&gt;
-
-&lt;p&gt;需要把一下大任务，均分到不同节点中去计算，利用集群规模来快速完成任务&lt;/p&gt;
-
-&lt;h2 id=&#34;解决方案&#34;&gt;解决方案&lt;/h2&gt;
-
-&lt;p&gt;利用消息中间件的消息分配（任务分配）、容错、消费者（计算节点）的自动扩缩容，就可以非常简单的完成该功能。&lt;/p&gt;
-
-&lt;p&gt;主要是利用rocketmq机制。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;建立topic，&lt;strong&gt;保证queue数量大于工作节点数量&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;由任务发起节点，把大任务拆分一个个小任务，发送到消息中间件&lt;/li&gt;
-&lt;li&gt;各个任务处理节点按照分配对来处理小任务&lt;/li&gt;
-&lt;li&gt;上报任务处理状态&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;div class=&#34;box&#34;&gt;
-&lt;figure  itemprop=&#34;associatedMedia&#34;
-  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
-    &lt;div class=&#34;img&#34;&gt;
-      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/Snip20190812_219.png&#34; /&gt;
-    &lt;/div&gt;
-    &lt;a href=&#34;https://hanzhihua.cn/Snip20190812_219.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-
 </description>
       
     </item>

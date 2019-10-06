@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>security on 一个码农 工作点滴</title>
+    <link>https://hanzhihua.cn/tags/security/</link>
+    <description>Recent content in security on 一个码农 工作点滴</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
+    <lastBuildDate>Sun, 06 Oct 2019 10:25:14 +0800</lastBuildDate>
+    
+	<atom:link href="https://hanzhihua.cn/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sec_1</title>
+      <link>https://hanzhihua.cn/post/sec_1/</link>
+      <pubDate>Sun, 06 Oct 2019 10:25:14 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/sec_1/</guid>
+      <description>安全分类 WAF相关 Web APP 防火墙：恶意攻击拦截、拦截数据分析、限制 API 访问频率等 流量访问频率限制 IP 访问频率限制&amp;amp;封禁 Session 访问频率限制&amp;amp</description>
+    </item>
+    
+  </channel>
+</rss>

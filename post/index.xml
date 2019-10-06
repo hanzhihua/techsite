@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 05 Oct 2019 23:26:57 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 06 Oct 2019 10:25:14 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sec_1</title>
+      <link>https://hanzhihua.cn/post/sec_1/</link>
+      <pubDate>Sun, 06 Oct 2019 10:25:14 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/sec_1/</guid>
+      <description>安全分类 WAF相关 Web APP 防火墙：恶意攻击拦截、拦截数据分析、限制 API 访问频率等 流量访问频率限制 IP 访问频率限制&amp;amp;封禁 Session 访问频率限制&amp;amp</description>
+    </item>
     
     <item>
       <title>Raft简介</title>
@@ -181,15 +190,6 @@
       
       <guid>https://hanzhihua.cn/post/dag_1/</guid>
       <description>今天有一个同学写了一个超长的hive脚本， &amp;gt; 1000行，在执行ADHOC的时候出现错误 分析原因，因为DAG系统的作业信息是存在mysql，作</description>
-    </item>
-    
-    <item>
-      <title>使用消息中间件来均分任务</title>
-      <link>https://hanzhihua.cn/post/mqtask/</link>
-      <pubDate>Sun, 11 Aug 2019 15:04:12 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/mqtask/</guid>
-      <description>业务场景 需要把一下大任务，均分到不同节点中去计算，利用集群规模来快速完成任务 解决方案 利用消息中间件的消息分配（任务分配）、容错、消费者（计算</description>
     </item>
     
   </channel>
