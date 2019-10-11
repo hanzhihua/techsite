@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sun, 06 Oct 2019 10:25:14 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 11 Oct 2019 16:38:07 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DAG</title>
+      <link>https://hanzhihua.cn/tags/dag/</link>
+      <pubDate>Fri, 11 Oct 2019 16:38:07 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/tags/dag/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nio</title>
+      <link>https://hanzhihua.cn/tags/nio/</link>
+      <pubDate>Wed, 09 Oct 2019 13:01:30 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/tags/nio/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>security</title>
@@ -171,24 +189,6 @@
       <pubDate>Sat, 24 Aug 2019 16:44:39 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/tags/golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>promethues</title>
-      <link>https://hanzhihua.cn/tags/promethues/</link>
-      <pubDate>Sat, 24 Aug 2019 16:44:39 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/tags/promethues/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>io</title>
-      <link>https://hanzhihua.cn/tags/io/</link>
-      <pubDate>Sat, 24 Aug 2019 10:56:11 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/tags/io/</guid>
       <description></description>
     </item>
     

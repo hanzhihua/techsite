@@ -7,10 +7,140 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sun, 06 Oct 2019 10:25:14 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 11 Oct 2019 16:38:07 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>hive/spark server-jdbc连接池问题</title>
+      <link>https://hanzhihua.cn/post/cpool_1/</link>
+      <pubDate>Fri, 11 Oct 2019 16:38:07 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cpool_1/</guid>
+      
+        <description>
+
+&lt;p&gt;&lt;strong&gt;昨天线上DAG系统出现了连接池的问题&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;现象重放&#34;&gt;现象重放&lt;/h2&gt;
+
+&lt;p&gt;昨天部分服务器做内存扩容，这些服务器上面跑着包括*hivethrift/sparkthrift server*等服务&lt;/p&gt;
+
+&lt;p&gt;用户在adhoc操作时出现异常&lt;/p&gt;
+
+&lt;h2 id=&#34;问题分析&#34;&gt;问题分析&lt;/h2&gt;
+
+&lt;p&gt;用户的adhoc操作走的是jdbc协议，而数据库服务器的节点配置是在上面的服务器上随机了配置三台服务器&lt;/p&gt;
+
+&lt;p&gt;执行节点使用了durid连接池，随机在三台服务器找一台作为数据库服务器来建立并维护连接&lt;/p&gt;
+
+&lt;p&gt;如果这个时候该服务器重启，那么就会发生org.springframework.jdbc.CannotGetJdbcConnectionException 异常，&lt;/p&gt;
+
+&lt;p&gt;并且在服务器没有重启完成时不能自愈&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;为什么采取jdbc方式，主要是利用连接池中的长连接，以提高adhoc 检测/执行的性能&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;改善措施&#34;&gt;改善措施&lt;/h2&gt;
+
+&lt;p&gt;不大改，采用简单处理方式，如果后续再出现org.springframework.jdbc.CannotGetJdbcConnectionException 异常时，&lt;/p&gt;
+
+&lt;p&gt;可以推断出改hivethrift/springthrift server重启了&lt;/p&gt;
+
+&lt;p&gt;处理方式：&lt;strong&gt;剔除该节点，在列表中重新选择其他的一个节点建立连接池&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+
+&lt;p&gt;如果hiveserver对比mysqlserver,数据库节点出现问题，一般使用以下方式处理&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;没有采用DNS的应用，一般是应用修改配置，重启应用来解决&lt;/li&gt;
+&lt;li&gt;采用DNS的应用，运维手动修改DNS配置，并清除DNS缓存来完成&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;两个都比较耗时的&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>IO模型比较</title>
+      <link>https://hanzhihua.cn/post/io_2/</link>
+      <pubDate>Wed, 09 Oct 2019 13:01:30 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/io_2/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;io模型&#34;&gt;IO模型&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;IO请求划分两个阶段：
+
+&lt;ul&gt;
+&lt;li&gt;等待数据就绪&lt;/li&gt;
+&lt;li&gt;从内核缓冲区(socket send/receive buffer)拷贝到进程内存中&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;安全请求是否堵塞
+
+&lt;ul&gt;
+&lt;li&gt;同步IO&lt;/li&gt;
+&lt;li&gt;异步IO&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Unix的几种IO模型
+
+&lt;ul&gt;
+&lt;li&gt;阻塞IO （BIO）&lt;/li&gt;
+&lt;li&gt;IO复用  (NIO)&lt;/li&gt;
+&lt;li&gt;异步IO  (AIO)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;io模型之间的区别&#34;&gt;IO模型之间的区别&lt;/h2&gt;
+
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/io_c.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/io_c.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;h2 id=&#34;io策略&#34;&gt;IO策略&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;BIO:每个client一个线程&lt;/li&gt;
+&lt;li&gt;NIO:单线程，多个client,非阻塞（IO复用）
+
+&lt;ul&gt;
+&lt;li&gt;水平触发&lt;/li&gt;
+&lt;li&gt;边缘触发&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;AIO: 单线程，多个client&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;nio-aio比较&#34;&gt;NIO,AIO比较&lt;/h2&gt;
+
+&lt;p&gt;NIO通过一个selectdor(注册器)来最轮询监听连接和读取数据，内核依赖epoll来实现
+需要写代码来实现轮询，一般是利用nio框架
+AIO不需要selector这样东西，有内核来实现，数据准备完成后来通知应用
+不需要更多的代码&lt;/p&gt;
+
+&lt;h3 id=&#34;aio实现&#34;&gt;AIO实现&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Windows: IOCP&lt;/li&gt;
+&lt;li&gt;Linux: epoll模拟
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>安全相关</title>
@@ -134,6 +264,23 @@
 &lt;h3 id=&#34;弱口令修复方案&#34;&gt;弱口令修复方案&lt;/h3&gt;
 
 &lt;p&gt;弱口令主要包含 SSH、MySQL、Redis、rsync、ftp等服务。&lt;/p&gt;
+
+&lt;h2 id=&#34;安全规范&#34;&gt;安全规范&lt;/h2&gt;
+
+&lt;h3 id=&#34;数据安全-1&#34;&gt;数据安全&lt;/h3&gt;
+
+&lt;h3 id=&#34;网络安全规范&#34;&gt;网络安全规范&lt;/h3&gt;
+
+&lt;h4 id=&#34;全站-https-整改计划&#34;&gt;全站 HTTPS 整改计划&lt;/h4&gt;
+
+&lt;p&gt;HTTPS 在 HTTP 的基础上增加了SSL/TLS加密，提供了更加安全的传输协议，全站 HTTPS 可以有效的防止运营商劫持、中间人攻击。
+另外，对于外部接入的第三方应用，严格要求统一使用 HTTPS 安全传输协议。&lt;/p&gt;
+
+&lt;p&gt;整改流程：
+服务端是否支持 HTTPS 协议
+前段是否存在写死的 HTTP 协议
+客户端是否存在写死的 HTTP 协议
+增加 HTTP 到 HTTPS的 301 跳转&lt;/p&gt;
 </description>
       
     </item>
@@ -1153,93 +1300,6 @@ fi
 &lt;/ul&gt;
 
 &lt;p&gt;应用性能4个重要指标：延迟、错误率、吞吐、饱和度。&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Jar包冲突问题</title>
-      <link>https://hanzhihua.cn/post/jarconflict/</link>
-      <pubDate>Fri, 16 Aug 2019 11:33:48 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/jarconflict/</guid>
-      
-        <description>
-
-&lt;p&gt;今天发现了上线版本出现jar冲突问题&lt;/p&gt;
-
-&lt;h2 id=&#34;jar包冲突&#34;&gt;jar包冲突&lt;/h2&gt;
-
-&lt;p&gt;一般是下面两种情况&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;项目中依赖同一个jar的不同版本&lt;/li&gt;
-&lt;li&gt;同一个class存在在不同的jar包中&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;上述情况都会在运行中发生异常，造成麻烦&lt;/p&gt;
-
-&lt;p&gt;可以加上&lt;a href=&#34;https://maven.apache.org/enforcer/maven-enforcer-plugin/&#34;&gt;enforcer&lt;/a&gt;插件，在项目打包时做检查&lt;/p&gt;
-
-&lt;p&gt;加上这个&lt;a href=&#34;https://www.mojohaus.org/extra-enforcer-rules/banDuplicateClasses.html&#34;&gt;banDuplicateClasses规则&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;例子：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;build&amp;gt;
-    &amp;lt;plugins&amp;gt;
-      &amp;lt;plugin&amp;gt;
-        &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
-        &amp;lt;artifactId&amp;gt;maven-enforcer-plugin&amp;lt;/artifactId&amp;gt;
-        &amp;lt;version&amp;gt;1.0&amp;lt;/version&amp;gt; &amp;lt;!-- find the latest version at http://maven.apache.org/plugins/maven-enforcer-plugin/ --&amp;gt;
-        &amp;lt;executions&amp;gt;
-          &amp;lt;execution&amp;gt;
-            &amp;lt;id&amp;gt;default-cli&amp;lt;/id&amp;gt;
-            &amp;lt;goals&amp;gt;
-              &amp;lt;goal&amp;gt;enforce&amp;lt;/goal&amp;gt;
-            &amp;lt;/goals&amp;gt;
-            &amp;lt;configuration&amp;gt;
-              &amp;lt;rules&amp;gt;
-                &amp;lt;banDuplicateClasses&amp;gt;
-                  &amp;lt;scopes&amp;gt;
-                      &amp;lt;scope&amp;gt;compile&amp;lt;/scope&amp;gt;
-                      &amp;lt;scope&amp;gt;provided&amp;lt;/scope&amp;gt;
-                  &amp;lt;/scopes&amp;gt;
-                  &amp;lt;findAllDuplicates&amp;gt;true&amp;lt;/findAllDuplicates&amp;gt;
-                  &amp;lt;ignoreWhenIdentical&amp;gt;true&amp;lt;/ignoreWhenIdentical&amp;gt;
-                &amp;lt;/banDuplicateClasses&amp;gt;
-              &amp;lt;/rules&amp;gt;
-              &amp;lt;fail&amp;gt;true&amp;lt;/fail&amp;gt;
-            &amp;lt;/configuration&amp;gt;
-          &amp;lt;/execution&amp;gt;
-        &amp;lt;/executions&amp;gt;
-        &amp;lt;dependencies&amp;gt;
-          &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;org.codehaus.mojo&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;extra-enforcer-rules&amp;lt;/artifactId&amp;gt;
-            &amp;lt;version&amp;gt;1.2&amp;lt;/version&amp;gt;
-          &amp;lt;/dependency&amp;gt;
-        &amp;lt;/dependencies&amp;gt;
-      &amp;lt;/plugin&amp;gt;
-    &amp;lt;/plugins&amp;gt;
-  &amp;lt;/build&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>hive语句太长问题</title>
-      <link>https://hanzhihua.cn/post/dag_1/</link>
-      <pubDate>Thu, 15 Aug 2019 20:30:17 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/dag_1/</guid>
-      
-        <description>&lt;p&gt;今天有一个同学写了一个超长的hive脚本， &amp;gt; 1000行，在执行ADHOC的时候出现错误&lt;/p&gt;
-
-&lt;p&gt;分析原因，因为DAG系统的作业信息是存在mysql，作业的命令是text格式的，最大只有65535，超过mysql限制长度就
-报错误了&lt;/p&gt;
-
-&lt;p&gt;考虑到作业的命令是多条hql语句(以逗号分隔)，都比较长，后续将采用小文件方式来存放&lt;/p&gt;
 </description>
       
     </item>

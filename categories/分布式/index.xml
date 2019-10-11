@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 05 Oct 2019 23:26:57 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 09 Oct 2019 13:01:30 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/categories/%E5%88%86%E5%B8%83%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>IO模型比较</title>
+      <link>https://hanzhihua.cn/post/io_2/</link>
+      <pubDate>Wed, 09 Oct 2019 13:01:30 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/io_2/</guid>
+      <description>IO模型 IO请求划分两个阶段： 等待数据就绪 从内核缓冲区(socket send/receive buffer)拷贝到进程内存中 安全请求是否堵塞 同步IO 异步IO Unix</description>
+    </item>
     
     <item>
       <title>Raft简介</title>
