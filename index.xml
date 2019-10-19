@@ -31,10 +31,11 @@
 
 &lt;h3 id=&#34;协议体&#34;&gt;协议体&lt;/h3&gt;
 
-&lt;p&gt;一般就是序列化Byte数组，可以是PB序列化，或者hessian序列化等&lt;/p&gt;
+&lt;p&gt;一般就是序列化Byte数组，可以是PB序列化，或者Hessian序列化等&lt;/p&gt;
 
-&lt;p&gt;##encoder/decoder
-NIO框架一般是需要bytebuf这种数据结构，需要支持increase，descrease功能&lt;/p&gt;
+&lt;h2 id=&#34;encoder-decoder&#34;&gt;encoder/decoder&lt;/h2&gt;
+
+&lt;p&gt;NIO框架一般是需要Bytebuf这种数据结构，需要支持increase，descrease功能&lt;/p&gt;
 
 &lt;h2 id=&#34;读操作-decoder&#34;&gt;读操作（decoder）&lt;/h2&gt;
 
