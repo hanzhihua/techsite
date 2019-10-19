@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-10-19T13:27:58&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-19T13:27:58&#43;08:00" />
-<meta itemprop="wordCount" content="401">
+<meta itemprop="wordCount" content="397">
 
 
 
@@ -350,15 +350,23 @@
 
 <h3 id="读协议体">读协议体</h3>
 
-<p>流程一般是：<br />
-* 判断buffer可用长度是否大于协议头长度，如果不满足等待下一次读
-* 检查MagicCode</p>
+<p>流程一般是：</p>
+
+<ul>
+<li><p>判断buffer可用长度是否大于协议头长度，如果不满足等待下一次读</p></li>
+
+<li><p>检查MagicCode</p></li>
+</ul>
 
 <h3 id="读协议体-1">读协议体</h3>
 
-<p>流程一般是：<br />
-* 判断buffer可用长度是否大于报文体长度，如果不满足等待下一次读
-* 根据序列化类型，做反序列化形成对象</p>
+<p>流程一般是：</p>
+
+<ul>
+<li><p>判断buffer可用长度是否大于报文体长度，如果不满足等待下一次读</p></li>
+
+<li><p>根据序列化类型，做反序列化形成对象</p></li>
+</ul>
 
 <h2 id="写操作-encoder">写操作(encoder)</h2>
 
