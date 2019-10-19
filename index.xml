@@ -21,8 +21,6 @@
       
         <description>
 
-&lt;h2 id=&#34;rpc协议相关&#34;&gt;RPC协议相关&lt;/h2&gt;
-
 &lt;p&gt;NIO框架、RPC服务都需要设计私有通信协议，包括协议头+协议体&lt;/p&gt;
 
 &lt;h3 id=&#34;协议头&#34;&gt;协议头&lt;/h3&gt;

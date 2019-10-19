@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="RPC协议相关 NIO框架、RPC服务都需要设计私有通信协议，包括协议头&#43;协议体 协议头 一般包括：MagicCode&#43;保留字段（特殊字段）&#43;报文" />
+  <meta name="description" content="NIO框架、RPC服务都需要设计私有通信协议，包括协议头&#43;协议体 协议头 一般包括：MagicCode&#43;保留字段（特殊字段）&#43;报文头长度&#43;报文体" />
 
 
 
@@ -57,25 +57,25 @@
 
 
 <meta property="og:title" content="RPC协议设计" />
-<meta property="og:description" content="RPC协议相关 NIO框架、RPC服务都需要设计私有通信协议，包括协议头&#43;协议体 协议头 一般包括：MagicCode&#43;保留字段（特殊字段）&#43;报文" />
+<meta property="og:description" content="NIO框架、RPC服务都需要设计私有通信协议，包括协议头&#43;协议体 协议头 一般包括：MagicCode&#43;保留字段（特殊字段）&#43;报文头长度&#43;报文体" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hanzhihua.cn/post/rpc_pro_1/" />
 <meta property="article:published_time" content="2019-10-19T13:27:58+08:00" />
 <meta property="article:modified_time" content="2019-10-19T13:27:58+08:00" />
 <meta itemprop="name" content="RPC协议设计">
-<meta itemprop="description" content="RPC协议相关 NIO框架、RPC服务都需要设计私有通信协议，包括协议头&#43;协议体 协议头 一般包括：MagicCode&#43;保留字段（特殊字段）&#43;报文">
+<meta itemprop="description" content="NIO框架、RPC服务都需要设计私有通信协议，包括协议头&#43;协议体 协议头 一般包括：MagicCode&#43;保留字段（特殊字段）&#43;报文头长度&#43;报文体">
 
 
 <meta itemprop="datePublished" content="2019-10-19T13:27:58&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-19T13:27:58&#43;08:00" />
-<meta itemprop="wordCount" content="383">
+<meta itemprop="wordCount" content="376">
 
 
 
 <meta itemprop="keywords" content="rpc,nio," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="RPC协议设计"/>
-<meta name="twitter:description" content="RPC协议相关 NIO框架、RPC服务都需要设计私有通信协议，包括协议头&#43;协议体 协议头 一般包括：MagicCode&#43;保留字段（特殊字段）&#43;报文"/>
+<meta name="twitter:description" content="NIO框架、RPC服务都需要设计私有通信协议，包括协议头&#43;协议体 协议头 一般包括：MagicCode&#43;保留字段（特殊字段）&#43;报文头长度&#43;报文体"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -321,8 +321,6 @@
     
     <div class="post-content">
       
-
-<h2 id="rpc协议相关">RPC协议相关</h2>
 
 <p>NIO框架、RPC服务都需要设计私有通信协议，包括协议头+协议体</p>
 
