@@ -39,7 +39,7 @@
 
 &lt;h2 id=&#34;读操作-decoder&#34;&gt;读操作（decoder）&lt;/h2&gt;
 
-&lt;p&gt;读操作一般流程是
+&lt;p&gt;读操作一般流程是&lt;br /&gt;
 * flip
 * decode
 * compact&lt;/p&gt;
