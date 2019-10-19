@@ -18,7 +18,7 @@
       <pubDate>Sat, 19 Oct 2019 13:27:58 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/post/rpc_pro_1/</guid>
-      <description>NIO框架、RPC服务都需要设计私有通信协议，包括协议头+协议体 协议头 一般包括：MagicCode+保留字段（特殊字段）+报文头长度+报文体</description>
+      <description>NIO框架、RPC服务都需要设计私有通信协议，包括协议头+协议体 协议头 一般包括：MagicCode+协议版本+请求类型(req/reps/o</description>
     </item>
     
   </channel>

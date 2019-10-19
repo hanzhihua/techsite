@@ -25,7 +25,7 @@
 
 &lt;h3 id=&#34;协议头&#34;&gt;协议头&lt;/h3&gt;
 
-&lt;p&gt;一般包括：MagicCode+保留字段（特殊字段）+报文头长度+报文体长度+RequestID+序列化类型&lt;/p&gt;
+&lt;p&gt;一般包括：MagicCode+协议版本+请求类型(req/reps/oneway)+保留字段（特殊字段）+报文头长度+报文体长度+RequestID+序列化类型&lt;/p&gt;
 
 &lt;p&gt;协议头长度一般是固定的，一般包含一些不需要做反序列化就可以读的特殊字段&lt;/p&gt;
 
