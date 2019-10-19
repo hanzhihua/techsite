@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>nio on 一个码农 工作点滴</title>
-    <link>https://hanzhihua.cn/tags/nio/</link>
-    <description>Recent content in nio on 一个码农 工作点滴</description>
+    <title>rpc on 一个码农 工作点滴</title>
+    <link>https://hanzhihua.cn/tags/rpc/</link>
+    <description>Recent content in rpc on 一个码农 工作点滴</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
     <lastBuildDate>Sat, 19 Oct 2019 13:27:58 +0800</lastBuildDate>
     
-	<atom:link href="https://hanzhihua.cn/tags/nio/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hanzhihua.cn/tags/rpc/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       
       <guid>https://hanzhihua.cn/post/rpc_pro_1/</guid>
       <description>RPC协议相关 NIO框架、RPC服务都需要设计私有通信协议，包括协议头+协议体 协议头 一般包括：MagicCode+保留字段（特殊字段）+报文</description>
-    </item>
-    
-    <item>
-      <title>IO模型比较</title>
-      <link>https://hanzhihua.cn/post/io_2/</link>
-      <pubDate>Wed, 09 Oct 2019 13:01:30 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/io_2/</guid>
-      <description>IO模型 IO请求划分两个阶段： 等待数据就绪 从内核缓冲区(socket send/receive buffer)拷贝到进程内存中 安全请求是否堵塞 同步IO 异步IO Unix</description>
     </item>
     
   </channel>

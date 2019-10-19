@@ -7,10 +7,62 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Fri, 11 Oct 2019 16:38:07 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 19 Oct 2019 13:27:58 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>RPC协议设计</title>
+      <link>https://hanzhihua.cn/post/rpc_pro_1/</link>
+      <pubDate>Sat, 19 Oct 2019 13:27:58 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/rpc_pro_1/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;rpc协议相关&#34;&gt;RPC协议相关&lt;/h2&gt;
+
+&lt;p&gt;NIO框架、RPC服务都需要设计私有通信协议，包括协议头+协议体&lt;/p&gt;
+
+&lt;h3 id=&#34;协议头&#34;&gt;协议头&lt;/h3&gt;
+
+&lt;p&gt;一般包括：MagicCode+保留字段（特殊字段）+报文头长度+报文体长度+RequestID+序列化类型&lt;/p&gt;
+
+&lt;p&gt;协议头长度一般是固定的，一般包含一些不需要做反序列化就可以读的特殊字段&lt;/p&gt;
+
+&lt;h3 id=&#34;协议体&#34;&gt;协议体&lt;/h3&gt;
+
+&lt;p&gt;一般就是序列化Byte数组，可以是PB序列化，或者hessian序列化等&lt;/p&gt;
+
+&lt;p&gt;##encoder/decoder
+NIO框架一般是需要bytebuf这种数据结构，需要支持increase，descrease功能&lt;/p&gt;
+
+&lt;h2 id=&#34;读操作-decoder&#34;&gt;读操作（decoder）&lt;/h2&gt;
+
+&lt;p&gt;读操作一般流程是
+* flip
+* decode
+* compact&lt;/p&gt;
+
+&lt;h3 id=&#34;读协议体&#34;&gt;读协议体&lt;/h3&gt;
+
+&lt;p&gt;流程一般是：
+* 判断buffer可用长度是否大于协议头长度，如果不满足等待下一次读
+* 检查MagicCode&lt;/p&gt;
+
+&lt;h3 id=&#34;读协议体-1&#34;&gt;读协议体&lt;/h3&gt;
+
+&lt;p&gt;流程一般是：
+* 判断buffer可用长度是否大于报文体长度，如果不满足等待下一次读
+* 根据序列化类型，做反序列化形成对象&lt;/p&gt;
+
+&lt;h2 id=&#34;写操作-encoder&#34;&gt;写操作(encoder)&lt;/h2&gt;
+
+&lt;p&gt;略&amp;hellip;&lt;/p&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>hive/spark server-jdbc连接池问题</title>
@@ -1262,44 +1314,6 @@ fi
 &lt;li&gt;能容器化的，能虚拟化的，最好都部署在里面，不要直接部署在裸机上面&lt;/li&gt;
 &lt;li&gt;关键字最好是启动类的全称，而不是应用名这样的缩写&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>负载均衡的问题</title>
-      <link>https://hanzhihua.cn/post/lb_1/</link>
-      <pubDate>Tue, 20 Aug 2019 20:00:11 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/lb_1/</guid>
-      
-        <description>
-
-&lt;p&gt;最近线上出现一个故障，DAG系统调用hiveserver集群时，hiveserver集群有一个节点出现了crash
-，造成了DAG系统出现大量错误&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;DAG系统维护hiveserver ip列表，使用smartclient方案来完成failover&lt;/li&gt;
-&lt;li&gt;功能实现中有bug，造成了系统failover失败&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;有同学提出意见，说无状态系统的高可用应该采用四层路由方式来保证&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;四层路由一般指haproxy、nginx tcp stream、lvs+keepalived&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;说说四层路由方式的优缺点&#34;&gt;说说四层路由方式的优缺点&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;优点&lt;br /&gt;
-节点探活，自动上下线&lt;br /&gt;
-支持多种负载均衡策略&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;缺点&lt;br /&gt;
-节点探活只是在系统层面，无法做到应用层面&lt;br /&gt;
-负载均衡策略也无法根据应用性能做出正确的判断&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;应用性能4个重要指标：延迟、错误率、吞吐、饱和度。&lt;/p&gt;
 </description>
       
     </item>

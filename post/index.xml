@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Fri, 11 Oct 2019 16:38:07 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 19 Oct 2019 13:27:58 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>RPC协议设计</title>
+      <link>https://hanzhihua.cn/post/rpc_pro_1/</link>
+      <pubDate>Sat, 19 Oct 2019 13:27:58 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/rpc_pro_1/</guid>
+      <description>RPC协议相关 NIO框架、RPC服务都需要设计私有通信协议，包括协议头+协议体 协议头 一般包括：MagicCode+保留字段（特殊字段）+报文</description>
+    </item>
     
     <item>
       <title>hive/spark server-jdbc连接池问题</title>
@@ -181,15 +190,6 @@
       
       <guid>https://hanzhihua.cn/post/shell_1/</guid>
       <description>今天一个应用系统在发布新版本过程中，发布系统在关闭应用的时候，随便也把其他应用关闭了 背景 公司规模比较大，大部分项目是跑在k8s上面，部分项目</description>
-    </item>
-    
-    <item>
-      <title>负载均衡的问题</title>
-      <link>https://hanzhihua.cn/post/lb_1/</link>
-      <pubDate>Tue, 20 Aug 2019 20:00:11 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/lb_1/</guid>
-      <description>最近线上出现一个故障，DAG系统调用hiveserver集群时，hiveserver集群有一个节点出现了crash ，造成了DAG系统出现大量</description>
     </item>
     
   </channel>

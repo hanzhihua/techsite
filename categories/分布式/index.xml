@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Wed, 09 Oct 2019 13:01:30 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 19 Oct 2019 13:27:58 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/categories/%E5%88%86%E5%B8%83%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>RPC协议设计</title>
+      <link>https://hanzhihua.cn/post/rpc_pro_1/</link>
+      <pubDate>Sat, 19 Oct 2019 13:27:58 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/rpc_pro_1/</guid>
+      <description>RPC协议相关 NIO框架、RPC服务都需要设计私有通信协议，包括协议头+协议体 协议头 一般包括：MagicCode+保留字段（特殊字段）+报文</description>
+    </item>
     
     <item>
       <title>IO模型比较</title>
