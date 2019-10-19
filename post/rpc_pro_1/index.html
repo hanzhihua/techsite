@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-10-19T13:27:58&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-19T13:27:58&#43;08:00" />
-<meta itemprop="wordCount" content="373">
+<meta itemprop="wordCount" content="401">
 
 
 
@@ -343,9 +343,9 @@
 <p>读操作一般流程是</p>
 
 <ul>
-<li>flip<br /></li>
-<li>decode<br /></li>
-<li>compact<br /></li>
+<li>flip（转成读模式）<br /></li>
+<li>decode(解码)<br /></li>
+<li>compact （删除读过的字节）</li>
 </ul>
 
 <h3 id="读协议体">读协议体</h3>

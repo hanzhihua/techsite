@@ -42,9 +42,9 @@
 &lt;p&gt;读操作一般流程是&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;flip&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;decode&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;compact&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;flip（转成读模式）&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;decode(解码)&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;compact （删除读过的字节）&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&#34;读协议体&#34;&gt;读协议体&lt;/h3&gt;
