@@ -69,7 +69,15 @@
 
 &lt;h2 id=&#34;写操作-encoder&#34;&gt;写操作(encoder)&lt;/h2&gt;
 
-&lt;p&gt;略&amp;hellip;&lt;/p&gt;
+&lt;p&gt;流程一般是：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;准备需要传送的对象&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;序列化对象，形成字节数组&lt;/li&gt;
+&lt;li&gt;生成一个bytebuffer，设置头信息&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;设置Body信息&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;发送：）&lt;/li&gt;
+&lt;/ul&gt;
 </description>
       
     </item>
