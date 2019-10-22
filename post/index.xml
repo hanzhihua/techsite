@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 19 Oct 2019 13:27:58 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 13:03:07 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>线上一个小故障</title>
+      <link>https://hanzhihua.cn/post/cs_3/</link>
+      <pubDate>Tue, 22 Oct 2019 13:03:07 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cs_3/</guid>
+      <description>昨天线上运行的调度系统，又出了一个故障 现象重放 因为跟业务强相关，这个忽略&amp;hellip; 问题分析 主要原因就是一个很重要的线程莫名其妙的消失了</description>
+    </item>
     
     <item>
       <title>RPC协议设计</title>
@@ -181,15 +190,6 @@
       
       <guid>https://hanzhihua.cn/post/io_1/</guid>
       <description>最近在项目中，看到一个已经离职同事写的关于写日志服务的代码 写性能提升 使用缓存，必要的时候在落盘 预先定义文件大小，在生成文件生成一个长度固定的</description>
-    </item>
-    
-    <item>
-      <title>发布脚本问题</title>
-      <link>https://hanzhihua.cn/post/shell_1/</link>
-      <pubDate>Wed, 21 Aug 2019 20:51:15 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/shell_1/</guid>
-      <description>今天一个应用系统在发布新版本过程中，发布系统在关闭应用的时候，随便也把其他应用关闭了 背景 公司规模比较大，大部分项目是跑在k8s上面，部分项目</description>
     </item>
     
   </channel>

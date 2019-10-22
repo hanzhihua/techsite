@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Fri, 11 Oct 2019 16:38:07 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 13:03:07 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>线上一个小故障</title>
+      <link>https://hanzhihua.cn/post/cs_3/</link>
+      <pubDate>Tue, 22 Oct 2019 13:03:07 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cs_3/</guid>
+      <description>昨天线上运行的调度系统，又出了一个故障 现象重放 因为跟业务强相关，这个忽略&amp;hellip; 问题分析 主要原因就是一个很重要的线程莫名其妙的消失了</description>
+    </item>
     
     <item>
       <title>hive/spark server-jdbc连接池问题</title>

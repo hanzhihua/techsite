@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 19 Oct 2019 13:27:58 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 13:03:07 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>casestudy</title>
+      <link>https://hanzhihua.cn/tags/casestudy/</link>
+      <pubDate>Tue, 22 Oct 2019 13:03:07 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/tags/casestudy/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>nio</title>
@@ -36,15 +45,6 @@
       <pubDate>Fri, 11 Oct 2019 16:38:07 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/tags/dag/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>casestudy</title>
-      <link>https://hanzhihua.cn/tags/casestudy/</link>
-      <pubDate>Fri, 11 Oct 2019 16:38:07 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/tags/casestudy/</guid>
       <description></description>
     </item>
     

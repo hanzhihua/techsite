@@ -7,10 +7,69 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 19 Oct 2019 13:27:58 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 13:03:07 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>线上一个小故障</title>
+      <link>https://hanzhihua.cn/post/cs_3/</link>
+      <pubDate>Tue, 22 Oct 2019 13:03:07 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cs_3/</guid>
+      
+        <description>
+
+&lt;p&gt;昨天线上运行的调度系统，又出了一个故障&lt;/p&gt;
+
+&lt;h2 id=&#34;现象重放&#34;&gt;现象重放&lt;/h2&gt;
+
+&lt;p&gt;因为跟业务强相关，这个忽略&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;问题分析&#34;&gt;问题分析&lt;/h2&gt;
+
+&lt;p&gt;主要原因就是一个很重要的线程莫名其妙的消失了，下面是该线程的runnalbe的伪代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public void run(){
+                try{
+                    业务逻辑
+                }catch(Exception e){
+                    异常处理   
+                }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;一般如果直接实现Runnalbe,这个算是标配&lt;br /&gt;
+跟踪日志，并没有发现错误日志的出现，开始怀疑应该是有Error,或者Throwable的这样的错误&lt;br /&gt;
+突然发现业务逻辑中有这样的代码片段&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;assert  channel != null;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;又发现启动程序中JVM已经使用了 -ea参数，问题找到了，就是assert抛出了Error造成的&lt;/p&gt;
+
+&lt;p&gt;再度分析，为什么channel会为空（当前NIO框架是Netty）,后来发现代码中Overrider了下面两个方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public void channelActive(ChannelHandlerContext ctx) throws Exception
+public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;根因找到了，因为这个两个事件触发的顺序问题，造成了channal为空&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;记住：当发错channal快速重连的情况，上述两个方法不能保证的触发顺序&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;这次异常就是因为channelActive事件先于channelInactive事件触发&lt;/p&gt;
+
+&lt;h2 id=&#34;改善措施&#34;&gt;改善措施&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;放弃使用java assert断言，使用其他第三方的断言处理方案，目前采用Guava的Preconditions&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;放弃把业务逻辑放在netty事件里处理，准备自己做实现NIO框架，这样可控&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>RPC协议设计</title>
@@ -1286,51 +1345,6 @@ rocketmq 配置&lt;/p&gt;
 sudo sysctl -w vm.dirty_ratio=50 //当脏页占用的内存百分比超过此值
 sudo sysctl -w vm.dirty_writeback_centisecs=360000 //一个小时回写
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>发布脚本问题</title>
-      <link>https://hanzhihua.cn/post/shell_1/</link>
-      <pubDate>Wed, 21 Aug 2019 20:51:15 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/shell_1/</guid>
-      
-        <description>
-
-&lt;p&gt;今天一个应用系统在发布新版本过程中，发布系统在关闭应用的时候，随便也把其他应用关闭了&lt;/p&gt;
-
-&lt;h1 id=&#34;背景&#34;&gt;背景&lt;/h1&gt;
-
-&lt;p&gt;公司规模比较大，大部分项目是跑在k8s上面，部分项目是跑在kvm上面，但还有一些项目一个机器部署多个应用&lt;br /&gt;
-而今天这个情况发生在部署一台机器上的多个应用&lt;/p&gt;
-
-&lt;h1 id=&#34;问题根因&#34;&gt;问题根因&lt;/h1&gt;
-
-&lt;p&gt;主要问题是出在stop脚本上面，下面是Stop脚本（看官，是不是觉得比较low吧，没有办法历史的原因）&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;#!/bin/bash                                                                                                                                                                                       
-export JAVA_HOME=/usr/lib/jdk1.8.0
-export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
-export CLASSPATH=$CLASSPATH:.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
-
-pid=$(ps -aux |grep 关键字|grep java| grep -v &amp;quot;grep&amp;quot;| awk &#39;{print $2}&#39;)
-
-if [ -n &amp;quot;$pid&amp;quot; ];then
-    kill -2 $pid
-fi
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;关键字是应用名，而这个应用是一个基础服务，会被很多其他应用依赖，所以pid会拿到多个应用进程的pid,
-全部都kill 了&lt;/p&gt;
-
-&lt;h1 id=&#34;解决方案&#34;&gt;解决方案&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;能容器化的，能虚拟化的，最好都部署在里面，不要直接部署在裸机上面&lt;/li&gt;
-&lt;li&gt;关键字最好是启动类的全称，而不是应用名这样的缩写&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
