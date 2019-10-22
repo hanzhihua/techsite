@@ -65,7 +65,7 @@ public void channelInactive(ChannelHandlerContext ctx) throws Exception
 
 &lt;ul&gt;
 &lt;li&gt;放弃使用java assert断言，使用其他第三方的断言处理方案，目前采用Guava的Preconditions&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;放弃把业务逻辑放在netty事件里处理，准备自己做实现NIO框架，这样可控&lt;/li&gt;
+&lt;li&gt;放弃把业务逻辑放在netty事件里处理，也放弃Netty，准备自己重新实现NIO框架，这样可控&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
