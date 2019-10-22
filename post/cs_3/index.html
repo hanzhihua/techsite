@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-10-22T13:03:07&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-22T13:03:07&#43;08:00" />
-<meta itemprop="wordCount" content="526">
+<meta itemprop="wordCount" content="525">
 
 
 
@@ -353,12 +353,12 @@
 <p>再度分析，为什么channel会为空（当前NIO框架是Netty）,后来发现代码中Overrider了下面两个方法</p>
 
 <pre><code class="language-java">public void channelActive(ChannelHandlerContext ctx) throws Exception
-public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+public void channelInactive(ChannelHandlerContext ctx) throws Exception 
 </code></pre>
 
 <p>根因找到了，因为这个两个事件触发的顺序问题，造成了channal为空</p>
 
-<p><em>记住：当发错channal快速重连的情况，上述两个方法不能保证的触发顺序</em></p>
+<p><strong>记住：当发生channal快速重连的情况，上述两个方法不能保证的触发顺序</strong></p>
 
 <p>这次异常就是因为channelActive事件先于channelInactive事件触发</p>
 

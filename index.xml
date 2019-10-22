@@ -52,12 +52,12 @@
 &lt;p&gt;再度分析，为什么channel会为空（当前NIO框架是Netty）,后来发现代码中Overrider了下面两个方法&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public void channelActive(ChannelHandlerContext ctx) throws Exception
-public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+public void channelInactive(ChannelHandlerContext ctx) throws Exception 
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;根因找到了，因为这个两个事件触发的顺序问题，造成了channal为空&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;记住：当发错channal快速重连的情况，上述两个方法不能保证的触发顺序&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;记住：当发生channal快速重连的情况，上述两个方法不能保证的触发顺序&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;这次异常就是因为channelActive事件先于channelInactive事件触发&lt;/p&gt;
 
