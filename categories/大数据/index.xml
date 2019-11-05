@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 22 Oct 2019 13:03:07 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 05 Nov 2019 15:36:16 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>线上一个小故障</title>
+      <link>https://hanzhihua.cn/post/cs_4/</link>
+      <pubDate>Tue, 05 Nov 2019 15:36:16 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cs_4/</guid>
+      <description>昨天晚上DAG系统版本发布，出现了部分计算任务不能运行现象 影响范围：Hive任务、Spark任务(非SQL) 耗时:半个小时左右 背景 DAG任务</description>
+    </item>
     
     <item>
       <title>线上一个小故障</title>

@@ -7,10 +7,65 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 22 Oct 2019 13:03:07 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 05 Nov 2019 15:36:16 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>线上一个小故障</title>
+      <link>https://hanzhihua.cn/post/cs_4/</link>
+      <pubDate>Tue, 05 Nov 2019 15:36:16 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cs_4/</guid>
+      
+        <description>
+
+&lt;p&gt;昨天晚上DAG系统版本发布，出现了部分计算任务不能运行现象&lt;br /&gt;
+影响范围：Hive任务、Spark任务(非SQL)&lt;br /&gt;
+耗时:半个小时左右&lt;/p&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;p&gt;DAG任务是分对队列的&lt;br /&gt;
+* 按照部门来分&lt;br /&gt;
+* 分manual、adhoc、etl&lt;br /&gt;
+* etl又分L0、L1、L2&lt;/p&gt;
+
+&lt;h2 id=&#34;现象重放&#34;&gt;现象重放&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;版本发布后，陆续收到用户的反馈，任务跑不动，全部提交到了Default队列(这个队列只有很少的资源)&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;零时放大Default队列的资源，所有任务都正常运行&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;修复DAG系统，计算任务都正确的进入该进入的队列&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;等在Default队列的任务基本完成，再把Default队列资源回收&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;问题分析&#34;&gt;问题分析&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;根因：这个版本引入Raft协议，状态机中的内容丢失了YARN队列的信息&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;测试环境没有测试出来的原因，是测试环境的Default队列也是小部分资源的，测试的任务都可以正常运行，另外就是我们的Checklist不完整，没有覆盖后面的基础设施&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;问题发现由用户发现主要原因，版本上线后的验收测试不完整（只跑了少量任务(因为Default队列是有少量资源的)没有发现错误）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;插曲&#34;&gt;插曲&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;修复版本发布时，出现了一个服务器上面的DAG系统没有正常启动，因为DAG服务需要的端口被其他占用&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;发现占用了该端口的应用是不需要这个端口的，原因是把这个端口做为了TCP的动态端口使用&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;改善措施&#34;&gt;改善措施&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;完善版本上线的Checklist,覆盖后面的基础服务（目前加上队列Check）&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;规范版本上线后的验收测试，如果底层基础架构变化需跑完整的Checklist&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;合理设置TCP动态端口的范围，目前是1024~65535（目前服务部署架构是一台服务器部署多个应用）&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>线上一个小故障</title>
@@ -1304,47 +1359,6 @@ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;比如ScrapeGlobalStatus，就是运行 &lt;code&gt;SHOW GLOBAL STATUS&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>写文件性能总结</title>
-      <link>https://hanzhihua.cn/post/io_1/</link>
-      <pubDate>Sat, 24 Aug 2019 10:56:11 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/io_1/</guid>
-      
-        <description>
-
-&lt;p&gt;最近在项目中，看到一个已经离职同事写的关于写日志服务的代码&lt;/p&gt;
-
-&lt;h1 id=&#34;写性能提升&#34;&gt;写性能提升&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;使用缓存，必要的时候在落盘&lt;/li&gt;
-&lt;li&gt;预先定义文件大小，在生成文件生成一个长度固定的空文件&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;使用zero copy,可以是sendfile或者mmap方式,下面是mmap的例子&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;FileChannel fileChannel = new RandomAccessFile(this.file, &amp;quot;rw&amp;quot;).getChannel();
-MappedByteBuffer mappedByteBuffer = fileChannel.map(MapMode.READ_WRITE, 0, 文件大小);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;pagecache-刷盘策略&#34;&gt;Pagecache 刷盘策略&lt;/h1&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;调用fsync等。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;脏页太多（相关参数：dirty_background_ratio与dirty_ratio）。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;脏页太久（相关参数：dirty_expire_centisecs）
-rocketmq 配置&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;sudo sysctl -w vm.dirty_background_ratio=50 //当脏页占用的内存百分比超过此值
-sudo sysctl -w vm.dirty_ratio=50 //当脏页占用的内存百分比超过此值
-sudo sysctl -w vm.dirty_writeback_centisecs=360000 //一个小时回写
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 22 Oct 2019 13:03:07 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 05 Nov 2019 15:36:16 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>线上一个小故障</title>
+      <link>https://hanzhihua.cn/post/cs_4/</link>
+      <pubDate>Tue, 05 Nov 2019 15:36:16 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cs_4/</guid>
+      <description>昨天晚上DAG系统版本发布，出现了部分计算任务不能运行现象 影响范围：Hive任务、Spark任务(非SQL) 耗时:半个小时左右 背景 DAG任务</description>
+    </item>
     
     <item>
       <title>线上一个小故障</title>
@@ -181,15 +190,6 @@
       
       <guid>https://hanzhihua.cn/post/prom_1/</guid>
       <description>今天闲来无事看看 promthues的mysqlexporter 监控组件是如何实现的 实现原理 遵循promethues的规范，提供http接口，</description>
-    </item>
-    
-    <item>
-      <title>写文件性能总结</title>
-      <link>https://hanzhihua.cn/post/io_1/</link>
-      <pubDate>Sat, 24 Aug 2019 10:56:11 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/io_1/</guid>
-      <description>最近在项目中，看到一个已经离职同事写的关于写日志服务的代码 写性能提升 使用缓存，必要的时候在落盘 预先定义文件大小，在生成文件生成一个长度固定的</description>
     </item>
     
   </channel>
