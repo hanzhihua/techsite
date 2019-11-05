@@ -27,8 +27,7 @@
 
 &lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
 
-&lt;p&gt;DAG任务是分对队列的&lt;br /&gt;
-* 按照部门来分&lt;br /&gt;
+&lt;p&gt;DAG任务是按照部门来分对队列的&lt;br /&gt;
 * 分manual、adhoc、etl&lt;br /&gt;
 * etl又分L0、L1、L2&lt;/p&gt;
 
