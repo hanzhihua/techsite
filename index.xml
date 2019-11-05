@@ -27,9 +27,12 @@
 
 &lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
 
-&lt;p&gt;DAG任务是按照部门来分对队列的&lt;br /&gt;
-* 分manual、adhoc、etl&lt;br /&gt;
-* etl又分L0、L1、L2&lt;/p&gt;
+&lt;p&gt;DAG任务是按照部门来分对队列的&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;分manual、adhoc、etl&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;etl又分L0、L1、L2&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;现象重放&#34;&gt;现象重放&lt;/h2&gt;
 
