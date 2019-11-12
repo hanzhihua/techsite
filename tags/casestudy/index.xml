@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 05 Nov 2019 15:36:16 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 Nov 2019 14:00:17 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/tags/casestudy/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ETL线上一个bug</title>
+      <link>https://hanzhihua.cn/post/cs_5/</link>
+      <pubDate>Tue, 12 Nov 2019 14:00:17 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cs_5/</guid>
+      <description>最近ETL系统偶尔出现执行失败(mysql -&amp;gt; hive) 失败任务的mysql数据量规模都是&amp;gt;10亿，而且是多表 现象重放 错误信息 执行的SQL为: select</description>
+    </item>
     
     <item>
       <title>线上一个小故障</title>

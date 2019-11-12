@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>线上一个小故障 - 一个码农 工作点滴</title>
+  <title>ETL线上一个bug - 一个码农 工作点滴</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="昨天晚上DAG系统版本发布，出现了部分计算任务不能运行现象 影响范围：Hive任务、Spark任务(非SQL) 耗时:半个小时左右 背景 DAG任务" />
+  <meta name="description" content="最近ETL系统偶尔出现执行失败(mysql -&amp;gt; hive) 失败任务的mysql数据量规模都是&amp;gt;10亿，而且是多表 现象重放 错误信息 执行的SQL为: select" />
 
 
 
@@ -34,7 +34,7 @@
 <meta name="generator" content="Hugo 0.56.0" />
 
 
-<link rel="canonical" href="https://hanzhihua.cn/post/cs_4/" />
+<link rel="canonical" href="https://hanzhihua.cn/post/cs_5/" />
 
 
 
@@ -56,26 +56,26 @@
 
 
 
-<meta property="og:title" content="线上一个小故障" />
-<meta property="og:description" content="昨天晚上DAG系统版本发布，出现了部分计算任务不能运行现象 影响范围：Hive任务、Spark任务(非SQL) 耗时:半个小时左右 背景 DAG任务" />
+<meta property="og:title" content="ETL线上一个bug" />
+<meta property="og:description" content="最近ETL系统偶尔出现执行失败(mysql -&gt; hive) 失败任务的mysql数据量规模都是&gt;10亿，而且是多表 现象重放 错误信息 执行的SQL为: select" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://hanzhihua.cn/post/cs_4/" />
-<meta property="article:published_time" content="2019-11-05T15:36:16+08:00" />
-<meta property="article:modified_time" content="2019-11-05T15:36:16+08:00" />
-<meta itemprop="name" content="线上一个小故障">
-<meta itemprop="description" content="昨天晚上DAG系统版本发布，出现了部分计算任务不能运行现象 影响范围：Hive任务、Spark任务(非SQL) 耗时:半个小时左右 背景 DAG任务">
+<meta property="og:url" content="https://hanzhihua.cn/post/cs_5/" />
+<meta property="article:published_time" content="2019-11-12T14:00:17+08:00" />
+<meta property="article:modified_time" content="2019-11-12T14:00:17+08:00" />
+<meta itemprop="name" content="ETL线上一个bug">
+<meta itemprop="description" content="最近ETL系统偶尔出现执行失败(mysql -&gt; hive) 失败任务的mysql数据量规模都是&gt;10亿，而且是多表 现象重放 错误信息 执行的SQL为: select">
 
 
-<meta itemprop="datePublished" content="2019-11-05T15:36:16&#43;08:00" />
-<meta itemprop="dateModified" content="2019-11-05T15:36:16&#43;08:00" />
-<meta itemprop="wordCount" content="654">
+<meta itemprop="datePublished" content="2019-11-12T14:00:17&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-12T14:00:17&#43;08:00" />
+<meta itemprop="wordCount" content="361">
 
 
 
 <meta itemprop="keywords" content="casestudy," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="线上一个小故障"/>
-<meta name="twitter:description" content="昨天晚上DAG系统版本发布，出现了部分计算任务不能运行现象 影响范围：Hive任务、Spark任务(非SQL) 耗时:半个小时左右 背景 DAG任务"/>
+<meta name="twitter:title" content="ETL线上一个bug"/>
+<meta name="twitter:description" content="最近ETL系统偶尔出现执行失败(mysql -&gt; hive) 失败任务的mysql数据量规模都是&gt;10亿，而且是多表 现象重放 错误信息 执行的SQL为: select"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -295,11 +295,11 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">线上一个小故障</h1>
+      <h1 class="post-title">ETL线上一个bug</h1>
       
       <div class="post-meta">
-        <time datetime="2019-11-05" class="post-time">
-          2019-11-05
+        <time datetime="2019-11-12" class="post-time">
+          2019-11-12
         </time>
         <div class="post-category">
             <a href="https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"> 大数据 </a>
@@ -322,50 +322,62 @@
     <div class="post-content">
       
 
-<p>昨天晚上DAG系统版本发布，出现了部分计算任务不能运行现象<br />
-影响范围：Hive任务、Spark任务(非SQL)<br />
-耗时:半个小时左右</p>
+<p>最近ETL系统偶尔出现执行失败(mysql -&gt; hive)</p>
 
-<h2 id="背景">背景</h2>
-
-<p>DAG任务是按照部门来分对队列的</p>
-
-<ul>
-<li>分manual、adhoc、etl<br /></li>
-<li>etl又分L0、L1、L2<br /></li>
-</ul>
+<p>失败任务的mysql数据量规模都是&gt;10亿，而且是多表</p>
 
 <h2 id="现象重放">现象重放</h2>
 
 <ul>
-<li>版本发布后，陆续收到用户的反馈，任务跑不动，全部提交到了Default队列(这个队列只有很少的资源)<br /></li>
-<li>零时放大Default队列的资源，所有任务都正常运行<br /></li>
-<li>修复DAG系统，计算任务都正确的进入该进入的队列<br /></li>
-<li>等在Default队列的任务基本完成，再把Default队列资源回收<br /></li>
+<li><p>错误信息</p>
+
+<pre><code class="language-java">执行的SQL为: select * from ***
+具体错误信息为：com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure The last packet successfully received from the server was 1 milliseconds ago. 
+The last packet sent successfully to the server was 1,058,732 milliseconds ago. 
+</code></pre></li>
 </ul>
 
 <h2 id="问题分析">问题分析</h2>
 
-<ul>
-<li>根因：这个版本引入Raft协议，状态机中的内容丢失了YARN队列的信息<br /></li>
-<li>测试环境没有测试出来的原因，是测试环境的Default队列也是小部分资源的，测试的任务都可以正常运行，另外就是我们的Checklist不完整，没有覆盖后面的基础设施<br /></li>
-<li>问题发现由用户发现主要原因，版本上线后的验收测试不完整（只跑了少量任务(因为Default队列是有少量资源的)没有发现错误）</li>
-</ul>
+<p>
+<link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
+<div class="box">
+<figure  itemprop="associatedMedia"
+  itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="/r1.png" />
+    </div>
+    <a href="/r1.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
 
-<h3 id="插曲">插曲</h3>
-
-<ul>
-<li>修复版本发布时，出现了一个服务器上面的DAG系统没有正常启动，因为DAG服务需要的端口被其他占用<br /></li>
-<li>发现占用了该端口的应用是不需要这个端口的，原因是把这个端口做为了TCP的动态端口使用<br /></li>
-</ul>
+* 异常主要是是net_write_timeout超时造成的</p>
 
 <h2 id="改善措施">改善措施</h2>
 
 <ul>
-<li>完善版本上线的Checklist,覆盖后面的基础服务（目前加上队列Check）<br /></li>
-<li>规范版本上线后的验收测试，如果底层基础架构变化需跑完整的Checklist<br /></li>
-<li>合理设置TCP动态端口的范围，目前是1024~65535（目前服务部署架构是一台服务器部署多个应用）</li>
+<li><p>如果遇到慢节点，快速容错，缩写timeout时间</p>
+
+<pre><code class="language-xml">&lt;property&gt;
+&lt;name&gt;dfs.datanode.socket.write.timeout&lt;/name&gt;
+&lt;value&gt;3000000&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.socket.timeout&lt;/name&gt;
+&lt;value&gt;3000000&lt;/value&gt;
+&lt;/property&gt;
+</code></pre></li>
+
+<li><p>针对多表，新增做Task级别的重试，目前是Job级别的重试</p></li>
+
+<li><p>适当放大net_write_timeout，目前是60s</p></li>
 </ul>
+
+<h2 id="心得">心得</h2>
+
+<p>遇到问题，一定不能头痛医头，早期一直在mysqlreader这段找问题，修改各个mysql的性能参数</p>
+
+<p>应该研究细节，找到根因，才能处理好问题</p>
 
     </div>
 
@@ -385,21 +397,8 @@
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/cs_5/">
-            
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
-</svg>
-
-            </i>
-            <span class="prev-text nav-default">ETL线上一个bug</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
         
-          <a class="next" href="/post/cs_3/">
+          <a class="next" href="/post/cs_4/">
             <span class="next-text nav-default">线上一个小故障</span>
             <span class="prev-text nav-mobile">Next</span>
             

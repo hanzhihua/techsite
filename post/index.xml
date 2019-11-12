@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 05 Nov 2019 15:36:16 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 Nov 2019 14:00:17 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ETL线上一个bug</title>
+      <link>https://hanzhihua.cn/post/cs_5/</link>
+      <pubDate>Tue, 12 Nov 2019 14:00:17 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cs_5/</guid>
+      <description>最近ETL系统偶尔出现执行失败(mysql -&amp;gt; hive) 失败任务的mysql数据量规模都是&amp;gt;10亿，而且是多表 现象重放 错误信息 执行的SQL为: select</description>
+    </item>
     
     <item>
       <title>线上一个小故障</title>
@@ -181,15 +190,6 @@
       
       <guid>https://hanzhihua.cn/post/proxy_1/</guid>
       <description>今天遇到一个nginx多次转发丢失客户端ip问题，原来的配置是这样的 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $remote_addr; 每一层nginx配置都是这样的，最后应用取得的客户端IP是上</description>
-    </item>
-    
-    <item>
-      <title>Mysql Exporter代码分析</title>
-      <link>https://hanzhihua.cn/post/prom_1/</link>
-      <pubDate>Sat, 24 Aug 2019 16:44:39 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/prom_1/</guid>
-      <description>今天闲来无事看看 promthues的mysqlexporter 监控组件是如何实现的 实现原理 遵循promethues的规范，提供http接口，</description>
     </item>
     
   </channel>

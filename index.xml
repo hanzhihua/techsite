@@ -7,10 +7,79 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 05 Nov 2019 15:36:16 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 Nov 2019 14:00:17 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ETL线上一个bug</title>
+      <link>https://hanzhihua.cn/post/cs_5/</link>
+      <pubDate>Tue, 12 Nov 2019 14:00:17 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cs_5/</guid>
+      
+        <description>
+
+&lt;p&gt;最近ETL系统偶尔出现执行失败(mysql -&amp;gt; hive)&lt;/p&gt;
+
+&lt;p&gt;失败任务的mysql数据量规模都是&amp;gt;10亿，而且是多表&lt;/p&gt;
+
+&lt;h2 id=&#34;现象重放&#34;&gt;现象重放&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;错误信息&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;执行的SQL为: select * from ***
+具体错误信息为：com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure The last packet successfully received from the server was 1 milliseconds ago. 
+The last packet sent successfully to the server was 1,058,732 milliseconds ago. 
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;问题分析&#34;&gt;问题分析&lt;/h2&gt;
+
+&lt;p&gt;
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/r1.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/r1.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+* 异常主要是是net_write_timeout超时造成的&lt;/p&gt;
+
+&lt;h2 id=&#34;改善措施&#34;&gt;改善措施&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;如果遇到慢节点，快速容错，缩写timeout时间&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;property&amp;gt;
+&amp;lt;name&amp;gt;dfs.datanode.socket.write.timeout&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;3000000&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&amp;lt;property&amp;gt;
+&amp;lt;name&amp;gt;dfs.socket.timeout&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;3000000&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;针对多表，新增做Task级别的重试，目前是Job级别的重试&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;适当放大net_write_timeout，目前是60s&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;心得&#34;&gt;心得&lt;/h2&gt;
+
+&lt;p&gt;遇到问题，一定不能头痛医头，早期一直在mysqlreader这段找问题，修改各个mysql的性能参数&lt;/p&gt;
+
+&lt;p&gt;应该研究细节，找到根因，才能处理好问题&lt;/p&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>线上一个小故障</title>
@@ -1301,66 +1370,6 @@ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 &lt;li&gt;&lt;p&gt;应用方&lt;br /&gt;
 通过x-backend-公司名-real-ip拿到客户端ip&lt;br /&gt;
 通过X-Forwarded-For获得ip列表，(包括客户端IP、所有nginx的ip,通过逗号分隔，第一个为客户端IP）&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Mysql Exporter代码分析</title>
-      <link>https://hanzhihua.cn/post/prom_1/</link>
-      <pubDate>Sat, 24 Aug 2019 16:44:39 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/prom_1/</guid>
-      
-        <description>
-
-&lt;p&gt;今天闲来无事看看 promthues的&lt;a href=&#34;https://github.com/prometheus/mysqld_exporter&#34;&gt;mysqlexporter&lt;/a&gt;
-监控组件是如何实现的&lt;/p&gt;
-
-&lt;h2 id=&#34;实现原理&#34;&gt;实现原理&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;遵循promethues的规范，提供http接口，返回标准的结果集&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;主要&lt;strong&gt;运行mysql命令采集指标&lt;/strong&gt;，包括以下指标，false默认不采集&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-golang&#34;&gt;var scrapers = map[collector.Scraper]bool{
-	collector.ScrapeGlobalStatus{}:                        true,
-	collector.ScrapeGlobalVariables{}:                     true,
-	collector.ScrapeSlaveStatus{}:                         true,
-	collector.ScrapeProcesslist{}:                         false,
-	collector.ScrapeUser{}:                                false,
-	collector.ScrapeTableSchema{}:                         false,
-	collector.ScrapeInfoSchemaInnodbTablespaces{}:         false,
-	collector.ScrapeInnodbMetrics{}:                       false,
-	collector.ScrapeAutoIncrementColumns{}:                false,
-	collector.ScrapeBinlogSize{}:                          false,
-	collector.ScrapePerfTableIOWaits{}:                    false,
-	collector.ScrapePerfIndexIOWaits{}:                    false,
-	collector.ScrapePerfTableLockWaits{}:                  false,
-	collector.ScrapePerfEventsStatements{}:                false,
-	collector.ScrapePerfEventsStatementsSum{}:             false,
-	collector.ScrapePerfEventsWaits{}:                     false,
-	collector.ScrapePerfFileEvents{}:                      false,
-	collector.ScrapePerfFileInstances{}:                   false,
-	collector.ScrapePerfReplicationGroupMemberStats{}:     false,
-	collector.ScrapePerfReplicationApplierStatsByWorker{}: false,
-	collector.ScrapeUserStat{}:                            false,
-	collector.ScrapeClientStat{}:                          false,
-	collector.ScrapeTableStat{}:                           false,
-	collector.ScrapeSchemaStat{}:                          false,
-	collector.ScrapeInnodbCmp{}:                           true,
-	collector.ScrapeInnodbCmpMem{}:                        true,
-	collector.ScrapeQueryResponseTime{}:                   true,
-	collector.ScrapeEngineTokudbStatus{}:                  false,
-	collector.ScrapeEngineInnodbStatus{}:                  false,
-	collector.ScrapeHeartbeat{}:                           false,
-	collector.ScrapeSlaveHosts{}:                          false,
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;比如ScrapeGlobalStatus，就是运行 &lt;code&gt;SHOW GLOBAL STATUS&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
