@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="最近ETL系统偶尔出现执行失败(mysql -&amp;gt; hive) 失败任务的mysql数据量规模都是&amp;gt;10亿，而且是多表 现象重放 错误信息 执行的SQL为: select" />
+  <meta name="description" content="最近ETL系统偶尔出现执行失败(mysql -&amp;gt; hive) 失败任务Mysql的数据量规模都是&amp;gt;10亿，而且是多表 现象重放 错误信息 执行的SQL为: select" />
 
 
 
@@ -57,25 +57,25 @@
 
 
 <meta property="og:title" content="ETL线上一个bug" />
-<meta property="og:description" content="最近ETL系统偶尔出现执行失败(mysql -&gt; hive) 失败任务的mysql数据量规模都是&gt;10亿，而且是多表 现象重放 错误信息 执行的SQL为: select" />
+<meta property="og:description" content="最近ETL系统偶尔出现执行失败(mysql -&gt; hive) 失败任务Mysql的数据量规模都是&gt;10亿，而且是多表 现象重放 错误信息 执行的SQL为: select" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hanzhihua.cn/post/cs_5/" />
 <meta property="article:published_time" content="2019-11-12T14:00:17+08:00" />
 <meta property="article:modified_time" content="2019-11-12T14:00:17+08:00" />
 <meta itemprop="name" content="ETL线上一个bug">
-<meta itemprop="description" content="最近ETL系统偶尔出现执行失败(mysql -&gt; hive) 失败任务的mysql数据量规模都是&gt;10亿，而且是多表 现象重放 错误信息 执行的SQL为: select">
+<meta itemprop="description" content="最近ETL系统偶尔出现执行失败(mysql -&gt; hive) 失败任务Mysql的数据量规模都是&gt;10亿，而且是多表 现象重放 错误信息 执行的SQL为: select">
 
 
 <meta itemprop="datePublished" content="2019-11-12T14:00:17&#43;08:00" />
 <meta itemprop="dateModified" content="2019-11-12T14:00:17&#43;08:00" />
-<meta itemprop="wordCount" content="361">
+<meta itemprop="wordCount" content="377">
 
 
 
-<meta itemprop="keywords" content="casestudy," />
+<meta itemprop="keywords" content="casestudy,etl," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ETL线上一个bug"/>
-<meta name="twitter:description" content="最近ETL系统偶尔出现执行失败(mysql -&gt; hive) 失败任务的mysql数据量规模都是&gt;10亿，而且是多表 现象重放 错误信息 执行的SQL为: select"/>
+<meta name="twitter:description" content="最近ETL系统偶尔出现执行失败(mysql -&gt; hive) 失败任务Mysql的数据量规模都是&gt;10亿，而且是多表 现象重放 错误信息 执行的SQL为: select"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -324,7 +324,7 @@
 
 <p>最近ETL系统偶尔出现执行失败(mysql -&gt; hive)</p>
 
-<p>失败任务的mysql数据量规模都是&gt;10亿，而且是多表</p>
+<p>失败任务Mysql的数据量规模都是&gt;10亿，而且是多表</p>
 
 <h2 id="现象重放">现象重放</h2>
 
@@ -339,7 +339,9 @@ The last packet sent successfully to the server was 1,058,732 milliseconds ago.
 
 <h2 id="问题分析">问题分析</h2>
 
-<p>
+<ul>
+<li>下面是mysql到hive流程分析<br />
+
 <link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
 <div class="box">
 <figure  itemprop="associatedMedia"
@@ -350,8 +352,9 @@ The last packet sent successfully to the server was 1,058,732 milliseconds ago.
     <a href="/r1.png" itemprop="contentUrl"></a>
   </figure>
 </div>
-
-* 异常主要是是net_write_timeout超时造成的</p>
+<br /></li>
+<li>异常主要是是net_write_timeout超时造成的</li>
+</ul>
 
 <h2 id="改善措施">改善措施</h2>
 
@@ -391,6 +394,7 @@ The last packet sent successfully to the server was 1,058,732 milliseconds ago.
     <footer class="post-footer">
       <div class="post-tags">
           <a href="https://hanzhihua.cn/tags/casestudy/">casestudy</a>
+          <a href="https://hanzhihua.cn/tags/etl/">etl</a>
           
         </div>
 

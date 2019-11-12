@@ -23,7 +23,7 @@
 
 &lt;p&gt;最近ETL系统偶尔出现执行失败(mysql -&amp;gt; hive)&lt;/p&gt;
 
-&lt;p&gt;失败任务的mysql数据量规模都是&amp;gt;10亿，而且是多表&lt;/p&gt;
+&lt;p&gt;失败任务Mysql的数据量规模都是&amp;gt;10亿，而且是多表&lt;/p&gt;
 
 &lt;h2 id=&#34;现象重放&#34;&gt;现象重放&lt;/h2&gt;
 
@@ -38,7 +38,9 @@ The last packet sent successfully to the server was 1,058,732 milliseconds ago.
 
 &lt;h2 id=&#34;问题分析&#34;&gt;问题分析&lt;/h2&gt;
 
-&lt;p&gt;
+&lt;ul&gt;
+&lt;li&gt;下面是mysql到hive流程分析&lt;br /&gt;
+
 
 &lt;div class=&#34;box&#34;&gt;
 &lt;figure  itemprop=&#34;associatedMedia&#34;
@@ -49,8 +51,9 @@ The last packet sent successfully to the server was 1,058,732 milliseconds ago.
     &lt;a href=&#34;https://hanzhihua.cn/r1.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
   &lt;/figure&gt;
 &lt;/div&gt;
-
-* 异常主要是是net_write_timeout超时造成的&lt;/p&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;异常主要是是net_write_timeout超时造成的&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;改善措施&#34;&gt;改善措施&lt;/h2&gt;
 
