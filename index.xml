@@ -52,7 +52,7 @@ The last packet sent successfully to the server was 1,058,732 milliseconds ago.
   &lt;/figure&gt;
 &lt;/div&gt;
 &lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;异常主要是是net_write_timeout超时造成的&lt;/li&gt;
+&lt;li&gt;异常是由Mysql net_write_timeout超时造成的&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;改善措施&#34;&gt;改善措施&lt;/h2&gt;
