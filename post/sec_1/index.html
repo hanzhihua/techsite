@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-10-06T10:25:14&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-06T10:25:14&#43;08:00" />
-<meta itemprop="wordCount" content="992">
+<meta itemprop="wordCount" content="1189">
 
 
 
@@ -430,6 +430,25 @@
 </ul></li>
 <li>外网端口访问:</li>
 <li>标准进程和标准端口</li>
+</ul>
+
+<h3 id="杀毒软件-针对centos系统举例">杀毒软件 (针对centos系统举例)</h3>
+
+<ul>
+<li>inux 下面一般是不说病毒，至少漏洞，但windows转过来的运维同学还是习惯要按照杀毒软件，linux下面也是有查杀病毒软件（<a href="https://www.clamav.net/">Clamav</a>）<br /></li>
+<li>安装方式：yum install -y epel-release &amp;&amp; yum install -y clamav &amp;&amp; freshclam</li>
+<li>杀毒脚本：
+    * clamscan –ri / -l clamscan.log &ndash;remove （查杀整个系统）<br />
+    * clamscan  -ri /root -l /tmp/clamscan.log &ndash;move=/tmp/clav (例子)<br /></li>
+</ul>
+
+<h3 id="升级-补丁-针对centos系统举例">升级/补丁 (针对centos系统举例)</h3>
+
+<ul>
+<li>查看版本：cat /etc/redhat-release<br /></li>
+<li>升级：yum update -y<br /></li>
+<li>检查安全相关：yum &ndash;security check-update<br /></li>
+<li>升级安全相关：yum &ndash;security upgrade</li>
 </ul>
 
 <h3 id="弱口令修复方案">弱口令修复方案</h3>
