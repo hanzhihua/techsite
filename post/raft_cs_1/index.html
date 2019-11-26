@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-11-26T17:19:27&#43;08:00" />
 <meta itemprop="dateModified" content="2019-11-26T17:19:27&#43;08:00" />
-<meta itemprop="wordCount" content="650">
+<meta itemprop="wordCount" content="647">
 
 
 
@@ -341,8 +341,8 @@
 <li>调度系统的控制节点提交任务的顺序是先提交到Worker节点,然后再修改Raft状态。<br />
 
 <ul>
-<li>修改Raft状态和提交任务不是一个事务，这个就是最少一次的经典玩法<br /></li>
-<li>因为调度系统刚发布，修改raft任务状态失败，造成不停重复提交任务<br /></li>
+<li>修改Raft状态和提交任务不是一个事务，采用了最少一次的玩法<br /></li>
+<li>因为调度系统刚发布，修改Raft任务状态失败，造成不停重复提交任务<br /></li>
 </ul></li>
 <li>调度系统的Worker节点对提交的任务是无脑的执行，没有做任何的去重，造成相同的任务重复提交到Hiveserver<br /></li>
 <li>Hive 最大处理线程数设置成 800 （hive.server2.thrift.max.worker.threads=800）<br /></li>
