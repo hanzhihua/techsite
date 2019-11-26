@@ -63,7 +63,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://hanzhihua.cn/" />
 
-<meta property="og:updated_time" content="2019-11-12T14:00:17+08:00" />
+<meta property="og:updated_time" content="2019-11-26T17:19:27+08:00" />
 <meta itemprop="name" content="一个码农 工作点滴">
 <meta itemprop="description" content="Hanzhihua 工作点滴.">
 
@@ -290,6 +290,40 @@
   <section id="posts" class="posts">
     
     
+    
+      <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/proxy_1/">Nginx多次转发问题</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-08-24" class="post-time">
+        2019-08-24
+      </time>
+      <div class="post-category">
+          <a href="https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/"> 基础设施 </a>
+          
+        </div>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      今天遇到一个nginx多次转发丢失客户端ip问题，原来的配置是这样的 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $remote_addr; 每一层nginx配置都是这样的，最后应用取得的客户端IP是上
+    </div>
+    <div class="read-more">
+      <a href="/post/proxy_1/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
     
       <article class="post bg-white">
   <header class="post-header">
@@ -592,40 +626,6 @@
     </div>
     <div class="read-more">
       <a href="/post/goreplay1/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/ha/">WEB端高可用默认玩法</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2019-08-08" class="post-time">
-        2019-08-08
-      </time>
-      <div class="post-category">
-          <a href="https://hanzhihua.cn/categories/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/"> 基础设施 </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      WEB服务高可用设计 主要是从以下几个方面去考虑，设计不考虑dns,动静态CDN 架构是slb+keepalived+web服务（针对运维高可用
-    </div>
-    <div class="read-more">
-      <a href="/post/ha/" class="read-more-link">Read more</a>
     </div>
     
   </div>

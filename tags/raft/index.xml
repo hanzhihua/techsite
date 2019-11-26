@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 05 Oct 2019 23:26:57 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 26 Nov 2019 17:19:27 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/tags/raft/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>重复提交任务的Case</title>
+      <link>https://hanzhihua.cn/post/raft_cs_1/</link>
+      <pubDate>Tue, 26 Nov 2019 17:19:27 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/raft_cs_1/</guid>
+      <description>昨天下午出现了Yarn集群中pending任务增多，整个Hadoop集群变的很慢 现象重放 9点10分钟左右调度系统升级发布 9点10分钟左右Ya</description>
+    </item>
     
     <item>
       <title>Raft简介</title>

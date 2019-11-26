@@ -7,10 +7,57 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 12 Nov 2019 14:00:17 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 26 Nov 2019 17:19:27 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>重复提交任务的Case</title>
+      <link>https://hanzhihua.cn/post/raft_cs_1/</link>
+      <pubDate>Tue, 26 Nov 2019 17:19:27 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/raft_cs_1/</guid>
+      
+        <description>
+
+&lt;p&gt;昨天下午出现了Yarn集群中pending任务增多，整个Hadoop集群变的很慢&lt;/p&gt;
+
+&lt;h2 id=&#34;现象重放&#34;&gt;现象重放&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;9点10分钟左右调度系统升级发布&lt;/li&gt;
+&lt;li&gt;9点10分钟左右Yarn集群出现大量的pending任务&lt;br /&gt;
+&lt;em&gt;注：(pending任务过多了=&amp;gt; ResourceManager 排序慢（同步）=&amp;gt; yarn集群变慢)&lt;/em&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;调度系统中所有Worker节点与Hiveserver连接数 &amp;gt; 1000&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;重启调度系统所有Worker节点，pending任务减少，Yarn又正常工作了&lt;/li&gt;
+&lt;li&gt;调度系统在9点10分-11点，共向Hiveserver提交了近万个任务&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;问题分析&#34;&gt;问题分析&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;调度系统的控制节点提交任务的顺序是先提交到Worker节点,然后再修改Raft状态。&lt;br /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;修改Raft状态和提交任务不是一个事务，这个就是最少一次的经典玩法&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;因为调度系统刚发布，修改raft任务状态失败，造成不停重复提交任务&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;调度系统的Worker节点对提交的任务是无脑的执行，没有做任何的去重，造成相同的任务重复提交到Hiveserver&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Hive 最大处理线程数设置成 800 （hive.server2.thrift.max.worker.threads=800）&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;重复提交就造成了Yarn出现大量的pending任务&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;重启调度系统的Worker节点，触发Worker节点中的任务转移，因为提交任务是Raft状态修改失败，在控制节点中就没有相关重复提交任务的信息，就不会出现重试现象，也不会再向Hiveserver提交任务&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;改善措施&#34;&gt;改善措施&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;调度系统的控制节点修改提交顺序，采用最多一次+定时轮询超时检查玩法&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;调度系统的Worker节点对提交的任务进行简单的去重&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>ETL线上一个bug</title>
@@ -1351,49 +1398,6 @@ supervisorctl start 应用名
 &lt;li&gt;小功能开发，迭代不修改项目版本&lt;/li&gt;
 &lt;li&gt;大功能修改或者对外接口变化才修改项目版本，仍采用snaphost版本&lt;/li&gt;
 &lt;li&gt;版本回滚，依赖发布系统&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Nginx多次转发问题</title>
-      <link>https://hanzhihua.cn/post/proxy_1/</link>
-      <pubDate>Sat, 24 Aug 2019 18:49:06 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/proxy_1/</guid>
-      
-        <description>
-
-&lt;p&gt;今天遇到一个nginx多次转发丢失客户端ip问题，原来的配置是这样的&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;proxy_set_header        X-Real-IP $remote_addr;
-proxy_set_header        X-Forwarded-For $remote_addr;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;每一层nginx配置都是这样的，最后应用取得的客户端IP是上一层nginx的IP&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;根因是nginx的X-Real-IP被覆盖了&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;一般玩法&#34;&gt;一般玩法&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;可定义一个私有的变量 如 &lt;em&gt;x-backend-公司名-real-ip&lt;/em&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;第一层nginx&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;proxy_set_header        x-backend-公司名-real-ip $remote_addr;
-proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;后面几层&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;应用方&lt;br /&gt;
-通过x-backend-公司名-real-ip拿到客户端ip&lt;br /&gt;
-通过X-Forwarded-For获得ip列表，(包括客户端IP、所有nginx的ip,通过逗号分隔，第一个为客户端IP）&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       

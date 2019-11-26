@@ -3,6 +3,55 @@
   
   <url>
     <loc>https://hanzhihua.cn/categories/</loc>
+    <lastmod>2019-11-26T17:19:27+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/post/</loc>
+    <lastmod>2019-11-26T17:19:27+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/tags/</loc>
+    <lastmod>2019-11-26T17:19:27+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/tags/hive/</loc>
+    <lastmod>2019-11-26T17:19:27+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/tags/raft/</loc>
+    <lastmod>2019-11-26T17:19:27+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/</loc>
+    <lastmod>2019-11-26T17:19:27+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
+    <lastmod>2019-11-26T17:19:27+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/post/raft_cs_1/</loc>
+    <lastmod>2019-11-26T17:19:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hanzhihua.cn/tags/etl/</loc>
     <lastmod>2019-11-12T14:00:17+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -15,37 +64,7 @@
   </url>
   
   <url>
-    <loc>https://hanzhihua.cn/post/</loc>
-    <lastmod>2019-11-12T14:00:17+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hanzhihua.cn/tags/</loc>
-    <lastmod>2019-11-12T14:00:17+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://hanzhihua.cn/tags/casestudy/</loc>
-    <lastmod>2019-11-12T14:00:17+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hanzhihua.cn/tags/etl/</loc>
-    <lastmod>2019-11-12T14:00:17+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hanzhihua.cn/</loc>
-    <lastmod>2019-11-12T14:00:17+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
     <lastmod>2019-11-12T14:00:17+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -136,12 +155,6 @@
   </url>
   
   <url>
-    <loc>https://hanzhihua.cn/tags/raft/</loc>
-    <lastmod>2019-10-05T23:26:57+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://hanzhihua.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
     <lastmod>2019-09-29T14:13:34+08:00</lastmod>
     <priority>0</priority>
@@ -203,12 +216,6 @@
     <lastmod>2019-09-12T19:21:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hanzhihua.cn/tags/hive/</loc>
-    <lastmod>2019-09-11T14:22:59+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

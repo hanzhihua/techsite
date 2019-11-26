@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 12 Nov 2019 14:00:17 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 26 Nov 2019 17:19:27 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>hive</title>
+      <link>https://hanzhihua.cn/tags/hive/</link>
+      <pubDate>Tue, 26 Nov 2019 17:19:27 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/tags/hive/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>raft</title>
+      <link>https://hanzhihua.cn/tags/raft/</link>
+      <pubDate>Tue, 26 Nov 2019 17:19:27 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/tags/raft/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ETL</title>
+      <link>https://hanzhihua.cn/tags/etl/</link>
+      <pubDate>Tue, 12 Nov 2019 14:00:17 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/tags/etl/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>casestudy</title>
@@ -18,15 +45,6 @@
       <pubDate>Tue, 12 Nov 2019 14:00:17 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/tags/casestudy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>etl</title>
-      <link>https://hanzhihua.cn/tags/etl/</link>
-      <pubDate>Tue, 12 Nov 2019 14:00:17 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/tags/etl/</guid>
       <description></description>
     </item>
     
@@ -67,15 +85,6 @@
     </item>
     
     <item>
-      <title>raft</title>
-      <link>https://hanzhihua.cn/tags/raft/</link>
-      <pubDate>Sat, 05 Oct 2019 23:26:57 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/tags/raft/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>多线程</title>
       <link>https://hanzhihua.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
       <pubDate>Sun, 29 Sep 2019 14:13:34 +0800</pubDate>
@@ -108,15 +117,6 @@
       <pubDate>Thu, 12 Sep 2019 19:21:33 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/tags/zookeeper/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hive</title>
-      <link>https://hanzhihua.cn/tags/hive/</link>
-      <pubDate>Wed, 11 Sep 2019 14:22:59 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/tags/hive/</guid>
       <description></description>
     </item>
     
