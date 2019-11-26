@@ -31,7 +31,7 @@
 &lt;em&gt;注：(pending任务过多了=&amp;gt; ResourceManager 排序慢（同步）=&amp;gt; yarn集群变慢)&lt;/em&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;调度系统中所有Worker节点与Hiveserver连接数 &amp;gt; 1000&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;重启调度系统所有Worker节点，pending任务减少，Yarn又正常工作了&lt;/li&gt;
-&lt;li&gt;调度系统在9点10分-11点，共向Hiveserver提交了近万个任务&lt;/li&gt;
+&lt;li&gt;调度系统在9点10分重启期间，共向Hiveserver提交了近万个任务&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;问题分析&#34;&gt;问题分析&lt;/h2&gt;
