@@ -78,10 +78,10 @@
 &lt;li&gt;&lt;h6 id=&#34;对象模型&#34;&gt;对象模型&lt;/h6&gt;
 
 &lt;ul&gt;
-&lt;li&gt;HoodieRecord (包括下面两个模型和业务对象（avro格式）)&lt;/li&gt;
+&lt;li&gt;HoodieRecord (包括下面两个模型和业务对象（avro格式）)&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;HoodieKey （包括业务主键，业务分区）&lt;/li&gt;
 &lt;li&gt;HoodieRecordLocation （文件id，和时间）&lt;/li&gt;
-&lt;li&gt;时间轴&lt;/li&gt;
+&lt;li&gt;时间轴&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;可查询任何历史快照、增量数据&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
