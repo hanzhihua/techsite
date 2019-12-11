@@ -7,10 +7,124 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 26 Nov 2019 17:19:27 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Dec 2019 12:28:55 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hudi 原理分析</title>
+      <link>https://hanzhihua.cn/post/hudi_1/</link>
+      <pubDate>Wed, 11 Dec 2019 12:28:55 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/hudi_1/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;什么是hudi&#34;&gt;什么是Hudi&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;一个spark 库&lt;/li&gt;
+&lt;li&gt;大数据更新解决方案
+
+&lt;ul&gt;
+&lt;li&gt;大数据中没有传统意义的更新，只有append和重写，(&lt;em&gt;Hudi就是采用重写方式&lt;/em&gt;)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;使用Hudi的优点&lt;/strong&gt;：
+
+&lt;ul&gt;
+&lt;li&gt;使用Bloomfilter机制+二次查找，可快速确定记录是更新还是新增&lt;/li&gt;
+&lt;li&gt;更新范围小，是文件级别，不是表级别&lt;/li&gt;
+&lt;li&gt;文件大小与hdfs的Blocksize保持一致&lt;/li&gt;
+&lt;li&gt;数据文件使用parquet格式，充分利用列存的优势（*dremal论文实现*）&lt;/li&gt;
+&lt;li&gt;提供了可扩展的大数据更新框架&lt;/li&gt;
+&lt;li&gt;并发度由spark控制&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;一些概念&#34;&gt;一些概念&lt;/h2&gt;
+
+&lt;h3 id=&#34;存储模型&#34;&gt;存储模型&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;COW (CopyOnWrite)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;使用数据文件（parquet）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;输入的格式是Avro，直接写入parquet数据文件中&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;MOR (MergeOnRead)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;使用数据文件（parquet）和日志文件（avro格式）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;新增记录写入先写入日志文件中，更新数据直接写入数据文件&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;后台异步日志文件转成数据文件&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;可以显示调用compact ，同步写入parquet数据文件&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;parquet数据文件格式&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;文件上面部分是数据&lt;/li&gt;
+&lt;li&gt;文件底部是bloomfilter（默认）&lt;/li&gt;
+&lt;li&gt;如果采用hbase，会有索引文件&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;h6 id=&#34;对象模型&#34;&gt;对象模型&lt;/h6&gt;
+
+&lt;ul&gt;
+&lt;li&gt;HoodieRecord (包括下面两个模型和业务对象（avro格式）)&lt;/li&gt;
+&lt;li&gt;HoodieKey （包括业务主键，业务分区）&lt;/li&gt;
+&lt;li&gt;HoodieRecordLocation （文件id，和时间）&lt;/li&gt;
+&lt;li&gt;时间轴&lt;/li&gt;
+&lt;li&gt;可查询任何历史快照、增量数据&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;写流程&#34;&gt;写流程&lt;/h2&gt;
+
+&lt;h3 id=&#34;cow玩法&#34;&gt;Cow玩法&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;生成JavaRDD，里面包括所有的需要新增或者更新的记录&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;**这里面的记录只有业务主键，分区，数据，没有文件ID **&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;根据Bloomfilter功能和Partitioner功能把文件ID补全&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;如果记录是更新，则文件ID就是原来的文件ID，如果是新增记录，文件ID是新建立的&lt;/li&gt;
+&lt;li&gt;对所有需要更新的文件，合并原有记录和更新记录重新生成一个文件（FileId相同）&lt;/li&gt;
+&lt;li&gt;对所有新增的记录，生成一个新的文件&lt;/li&gt;
+&lt;li&gt;Partitioner的功能保证文件的大小跟hdfs的blocksize保持一致&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;mor玩法&#34;&gt;MOR玩法&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;玩法与Cow类似，不同的地方是，新增记录先写入日志文件（avro格式）&lt;/li&gt;
+&lt;li&gt;在概念中已描述&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;读流程&#34;&gt;读流程&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;把hudi的元信息同步到hive metadata，可使用persto、spark、hive来查询&lt;/li&gt;
+&lt;li&gt;Inputformat可设置&lt;/li&gt;
+&lt;li&gt;COW 默认为 HoodieParquetInputFormat&lt;/li&gt;
+&lt;li&gt;MOR 可以设置为HoodieParquetRealtimeInputFormat ，这样就可以都读取增量文件（日志文件）&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>重复提交任务的Case</title>
@@ -1372,32 +1486,6 @@ supervisorctl start 应用名
 &lt;ul&gt;
 &lt;li&gt;上面的脚本也可以写在发布系统中&lt;/li&gt;
 &lt;li&gt;还有一种玩法就是发布系统只是负责应用的发布，不负责应用的启停，看官可以自选&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>采用snaphost版本</title>
-      <link>https://hanzhihua.cn/post/mvn_1/</link>
-      <pubDate>Mon, 26 Aug 2019 20:57:22 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/mvn_1/</guid>
-      
-        <description>
-
-&lt;p&gt;因为是大数据部门，我们的应用基本上使用java语言开发，采用maven做项目管理&lt;br /&gt;
-目前我们的项目版本都是snaphost的，线上发布也是这样的&lt;br /&gt;
-本来想做一次整改，采用在线应用标准来要求，但发现效果并不好，会增加比较多的工作量&lt;br /&gt;
-因为公司与之配套的工具平台缺失，公司项目主要以golang为主，对java支持的比较弱&lt;/p&gt;
-
-&lt;h2 id=&#34;考虑数据平台项目的特点-我们内部达成一个共识&#34;&gt;考虑数据平台项目的特点，我们内部达成一个共识：&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;只使用snapshot版本，放弃release版本&lt;/li&gt;
-&lt;li&gt;小功能开发，迭代不修改项目版本&lt;/li&gt;
-&lt;li&gt;大功能修改或者对外接口变化才修改项目版本，仍采用snaphost版本&lt;/li&gt;
-&lt;li&gt;版本回滚，依赖发布系统&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       

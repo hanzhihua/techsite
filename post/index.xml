@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Tue, 26 Nov 2019 17:19:27 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Dec 2019 12:28:55 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hudi 原理分析</title>
+      <link>https://hanzhihua.cn/post/hudi_1/</link>
+      <pubDate>Wed, 11 Dec 2019 12:28:55 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/hudi_1/</guid>
+      <description>什么是Hudi 一个spark 库 大数据更新解决方案 大数据中没有传统意义的更新，只有append和重写，(Hudi就是采用重写方式) 使用Hudi</description>
+    </item>
     
     <item>
       <title>重复提交任务的Case</title>
@@ -181,15 +190,6 @@
       
       <guid>https://hanzhihua.cn/post/supervisor_1/</guid>
       <description>上次进程被莫名杀掉，为了避免同样错误的发生，现在我们统一接入supervisor，通过它来管理进程的启停 supervisor玩法有正确的玩法</description>
-    </item>
-    
-    <item>
-      <title>采用snaphost版本</title>
-      <link>https://hanzhihua.cn/post/mvn_1/</link>
-      <pubDate>Mon, 26 Aug 2019 20:57:22 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/mvn_1/</guid>
-      <description>因为是大数据部门，我们的应用基本上使用java语言开发，采用maven做项目管理 目前我们的项目版本都是snaphost的，线上发布也是这样的</description>
     </item>
     
   </channel>

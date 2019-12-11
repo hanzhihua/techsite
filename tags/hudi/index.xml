@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hudi on 一个码农 工作点滴</title>
+    <link>https://hanzhihua.cn/tags/hudi/</link>
+    <description>Recent content in hudi on 一个码农 工作点滴</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
+    <lastBuildDate>Wed, 11 Dec 2019 12:28:55 +0800</lastBuildDate>
+    
+	<atom:link href="https://hanzhihua.cn/tags/hudi/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hudi 原理分析</title>
+      <link>https://hanzhihua.cn/post/hudi_1/</link>
+      <pubDate>Wed, 11 Dec 2019 12:28:55 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/hudi_1/</guid>
+      <description>什么是Hudi 一个spark 库 大数据更新解决方案 大数据中没有传统意义的更新，只有append和重写，(Hudi就是采用重写方式) 使用Hudi</description>
+    </item>
+    
+  </channel>
+</rss>
