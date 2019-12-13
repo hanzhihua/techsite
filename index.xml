@@ -34,7 +34,7 @@
 &lt;h2 id=&#34;问题分析&#34;&gt;问题分析&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;thrift通信框架使用的是BIO，而且对业务调用没有超时机制，超时依赖sotimeout&lt;/li&gt;
+&lt;li&gt;thrift通信框架使用的是BIO，而且对业务调用没有超时机制，超时依赖sotimeout，超时时间10分支&lt;/li&gt;
 &lt;li&gt;thrift 使用了tcp的keepalive机制&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;服务器上面统一的装机配置为&lt;/p&gt;
@@ -44,7 +44,7 @@ net.ipv4.tcp_keepalive_probes = 3
 net.ipv4.tcp_keepalive_time = 30
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;问题找到了，就是tcp keepalive让sotimeout功能失效了&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;问题找到了，就是tcp keepalive设置了30s，这个就让sotimeout功能失效了&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;改善措施&#34;&gt;改善措施&lt;/h2&gt;

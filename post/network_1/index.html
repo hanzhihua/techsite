@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-12-13T18:08:45&#43;08:00" />
 <meta itemprop="dateModified" content="2019-12-13T18:08:45&#43;08:00" />
-<meta itemprop="wordCount" content="274">
+<meta itemprop="wordCount" content="293">
 
 
 
@@ -335,7 +335,7 @@
 <h2 id="问题分析">问题分析</h2>
 
 <ul>
-<li>thrift通信框架使用的是BIO，而且对业务调用没有超时机制，超时依赖sotimeout</li>
+<li>thrift通信框架使用的是BIO，而且对业务调用没有超时机制，超时依赖sotimeout，超时时间10分支</li>
 <li>thrift 使用了tcp的keepalive机制</li>
 
 <li><p>服务器上面统一的装机配置为</p>
@@ -345,7 +345,7 @@ net.ipv4.tcp_keepalive_probes = 3
 net.ipv4.tcp_keepalive_time = 30
 </code></pre></li>
 
-<li><p>问题找到了，就是tcp keepalive让sotimeout功能失效了</p></li>
+<li><p>问题找到了，就是tcp keepalive设置了30s，这个就让sotimeout功能失效了</p></li>
 </ul>
 
 <h2 id="改善措施">改善措施</h2>
