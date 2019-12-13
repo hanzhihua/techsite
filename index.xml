@@ -7,10 +7,55 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Wed, 11 Dec 2019 12:28:55 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 13 Dec 2019 18:08:45 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Socket一些配置</title>
+      <link>https://hanzhihua.cn/post/network_1/</link>
+      <pubDate>Fri, 13 Dec 2019 18:08:45 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/network_1/</guid>
+      
+        <description>
+
+&lt;p&gt;最近在使用Thrift协议访问hiveserver又踩了一个坑&lt;/p&gt;
+
+&lt;h2 id=&#34;现象重放&#34;&gt;现象重放&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;访问hiveserver后，等了金2个小时才拿到结果，而且是一个失败的结果&lt;/li&gt;
+&lt;li&gt;但Yarn控制台上面显示其实10分钟左右提交的任务就已经完成&lt;/li&gt;
+&lt;li&gt;当时hiveserver处在非常繁忙情况&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;问题分析&#34;&gt;问题分析&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;thrift通信框架使用的是BIO，而且对业务调用没有超时机制，超时依赖sotimeout&lt;/li&gt;
+&lt;li&gt;thrift 使用了tcp的keepalive机制&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;服务器上面统一的装机配置为&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;net.ipv4.tcp_keepalive_intvl = 15
+net.ipv4.tcp_keepalive_probes = 3
+net.ipv4.tcp_keepalive_time = 30
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;问题找到了，就是tcp keepalive让sotimeout功能失效了&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;改善措施&#34;&gt;改善措施&lt;/h2&gt;
+
+&lt;p&gt;简单的处理方法，去除 tcp keepalive机制&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;socket.setKeepAlive(false);
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>Hudi 原理分析</title>
@@ -1441,51 +1486,6 @@ DISPATCHED(10, &amp;quot;说明...&amp;quot;),
 &lt;li&gt;缺失了一些中间状态，如runing-&amp;gt;stop,缺失stoping状态&lt;/li&gt;
 &lt;li&gt;stop状态换成killed状态语义更确切&lt;/li&gt;
 &lt;li&gt;状态enum的value，设计混乱，没有业务语义&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Supervisor的正确玩法</title>
-      <link>https://hanzhihua.cn/post/supervisor_1/</link>
-      <pubDate>Tue, 27 Aug 2019 19:55:20 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/supervisor_1/</guid>
-      
-        <description>
-
-&lt;p&gt;上次进程被莫名杀掉，为了避免同样错误的发生，现在我们统一接入supervisor，通过它来管理进程的启停&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;supervisor玩法有正确的玩法，也不正确的玩法（只有痛过才能真正体会）&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;不正确的玩法&#34;&gt;不正确的玩法&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;应用owner提供启动脚本（停止脚本一般是标配如kill -2 pid）&lt;/li&gt;
-&lt;li&gt;运维同学安装supervisor,标准化目录结构&lt;/li&gt;
-&lt;li&gt;运维同学提供supervisor配置文件&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;正确的玩法&#34;&gt;正确的玩法&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;应用owner提供启动脚本&lt;/li&gt;
-&lt;li&gt;运维同学安装supervisor,标准化目录结构&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;em&gt;应用owner提供supervisor配置文件&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;启动脚本例子&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/bash
-cp supervisor配置 /etc/supervisor/conf.d/
-supervisorctl update
-supervisorctl start 应用名
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;上面的脚本也可以写在发布系统中&lt;/li&gt;
-&lt;li&gt;还有一种玩法就是发布系统只是负责应用的发布，不负责应用的启停，看官可以自选&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       

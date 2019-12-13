@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Wed, 11 Dec 2019 12:28:55 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 13 Dec 2019 18:08:45 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Socket一些配置</title>
+      <link>https://hanzhihua.cn/post/network_1/</link>
+      <pubDate>Fri, 13 Dec 2019 18:08:45 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/network_1/</guid>
+      <description>最近在使用Thrift协议访问hiveserver又踩了一个坑 现象重放 访问hiveserver后，等了金2个小时才拿到结果，而且是一个失败的</description>
+    </item>
     
     <item>
       <title>Hudi 原理分析</title>
@@ -181,15 +190,6 @@
       
       <guid>https://hanzhihua.cn/post/state_1/</guid>
       <description>最近看到同事写的一段关于状态设计的代码（DAG项目，用java语言开发） ERROR(-1, &amp;quot;说明...&amp;quot;), INIT(0, &amp;quot;说明...&amp;q</description>
-    </item>
-    
-    <item>
-      <title>Supervisor的正确玩法</title>
-      <link>https://hanzhihua.cn/post/supervisor_1/</link>
-      <pubDate>Tue, 27 Aug 2019 19:55:20 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/supervisor_1/</guid>
-      <description>上次进程被莫名杀掉，为了避免同样错误的发生，现在我们统一接入supervisor，通过它来管理进程的启停 supervisor玩法有正确的玩法</description>
     </item>
     
   </channel>

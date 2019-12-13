@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>network on 一个码农 工作点滴</title>
+    <link>https://hanzhihua.cn/tags/network/</link>
+    <description>Recent content in network on 一个码农 工作点滴</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
+    <lastBuildDate>Fri, 13 Dec 2019 18:08:45 +0800</lastBuildDate>
+    
+	<atom:link href="https://hanzhihua.cn/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Socket一些配置</title>
+      <link>https://hanzhihua.cn/post/network_1/</link>
+      <pubDate>Fri, 13 Dec 2019 18:08:45 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/network_1/</guid>
+      <description>最近在使用Thrift协议访问hiveserver又踩了一个坑 现象重放 访问hiveserver后，等了金2个小时才拿到结果，而且是一个失败的</description>
+    </item>
+    
+  </channel>
+</rss>
