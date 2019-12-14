@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Wed, 11 Dec 2019 12:28:55 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 14 Dec 2019 15:55:50 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>路由不均衡问题</title>
+      <link>https://hanzhihua.cn/post/cs_6/</link>
+      <pubDate>Sat, 14 Dec 2019 15:55:50 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cs_6/</guid>
+      <description>最近上线一个版本的调度系统，偶尔出现访问hiveserver2超时 现象重放 调度系统访问hiveserver2偶尔出现超时现象 查看监控，发现h</description>
+    </item>
     
     <item>
       <title>Hudi 原理分析</title>

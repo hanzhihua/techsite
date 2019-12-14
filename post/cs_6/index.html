@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Socket一些配置 - 一个码农 工作点滴</title>
+  <title>路由不均衡问题 - 一个码农 工作点滴</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="最近在使用Thrift协议访问hiveserver又踩了一个坑 现象重放 访问hiveserver后，等了金2个小时才拿到结果，而且是一个失败的" />
+  <meta name="description" content="最近上线一个版本的调度系统，偶尔出现访问hiveserver2超时 现象重放 调度系统访问hiveserver2偶尔出现超时现象 查看监控，发现h" />
 
 
 
@@ -34,7 +34,7 @@
 <meta name="generator" content="Hugo 0.56.0" />
 
 
-<link rel="canonical" href="https://hanzhihua.cn/post/network_1/" />
+<link rel="canonical" href="https://hanzhihua.cn/post/cs_6/" />
 
 
 
@@ -56,26 +56,26 @@
 
 
 
-<meta property="og:title" content="Socket一些配置" />
-<meta property="og:description" content="最近在使用Thrift协议访问hiveserver又踩了一个坑 现象重放 访问hiveserver后，等了金2个小时才拿到结果，而且是一个失败的" />
+<meta property="og:title" content="路由不均衡问题" />
+<meta property="og:description" content="最近上线一个版本的调度系统，偶尔出现访问hiveserver2超时 现象重放 调度系统访问hiveserver2偶尔出现超时现象 查看监控，发现h" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://hanzhihua.cn/post/network_1/" />
-<meta property="article:published_time" content="2019-12-13T18:08:45+08:00" />
-<meta property="article:modified_time" content="2019-12-13T18:08:45+08:00" />
-<meta itemprop="name" content="Socket一些配置">
-<meta itemprop="description" content="最近在使用Thrift协议访问hiveserver又踩了一个坑 现象重放 访问hiveserver后，等了金2个小时才拿到结果，而且是一个失败的">
+<meta property="og:url" content="https://hanzhihua.cn/post/cs_6/" />
+<meta property="article:published_time" content="2019-12-14T15:55:50+08:00" />
+<meta property="article:modified_time" content="2019-12-14T15:55:50+08:00" />
+<meta itemprop="name" content="路由不均衡问题">
+<meta itemprop="description" content="最近上线一个版本的调度系统，偶尔出现访问hiveserver2超时 现象重放 调度系统访问hiveserver2偶尔出现超时现象 查看监控，发现h">
 
 
-<meta itemprop="datePublished" content="2019-12-13T18:08:45&#43;08:00" />
-<meta itemprop="dateModified" content="2019-12-13T18:08:45&#43;08:00" />
-<meta itemprop="wordCount" content="293">
+<meta itemprop="datePublished" content="2019-12-14T15:55:50&#43;08:00" />
+<meta itemprop="dateModified" content="2019-12-14T15:55:50&#43;08:00" />
+<meta itemprop="wordCount" content="288">
 
 
 
-<meta itemprop="keywords" content="network," />
+<meta itemprop="keywords" content="casestudy," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Socket一些配置"/>
-<meta name="twitter:description" content="最近在使用Thrift协议访问hiveserver又踩了一个坑 现象重放 访问hiveserver后，等了金2个小时才拿到结果，而且是一个失败的"/>
+<meta name="twitter:title" content="路由不均衡问题"/>
+<meta name="twitter:description" content="最近上线一个版本的调度系统，偶尔出现访问hiveserver2超时 现象重放 调度系统访问hiveserver2偶尔出现超时现象 查看监控，发现h"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -295,14 +295,14 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">Socket一些配置</h1>
+      <h1 class="post-title">路由不均衡问题</h1>
       
       <div class="post-meta">
-        <time datetime="2019-12-13" class="post-time">
-          2019-12-13
+        <time datetime="2019-12-14" class="post-time">
+          2019-12-14
         </time>
         <div class="post-category">
-            <a href="https://hanzhihua.cn/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"> 分布式 </a>
+            <a href="https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"> 大数据 </a>
             
           </div>
         
@@ -322,38 +322,45 @@
     <div class="post-content">
       
 
-<p>最近在使用Thrift协议访问hiveserver又踩了一个坑</p>
+<p>最近上线一个版本的调度系统，偶尔出现访问hiveserver2超时</p>
 
 <h2 id="现象重放">现象重放</h2>
 
 <ul>
-<li>访问hiveserver后，等了金2个小时才拿到结果，而且是一个失败的结果</li>
-<li>但Yarn控制台上面显示其实10分钟左右提交的任务就已经完成</li>
-<li>当时hiveserver处在非常繁忙情况</li>
+<li>调度系统访问hiveserver2偶尔出现超时现象</li>
+<li>查看监控，发现hiveserver2集群访问很不均匀</li>
 </ul>
 
 <h2 id="问题分析">问题分析</h2>
 
 <ul>
-<li>thrift通信框架使用的是BIO，而且对业务调用没有超时机制，超时依赖sotimeout，超时时间10分支</li>
-<li>thrift 使用了tcp的keepalive机制</li>
+<li><p>调度系统访问hiveserver2路由是采用smart client方式
+查看代码</p>
 
-<li><p>服务器上面统一的装机配置为</p>
+<pre><code class="language-java">for(String hiveserver2 :hiveserver2s){
+if(!判断是否可用(hiveserver2)){
+   logger.warn(&quot;ignore invalidate hive serer:{}&quot;,hiveserver2);
+   continue;
+}
+try{
+访问（hiveserver2);
+}cache(特点异常 e){
+   //该hiveserver2置为不可用
+}
+}
+</code></pre>
 
-<pre><code class="language-bash">net.ipv4.tcp_keepalive_intvl = 15
-net.ipv4.tcp_keepalive_probes = 3
-net.ipv4.tcp_keepalive_time = 30
-</code></pre></li>
-
-<li><p>问题找到了，就是tcp keepalive设置了30s，这个就让sotimeout功能失效了</p></li>
+<p>问题找到了 就是hiveserver2s 的顺序是固定的，这样造成了一直访问一台服务器，直到它不能在工作了</p></li>
 </ul>
 
 <h2 id="改善措施">改善措施</h2>
 
-<p>简单的处理方法，去除 tcp keepalive机制</p>
+<ul>
+<li><p>把hiveserver2s随机打散</p>
 
-<pre><code class="language-java">socket.setKeepAlive(false);
-</code></pre>
+<pre><code class="language-java">Collections.shuffle(hiveserver2);
+</code></pre></li>
+</ul>
 
     </div>
 
@@ -366,29 +373,16 @@ net.ipv4.tcp_keepalive_time = 30
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://hanzhihua.cn/tags/network/">network</a>
+          <a href="https://hanzhihua.cn/tags/casestudy/">casestudy</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/cs_6/">
-            
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
-</svg>
-
-            </i>
-            <span class="prev-text nav-default">路由不均衡问题</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
         
-          <a class="next" href="/post/hudi_1/">
-            <span class="next-text nav-default">Hudi 原理分析</span>
+          <a class="next" href="/post/network_1/">
+            <span class="next-text nav-default">Socket一些配置</span>
             <span class="prev-text nav-mobile">Next</span>
             
             <i class="iconfont">

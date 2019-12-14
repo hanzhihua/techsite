@@ -7,10 +7,62 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Fri, 13 Dec 2019 18:08:45 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 14 Dec 2019 15:55:50 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>路由不均衡问题</title>
+      <link>https://hanzhihua.cn/post/cs_6/</link>
+      <pubDate>Sat, 14 Dec 2019 15:55:50 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cs_6/</guid>
+      
+        <description>
+
+&lt;p&gt;最近上线一个版本的调度系统，偶尔出现访问hiveserver2超时&lt;/p&gt;
+
+&lt;h2 id=&#34;现象重放&#34;&gt;现象重放&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;调度系统访问hiveserver2偶尔出现超时现象&lt;/li&gt;
+&lt;li&gt;查看监控，发现hiveserver2集群访问很不均匀&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;问题分析&#34;&gt;问题分析&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;调度系统访问hiveserver2路由是采用smart client方式
+查看代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;for(String hiveserver2 :hiveserver2s){
+if(!判断是否可用(hiveserver2)){
+   logger.warn(&amp;quot;ignore invalidate hive serer:{}&amp;quot;,hiveserver2);
+   continue;
+}
+try{
+访问（hiveserver2);
+}cache(特点异常 e){
+   //该hiveserver2置为不可用
+}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;问题找到了 就是hiveserver2s 的顺序是固定的，这样造成了一直访问一台服务器，直到它不能在工作了&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;改善措施&#34;&gt;改善措施&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;把hiveserver2s随机打散&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;Collections.shuffle(hiveserver2);
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>Socket一些配置</title>
@@ -1446,46 +1498,6 @@ jdbc.validation_query  = &amp;quot;select 1&amp;quot;
 &lt;li&gt;DAG系统承担着ETL任务引擎集群管理工作，包括路由、容错、服务发现等&lt;/li&gt;
 &lt;li&gt;ETL引擎需要提供接口来接受DAG系统的指令，同时还需要上报任务状态、健康状态等工作&lt;/li&gt;
 &lt;li&gt;多进程多节点的任务类型没有开源，需要自己实现&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>状态设计一点想法</title>
-      <link>https://hanzhihua.cn/post/state_1/</link>
-      <pubDate>Sat, 31 Aug 2019 22:56:31 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/state_1/</guid>
-      
-        <description>
-
-&lt;p&gt;最近看到同事写的一段关于状态设计的代码（DAG项目，用java语言开发）&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;ERROR(-1, &amp;quot;说明...&amp;quot;),
-INIT(0, &amp;quot;说明...&amp;quot;),
-SUCCESS(1, &amp;quot;说明...&amp;quot;),
-FAILED(2, &amp;quot;说明...&amp;quot;),
-RUNNING(3, &amp;quot;说明...&amp;quot;),
-ON_QUEUE(4, &amp;quot;说明...&amp;quot;),
-WAIT(6, &amp;quot;说明...&amp;quot;),
-STOP(5, &amp;quot;说明...&amp;quot;),
-ON_SUBMIT(7, &amp;quot;说明...&amp;quot;),,
-WITH_RESULT(9, &amp;quot;说明...&amp;quot;),
-FINISH(8, &amp;quot;说明...&amp;quot;),
-DISPATCHED(10, &amp;quot;说明...&amp;quot;),
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;个人觉得有点问题，请各位看官分析&lt;/p&gt;
-
-&lt;h2 id=&#34;有几个问题&#34;&gt;有几个问题&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;设计了一些不存在的状态，如finish状态，没有这个状态，结束态可以是成功、失败（里面包括人工kill掉），由方法来判断&lt;/li&gt;
-&lt;li&gt;缺失了一些中间状态，如runing-&amp;gt;stop,缺失stoping状态&lt;/li&gt;
-&lt;li&gt;stop状态换成killed状态语义更确切&lt;/li&gt;
-&lt;li&gt;状态enum的value，设计混乱，没有业务语义&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
