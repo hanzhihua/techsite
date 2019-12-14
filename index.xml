@@ -43,13 +43,13 @@ if(!判断是否可用(hiveserver2)){
 }
 try{
 访问（hiveserver2);
-}cache(特点异常 e){
+}cache(服务不可用异常 e){
    //该hiveserver2置为不可用
 }
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;问题找到了 就是hiveserver2s 的顺序是固定的，这样造成了一直访问一台服务器，直到它不能在工作了&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;问题找到了 就是hiveserver2s 的顺序是固定的，这样造成了一直访问一台服务器，直到它不能在工作了，再换到下一台&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;改善措施&#34;&gt;改善措施&lt;/h2&gt;

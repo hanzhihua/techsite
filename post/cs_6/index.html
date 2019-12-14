@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2019-12-14T15:55:50&#43;08:00" />
 <meta itemprop="dateModified" content="2019-12-14T15:55:50&#43;08:00" />
-<meta itemprop="wordCount" content="288">
+<meta itemprop="wordCount" content="298">
 
 
 
@@ -344,13 +344,13 @@ if(!判断是否可用(hiveserver2)){
 }
 try{
 访问（hiveserver2);
-}cache(特点异常 e){
+}cache(服务不可用异常 e){
    //该hiveserver2置为不可用
 }
 }
 </code></pre>
 
-<p>问题找到了 就是hiveserver2s 的顺序是固定的，这样造成了一直访问一台服务器，直到它不能在工作了</p></li>
+<p>问题找到了 就是hiveserver2s 的顺序是固定的，这样造成了一直访问一台服务器，直到它不能在工作了，再换到下一台</p></li>
 </ul>
 
 <h2 id="改善措施">改善措施</h2>
