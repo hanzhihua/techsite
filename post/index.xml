@@ -99,7 +99,7 @@
       <pubDate>Sun, 06 Oct 2019 10:25:14 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/post/sec_1/</guid>
-      <description>安全规范 数据安全 数据使用安全 数据库加密 日志敏感字段脱敏 网络安全规范 全站 HTTPS 整改计划 HTTPS 在 HTTP 的基础上增加了SSL/TLS加密，提供了更加安全的传输</description>
+      <description>安全规范 数据安全 数据使用安全 数据库加密 日志敏感字段脱敏 网络安全规范 HTTPS 规范 端口规范 运维安全 服务器漏洞 Nginx 运维安全规范 default_server 建议直接配置为一个 403 页面 设</description>
     </item>
     
     <item>

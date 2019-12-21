@@ -637,20 +637,8 @@ AIO不需要selector这样东西，有内核来实现，数据准备完成后来
 &lt;h3 id=&#34;网络安全规范&#34;&gt;网络安全规范&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;全站 HTTPS 整改计划&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;HTTPS 在 HTTP 的基础上增加了SSL/TLS加密，提供了更加安全的传输协议，全站 HTTPS 可以有效的防止运营商劫持、中间人攻击。
-另外，对于外部接入的第三方应用，严格要求统一使用 HTTPS 安全传输协议。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;整改流程：
-服务端是否支持 HTTPS 协议
-前段是否存在写死的 HTTP 协议
-客户端是否存在写死的 HTTP 协议
-增加 HTTP 到 HTTPS的 301 跳转&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;端口规范&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;HTTPS 规范&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;端口规范&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&#34;运维安全&#34;&gt;运维安全&lt;/h3&gt;
