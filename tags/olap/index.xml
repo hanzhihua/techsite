@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OLAP on 一个码农 工作点滴</title>
+    <link>https://hanzhihua.cn/tags/olap/</link>
+    <description>Recent content in OLAP on 一个码农 工作点滴</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
+    <lastBuildDate>Tue, 31 Dec 2019 10:56:08 +0800</lastBuildDate>
+    
+	<atom:link href="https://hanzhihua.cn/tags/olap/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Olap设计草案</title>
+      <link>https://hanzhihua.cn/post/olap_1/</link>
+      <pubDate>Tue, 31 Dec 2019 10:56:08 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/olap_1/</guid>
+      <description>OLAP 平台建设构建设计 目标 主要针对用户侧 数据录入时延 &amp;lt; 1h 支持实时录入 支持离线录入 99% 查询时延 &amp;lt; 5s 不支持在线业务 设计原则 复用已有框架 数据的可靠性，依</description>
+    </item>
+    
+  </channel>
+</rss>

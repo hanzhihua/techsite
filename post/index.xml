@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 14 Dec 2019 15:55:50 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 31 Dec 2019 10:56:08 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Olap设计草案</title>
+      <link>https://hanzhihua.cn/post/olap_1/</link>
+      <pubDate>Tue, 31 Dec 2019 10:56:08 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/olap_1/</guid>
+      <description>OLAP 平台建设构建设计 目标 主要针对用户侧 数据录入时延 &amp;lt; 1h 支持实时录入 支持离线录入 99% 查询时延 &amp;lt; 5s 不支持在线业务 设计原则 复用已有框架 数据的可靠性，依</description>
+    </item>
     
     <item>
       <title>路由不均衡问题</title>
@@ -181,15 +190,6 @@
       
       <guid>https://hanzhihua.cn/post/etl_1/</guid>
       <description>DATAX是阿里开源的一个优秀的ETL工具，使用框架+PLUGIN设计方式，通过依赖ClassLoader来隔离容错，总体设计还不错，被很多</description>
-    </item>
-    
-    <item>
-      <title>状态设计一点想法</title>
-      <link>https://hanzhihua.cn/post/state_1/</link>
-      <pubDate>Sat, 31 Aug 2019 22:56:31 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/state_1/</guid>
-      <description>最近看到同事写的一段关于状态设计的代码（DAG项目，用java语言开发） ERROR(-1, &amp;quot;说明...&amp;quot;), INIT(0, &amp;quot;说明...&amp;q</description>
     </item>
     
   </channel>

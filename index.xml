@@ -7,10 +7,104 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 沪ICP备19026538号 </copyright>
-    <lastBuildDate>Sat, 14 Dec 2019 15:55:50 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 31 Dec 2019 10:56:08 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Olap设计草案</title>
+      <link>https://hanzhihua.cn/post/olap_1/</link>
+      <pubDate>Tue, 31 Dec 2019 10:56:08 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/olap_1/</guid>
+      
+        <description>
+
+&lt;h1 id=&#34;olap-平台建设构建设计&#34;&gt;OLAP 平台建设构建设计&lt;/h1&gt;
+
+&lt;h2 id=&#34;目标&#34;&gt;目标&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;主要针对用户侧&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;数据录入时延 &amp;lt; 1h
+
+&lt;ul&gt;
+&lt;li&gt;支持实时录入&lt;/li&gt;
+&lt;li&gt;支持离线录入&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;99% 查询时延 &amp;lt; 5s&lt;/li&gt;
+&lt;li&gt;不支持在线业务&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;设计原则&#34;&gt;设计原则&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;复用已有框架
+
+&lt;ul&gt;
+&lt;li&gt;数据的可靠性，依靠hdfs来实现&lt;/li&gt;
+&lt;li&gt;数据的录入，依靠Spark、MR任务&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;开源OLAP引擎集群管理，可灵活的适配不同的开源OLAP引擎
+
+&lt;ul&gt;
+&lt;li&gt;大数据平台 ，作为分布式一种应用，它具有以下特点&lt;/li&gt;
+&lt;li&gt;数据量大，需要大量的机器&lt;/li&gt;
+&lt;li&gt;算法和存储结构对性能起到决定性的作用&lt;/li&gt;
+&lt;li&gt;没有银弹，每个开源的计算引擎都有它的适用范围&lt;/li&gt;
+&lt;li&gt;整体技术架构中，多几层RPC调用设计是可行的，性能损耗可忽略&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;数据源接入OLAP系统工程化，选择最优的计算引擎，并提供SLA标准&lt;/li&gt;
+&lt;li&gt;用户不感知具体的技术引擎，切换计算引擎用户无感知&lt;/li&gt;
+&lt;li&gt;教育用户，并提供专家系统，修改请求语句&lt;/li&gt;
+&lt;li&gt;引擎适用范畴
+
+&lt;ul&gt;
+&lt;li&gt;Kylin 适用维度有限，对延时敏感&lt;/li&gt;
+&lt;li&gt;Druid 适用维度相对多，对延时不是特别敏感&lt;/li&gt;
+&lt;li&gt;Presto ADhoc查询，需要控制并发度&lt;/li&gt;
+&lt;li&gt;Clickhouse：与Druid相似&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;架构图-运行时图-逻辑图&#34;&gt;架构图（运行时图&amp;amp;&amp;amp;逻辑图）&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;网关层：不感知引擎，有状态，分集群，一个集群多组网关层&lt;/li&gt;
+&lt;li&gt;引擎适配层：为特定引擎服务，有状态，解析请求，优化，合并结果，同时也是引擎管理的执行者，接受管理系统指派工作（视图优化、冷热数据管理）&lt;/li&gt;
+&lt;li&gt;SDK: 寻址，维护sessionID，有状态，发送请求、状态接收&lt;/li&gt;
+&lt;li&gt;管理系统：所有管理工作，管理集群、引擎、网关、引擎适配层，包括路由、数据迁移等&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/Snip20191231_17.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/Snip20191231_17.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/Snip20191231_18.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/Snip20191231_18.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+&lt;/p&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>路由不均衡问题</title>
@@ -1480,46 +1574,6 @@ jdbc.validation_query  = &amp;quot;select 1&amp;quot;
 &lt;li&gt;DAG系统承担着ETL任务引擎集群管理工作，包括路由、容错、服务发现等&lt;/li&gt;
 &lt;li&gt;ETL引擎需要提供接口来接受DAG系统的指令，同时还需要上报任务状态、健康状态等工作&lt;/li&gt;
 &lt;li&gt;多进程多节点的任务类型没有开源，需要自己实现&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>状态设计一点想法</title>
-      <link>https://hanzhihua.cn/post/state_1/</link>
-      <pubDate>Sat, 31 Aug 2019 22:56:31 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/state_1/</guid>
-      
-        <description>
-
-&lt;p&gt;最近看到同事写的一段关于状态设计的代码（DAG项目，用java语言开发）&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;ERROR(-1, &amp;quot;说明...&amp;quot;),
-INIT(0, &amp;quot;说明...&amp;quot;),
-SUCCESS(1, &amp;quot;说明...&amp;quot;),
-FAILED(2, &amp;quot;说明...&amp;quot;),
-RUNNING(3, &amp;quot;说明...&amp;quot;),
-ON_QUEUE(4, &amp;quot;说明...&amp;quot;),
-WAIT(6, &amp;quot;说明...&amp;quot;),
-STOP(5, &amp;quot;说明...&amp;quot;),
-ON_SUBMIT(7, &amp;quot;说明...&amp;quot;),,
-WITH_RESULT(9, &amp;quot;说明...&amp;quot;),
-FINISH(8, &amp;quot;说明...&amp;quot;),
-DISPATCHED(10, &amp;quot;说明...&amp;quot;),
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;个人觉得有点问题，请各位看官分析&lt;/p&gt;
-
-&lt;h2 id=&#34;有几个问题&#34;&gt;有几个问题&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;设计了一些不存在的状态，如finish状态，没有这个状态，结束态可以是成功、失败（里面包括人工kill掉），由方法来判断&lt;/li&gt;
-&lt;li&gt;缺失了一些中间状态，如runing-&amp;gt;stop,缺失stoping状态&lt;/li&gt;
-&lt;li&gt;stop状态换成killed状态语义更确切&lt;/li&gt;
-&lt;li&gt;状态enum的value，设计混乱，没有业务语义&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
