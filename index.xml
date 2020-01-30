@@ -99,7 +99,7 @@ private final Map reverseEdgesMap = new HashMap&amp;lt;&amp;gt;(); //入度关�
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;使用DFS或者BFS都可以判断是否有环，都比较方便&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;使用DFS或者BFS都可以判断是否有环，时间复杂度是一样的&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;DFS&lt;/p&gt;
