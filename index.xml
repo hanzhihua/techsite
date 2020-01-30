@@ -26,11 +26,11 @@
 &lt;p&gt;&lt;em&gt;DAG：（Directed acyclic graph）有向无环图&lt;/em&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;首先它是一个图，非线性结构，多对多，由两个集合节点（Vertex)和边(Edge)组成&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;首先它是一个图，非线性结构，多对多，由两个集合顶点（Vertex)和边(Edge)组成&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;有向图 &amp;amp;&amp;amp; 无向图&lt;br /&gt;
 
 &lt;ul&gt;
-&lt;li&gt;区别Edge是不是有方向，DAG是有向图，是有方向的&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;区别Edge是不是有方向，DAG是有向图&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;无向完全图 &amp;amp;&amp;amp; 有向完全图&lt;br /&gt;
 
@@ -46,13 +46,12 @@
 &lt;li&gt;连通图&amp;amp;&amp;amp;非连通图
 
 &lt;ul&gt;
-&lt;li&gt;根据顶点是否连通来分别&lt;/li&gt;
-&lt;li&gt;大数据平台DAG一般是非连通图&lt;/li&gt;
+&lt;li&gt;根据顶点是否连通来区分&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;存储结构
 
 &lt;ul&gt;
-&lt;li&gt;邻接矩阵，行、列表明入度和出度的情况&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;邻接矩阵，（一般是有二维数组来表示，行、列表明顶点的入度和出度的值）&lt;/li&gt;
 &lt;li&gt;邻接表，对于图中每个顶点，把所有邻接于该顶点的顶点链成一个单链表&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;图的遍历包括BFS、DFS
@@ -68,23 +67,21 @@
 
 &lt;ul&gt;
 &lt;li&gt;每个顶点出现且只出现一次&lt;/li&gt;
-&lt;li&gt;若存在一条从顶点 A 到顶点 B 的路径，那么在序列中顶点 A 出现在顶点 B 的前面&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;通常，一个有向无环图满足上述两个条件可以有一个或多个拓扑排序序列&lt;/strong&gt;
+&lt;li&gt;若存在一条从顶点 A 到顶点 B 的路径，那么在序列中顶点 A 出现在顶点 B 的前面
+&lt;em&gt;通常，一个有向无环图满足上述两个条件可以有一个或多个拓扑排序序列&lt;/em&gt;
 &lt;br /&gt;
 &lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;大数据平台的应用&#34;&gt;大数据平台的应用&lt;/h2&gt;
+&lt;h2 id=&#34;大数据平台中应用&#34;&gt;大数据平台中应用&lt;/h2&gt;
 
 &lt;h3 id=&#34;调度系统中的应用&#34;&gt;调度系统中的应用&lt;/h3&gt;
 
-&lt;ul&gt;
-&lt;li&gt;调度系统中的任务就是一个典型DAG&lt;/li&gt;
-&lt;li&gt;判断DAG是否存在环状&lt;/li&gt;
-&lt;li&gt;判读两个任务是否存在依赖关系&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;调度系统中的任务就是一个典型DAG&lt;/em&gt;&lt;br /&gt;
+* 判断DAG是否存在环状
+* 判读任务之间是否存在依赖关系&lt;/p&gt;
 
 &lt;h4 id=&#34;实现方式&#34;&gt;实现方式&lt;/h4&gt;
 
@@ -102,8 +99,99 @@ private final Map reverseEdgesMap = new HashMap&amp;lt;&amp;gt;(); //入度关�
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;使用DFS或者BFS判断是否有环，都比较方便&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用DFS或者BFS都可以判断是否有环，都比较方便&lt;br /&gt;
+** DFS&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public List&amp;lt;List&amp;lt;Node&amp;gt;&amp;gt; getAllLines() throws HasCycleExecption{
+    List&amp;lt;List&amp;lt;Node&amp;gt;&amp;gt; lines = new ArrayList&amp;lt;&amp;gt;();
+
+    Collection&amp;lt;Node&amp;gt; rootNodes = getRootNodes();
+    for(Node node:rootNodes){
+        List&amp;lt;Node&amp;gt; line = new ArrayList&amp;lt;&amp;gt;();
+        line.add(node);
+        lines.add(line);
+        processLine(lines,line,node);
+    }
+    return lines;
+}
+
+private void processLine(List&amp;lt;List&amp;lt;Node&amp;gt;&amp;gt; lines,List&amp;lt;Node&amp;gt; line,Node node) throws HasCycleExecption{
+    Set&amp;lt;Node&amp;gt; subNodes ;
+    if(CollectionUtils.isEmpty(subNodes)){
+        return ;
+    }
+    List copyLine = new ArrayList&amp;lt;&amp;gt;(line);
+    boolean moreThanOne =false;
+    for(Node subNode:subNodes){
+        if(moreThanOne){
+            List&amp;lt;Node&amp;gt; newLine = new ArrayList&amp;lt;&amp;gt;(copyLine);
+            newLine.add(subNode);
+            lines.add(newLine);
+            if(lineHasCycle(newLine)){
+                throw new HasCycleExecption(newLine.toString());
+            }
+
+            processLine(lines,newLine,subNode);
+        }else{
+            moreThanOne = true;
+            line.add(subNode);
+            if(lineHasCycle(line)){
+                throw new HasCycleExecption(line.toString());
+            }
+
+            processLine(lines,line,subNode);
+        }
+    }
+}
+
+private boolean lineHasCycle(List&amp;lt;Node&amp;gt; line){
+    return !(line.size() == new HashSet(line).size());
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;** BFS 方式&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;Queue&amp;lt;Node&amp;gt; zeroIndegreeNodeQueue = new LinkedList&amp;lt;&amp;gt;();
+
+        Map&amp;lt;Node, Integer&amp;gt; notZeroIndegreeNodeMap = new HashMap&amp;lt;&amp;gt;();
+
+        for (Map.Entry&amp;lt;Node, NodeInfo&amp;gt; vertices : nodesMap.entrySet()) {
+            Node node = vertices.getKey();
+            int inDegree = getIndegree(node);
+
+            if (inDegree == 0) {
+                zeroIndegreeNodeQueue.add(node);
+            } else {
+                notZeroIndegreeNodeMap.put(node, inDegree);
+            }
+        }
+
+
+        while (!zeroIndegreeNodeQueue.isEmpty()) {
+            Node v = zeroIndegreeNodeQueue.poll();
+            Set&amp;lt;Node&amp;gt; subsequentNodes;
+
+            for (Node subsequentNode : subsequentNodes) {
+
+                Integer degree = notZeroIndegreeNodeMap.get(subsequentNode);
+
+                if (--degree == 0) {
+                    zeroIndegreeNodeQueue.add(subsequentNode);
+                    notZeroIndegreeNodeMap.remove(subsequentNode);
+                } else {
+                    notZeroIndegreeNodeMap.put(subsequentNode, degree);
+                }
+
+            }
+        }
+
+        boolean hasCycle = notZeroIndegreeNodeMap.size() &amp;gt;0;
+        if(hasCycle){
+            log.warn(&amp;quot;has cycle:{}&amp;quot;,notZeroIndegreeNodeMap);
+        }
+        return hasCycle;
+&lt;/code&gt;&lt;/pre&gt;
 </description>
       
     </item>
