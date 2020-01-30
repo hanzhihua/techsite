@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="DAG基本概念 DAG：（Directed acyclic graph）有向无环图 * 首先它是一个图，非线性结构，多对多，由两个集合V(节点Vertex)和E(" />
+  <meta name="description" content="DAG基本概念 DAG：（Directed acyclic graph）有向无环图 首先它是一个图，非线性结构，多对多，由两个集合V(节点Vertex)和E(边" />
 
 
 
@@ -57,25 +57,25 @@
 
 
 <meta property="og:title" content="大数据平台DAG应用" />
-<meta property="og:description" content="DAG基本概念 DAG：（Directed acyclic graph）有向无环图 * 首先它是一个图，非线性结构，多对多，由两个集合V(节点Vertex)和E(" />
+<meta property="og:description" content="DAG基本概念 DAG：（Directed acyclic graph）有向无环图 首先它是一个图，非线性结构，多对多，由两个集合V(节点Vertex)和E(边" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hanzhihua.cn/post/dag_2/" />
 <meta property="article:published_time" content="2020-01-30T10:36:14+08:00" />
 <meta property="article:modified_time" content="2020-01-30T10:36:14+08:00" />
 <meta itemprop="name" content="大数据平台DAG应用">
-<meta itemprop="description" content="DAG基本概念 DAG：（Directed acyclic graph）有向无环图 * 首先它是一个图，非线性结构，多对多，由两个集合V(节点Vertex)和E(">
+<meta itemprop="description" content="DAG基本概念 DAG：（Directed acyclic graph）有向无环图 首先它是一个图，非线性结构，多对多，由两个集合V(节点Vertex)和E(边">
 
 
 <meta itemprop="datePublished" content="2020-01-30T10:36:14&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-30T10:36:14&#43;08:00" />
-<meta itemprop="wordCount" content="726">
+<meta itemprop="wordCount" content="704">
 
 
 
 <meta itemprop="keywords" content="DAG," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="大数据平台DAG应用"/>
-<meta name="twitter:description" content="DAG基本概念 DAG：（Directed acyclic graph）有向无环图 * 首先它是一个图，非线性结构，多对多，由两个集合V(节点Vertex)和E("/>
+<meta name="twitter:description" content="DAG基本概念 DAG：（Directed acyclic graph）有向无环图 首先它是一个图，非线性结构，多对多，由两个集合V(节点Vertex)和E(边"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -324,29 +324,71 @@
 
 <h2 id="dag基本概念">DAG基本概念</h2>
 
-<p>DAG：（Directed acyclic graph）有向无环图
-* 首先它是一个图，非线性结构，多对多，由两个集合V(节点Vertex)和E(边Edge)组成<br />
-* 有向图 &amp;&amp; 无向图
-    * 区别Edge是不是有方向，DAG是有向图，是有方向的
-* 无向完全图 &amp;&amp; 有向完全图
-    * 对于无向图拥有 n(n-1)/2的Edge,对于有向图拥有n(n-1)的Edge<br />
-* 顶点的度数
-    * 对于无向图，顶点的度表示以该顶点作为一个端点的边的数目<br />
-    * 对于有向图，区分入度和出度，入度表示以该顶点为终点的入边数目，出度是以该顶点为起点的出边数目，该顶点的度等于其入度和出度之和
-* 连通图&amp;&amp;非连通图
-    * 根据顶点是否连通来分别
-    * 大数据平台DAG一般是非连通图<br />
-* 存储结构
-    * 邻接矩阵，行、列表明入度和出度的情况<br />
-    * 邻接表，对于图中每个顶点，把所有邻接于该顶点的顶点链成一个单链表<br />
-* 图的遍历包括BFS、DFS
-    * DFS 深度优先搜索遍历 （采用邻接矩阵存储，则时间复杂度为O(n2)；当采用邻接表时时间复杂度为O(n+e)。）
-    * BFS 广度优先搜索遍历  (采用邻接矩阵存储，则时间复杂度为O(n2)；当采用邻接表时时间复杂度为O(n+e)。）
-* 拓扑排序
-    * 只针对DAG，需要满足下面两个条件<br />
-        * 每个顶点出现且只出现一次
-        * 若存在一条从顶点 A 到顶点 B 的路径，那么在序列中顶点 A 出现在顶点 B 的前面
-        * <strong>通常，一个有向无环图满足上述两个条件可以有一个或多个拓扑排序序列</strong></p>
+<p>DAG：（Directed acyclic graph）有向无环图</p>
+
+<ul>
+<li><p>首先它是一个图，非线性结构，多对多，由两个集合V(节点Vertex)和E(边Edge)组成</p></li>
+
+<li><p>有向图 &amp;&amp; 无向图</p>
+
+<ul>
+<li>区别Edge是不是有方向，DAG是有向图，是有方向的
+<br /></li>
+</ul></li>
+
+<li><p>无向完全图 &amp;&amp; 有向完全图</p>
+
+<ul>
+<li>对于无向图拥有 n(n-1)/2的Edge,对于有向图拥有n(n-1)的Edge<br />
+<br /></li>
+</ul></li>
+
+<li><p>顶点的度数</p>
+
+<ul>
+<li>对于无向图，顶点的度表示以该顶点作为一个端点的边的数目<br /></li>
+<li>对于有向图，区分入度和出度，入度表示以该顶点为终点的入边数目，出度是以该顶点为起点的出边数目，该顶点的度等于其入度和出度之和
+<br /></li>
+</ul></li>
+
+<li><p>连通图&amp;&amp;非连通图</p>
+
+<ul>
+<li>根据顶点是否连通来分别</li>
+<li>大数据平台DAG一般是非连通图
+<br /></li>
+</ul></li>
+
+<li><p>存储结构</p>
+
+<ul>
+<li>邻接矩阵，行、列表明入度和出度的情况<br /></li>
+<li>邻接表，对于图中每个顶点，把所有邻接于该顶点的顶点链成一个单链表<br />
+<br /></li>
+</ul></li>
+
+<li><p>图的遍历包括BFS、DFS</p>
+
+<ul>
+<li>DFS 深度优先搜索遍历 （采用邻接矩阵存储，则时间复杂度为O(n2)；当采用邻接表时时间复杂度为O(n+e)。）</li>
+<li>BFS 广度优先搜索遍历  (采用邻接矩阵存储，则时间复杂度为O(n2)；当采用邻接表时时间复杂度为O(n+e)。）
+<br /></li>
+</ul></li>
+
+<li><p>拓扑排序</p>
+
+<ul>
+<li>只针对DAG，需要满足下面两个条件<br />
+
+<ul>
+<li>每个顶点出现且只出现一次</li>
+<li>若存在一条从顶点 A 到顶点 B 的路径，那么在序列中顶点 A 出现在顶点 B 的前面</li>
+<li><strong>通常，一个有向无环图满足上述两个条件可以有一个或多个拓扑排序序列</strong>
+<br />
+<br /></li>
+</ul></li>
+</ul></li>
+</ul>
 
 <h2 id="大数据平台的应用">大数据平台的应用</h2>
 
