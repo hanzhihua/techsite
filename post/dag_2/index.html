@@ -68,7 +68,7 @@
 
 <meta itemprop="datePublished" content="2020-01-30T10:36:14&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-30T10:36:14&#43;08:00" />
-<meta itemprop="wordCount" content="883">
+<meta itemprop="wordCount" content="881">
 
 
 
@@ -400,99 +400,102 @@ private final Map reverseEdgesMap = new HashMap&lt;&gt;(); //入度关系
 </code></pre></li>
 </ul></li>
 
-<li><p>使用DFS或者BFS都可以判断是否有环，都比较方便<br />
-** DFS</p>
+<li><p>使用DFS或者BFS都可以判断是否有环，都比较方便</p>
+
+<ul>
+<li><p>DFS</p>
 
 <pre><code class="language-java">public List&lt;List&lt;Node&gt;&gt; getAllLines() throws HasCycleExecption{
-    List&lt;List&lt;Node&gt;&gt; lines = new ArrayList&lt;&gt;();
+List&lt;List&lt;Node&gt;&gt; lines = new ArrayList&lt;&gt;();
 
-    Collection&lt;Node&gt; rootNodes = getRootNodes();
-    for(Node node:rootNodes){
-        List&lt;Node&gt; line = new ArrayList&lt;&gt;();
-        line.add(node);
-        lines.add(line);
-        processLine(lines,line,node);
-    }
-    return lines;
+Collection&lt;Node&gt; rootNodes = getRootNodes();
+for(Node node:rootNodes){
+    List&lt;Node&gt; line = new ArrayList&lt;&gt;();
+    line.add(node);
+    lines.add(line);
+    processLine(lines,line,node);
+}
+return lines;
 }
 
 private void processLine(List&lt;List&lt;Node&gt;&gt; lines,List&lt;Node&gt; line,Node node) throws HasCycleExecption{
-    Set&lt;Node&gt; subNodes ;
-    if(CollectionUtils.isEmpty(subNodes)){
-        return ;
-    }
-    List copyLine = new ArrayList&lt;&gt;(line);
-    boolean moreThanOne =false;
-    for(Node subNode:subNodes){
-        if(moreThanOne){
-            List&lt;Node&gt; newLine = new ArrayList&lt;&gt;(copyLine);
-            newLine.add(subNode);
-            lines.add(newLine);
-            if(lineHasCycle(newLine)){
-                throw new HasCycleExecption(newLine.toString());
-            }
-
-            processLine(lines,newLine,subNode);
-        }else{
-            moreThanOne = true;
-            line.add(subNode);
-            if(lineHasCycle(line)){
-                throw new HasCycleExecption(line.toString());
-            }
-
-            processLine(lines,line,subNode);
+Set&lt;Node&gt; subNodes ;
+if(CollectionUtils.isEmpty(subNodes)){
+    return ;
+}
+List copyLine = new ArrayList&lt;&gt;(line);
+boolean moreThanOne =false;
+for(Node subNode:subNodes){
+    if(moreThanOne){
+        List&lt;Node&gt; newLine = new ArrayList&lt;&gt;(copyLine);
+        newLine.add(subNode);
+        lines.add(newLine);
+        if(lineHasCycle(newLine)){
+            throw new HasCycleExecption(newLine.toString());
         }
+
+        processLine(lines,newLine,subNode);
+    }else{
+        moreThanOne = true;
+        line.add(subNode);
+        if(lineHasCycle(line)){
+            throw new HasCycleExecption(line.toString());
+        }
+
+        processLine(lines,line,subNode);
     }
+}
 }
 
 private boolean lineHasCycle(List&lt;Node&gt; line){
-    return !(line.size() == new HashSet(line).size());
+return !(line.size() == new HashSet(line).size());
 }
 </code></pre></li>
-</ul>
 
-<p>** BFS 方式</p>
+<li><p>BFS 方式</p>
 
 <pre><code class="language-java">Queue&lt;Node&gt; zeroIndegreeNodeQueue = new LinkedList&lt;&gt;();
 
-        Map&lt;Node, Integer&gt; notZeroIndegreeNodeMap = new HashMap&lt;&gt;();
+Map&lt;Node, Integer&gt; notZeroIndegreeNodeMap = new HashMap&lt;&gt;();
 
-        for (Map.Entry&lt;Node, NodeInfo&gt; vertices : nodesMap.entrySet()) {
-            Node node = vertices.getKey();
-            int inDegree = getIndegree(node);
+for (Map.Entry&lt;Node, NodeInfo&gt; vertices : nodesMap.entrySet()) {
+    Node node = vertices.getKey();
+    int inDegree = getIndegree(node);
 
-            if (inDegree == 0) {
-                zeroIndegreeNodeQueue.add(node);
-            } else {
-                notZeroIndegreeNodeMap.put(node, inDegree);
-            }
+    if (inDegree == 0) {
+        zeroIndegreeNodeQueue.add(node);
+    } else {
+        notZeroIndegreeNodeMap.put(node, inDegree);
+    }
+}
+
+
+while (!zeroIndegreeNodeQueue.isEmpty()) {
+    Node v = zeroIndegreeNodeQueue.poll();
+    Set&lt;Node&gt; subsequentNodes;
+
+    for (Node subsequentNode : subsequentNodes) {
+
+        Integer degree = notZeroIndegreeNodeMap.get(subsequentNode);
+
+        if (--degree == 0) {
+            zeroIndegreeNodeQueue.add(subsequentNode);
+            notZeroIndegreeNodeMap.remove(subsequentNode);
+        } else {
+            notZeroIndegreeNodeMap.put(subsequentNode, degree);
         }
 
+    }
+}
 
-        while (!zeroIndegreeNodeQueue.isEmpty()) {
-            Node v = zeroIndegreeNodeQueue.poll();
-            Set&lt;Node&gt; subsequentNodes;
-
-            for (Node subsequentNode : subsequentNodes) {
-
-                Integer degree = notZeroIndegreeNodeMap.get(subsequentNode);
-
-                if (--degree == 0) {
-                    zeroIndegreeNodeQueue.add(subsequentNode);
-                    notZeroIndegreeNodeMap.remove(subsequentNode);
-                } else {
-                    notZeroIndegreeNodeMap.put(subsequentNode, degree);
-                }
-
-            }
-        }
-
-        boolean hasCycle = notZeroIndegreeNodeMap.size() &gt;0;
-        if(hasCycle){
-            log.warn(&quot;has cycle:{}&quot;,notZeroIndegreeNodeMap);
-        }
-        return hasCycle;
-</code></pre>
+boolean hasCycle = notZeroIndegreeNodeMap.size() &gt;0;
+if(hasCycle){
+    log.warn(&quot;has cycle:{}&quot;,notZeroIndegreeNodeMap);
+}
+return hasCycle;
+</code></pre></li>
+</ul></li>
+</ul>
 
     </div>
 

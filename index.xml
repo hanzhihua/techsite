@@ -99,99 +99,102 @@ private final Map reverseEdgesMap = new HashMap&amp;lt;&amp;gt;(); //入度关�
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;使用DFS或者BFS都可以判断是否有环，都比较方便&lt;br /&gt;
-** DFS&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;使用DFS或者BFS都可以判断是否有环，都比较方便&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;DFS&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public List&amp;lt;List&amp;lt;Node&amp;gt;&amp;gt; getAllLines() throws HasCycleExecption{
-    List&amp;lt;List&amp;lt;Node&amp;gt;&amp;gt; lines = new ArrayList&amp;lt;&amp;gt;();
+List&amp;lt;List&amp;lt;Node&amp;gt;&amp;gt; lines = new ArrayList&amp;lt;&amp;gt;();
 
-    Collection&amp;lt;Node&amp;gt; rootNodes = getRootNodes();
-    for(Node node:rootNodes){
-        List&amp;lt;Node&amp;gt; line = new ArrayList&amp;lt;&amp;gt;();
-        line.add(node);
-        lines.add(line);
-        processLine(lines,line,node);
-    }
-    return lines;
+Collection&amp;lt;Node&amp;gt; rootNodes = getRootNodes();
+for(Node node:rootNodes){
+    List&amp;lt;Node&amp;gt; line = new ArrayList&amp;lt;&amp;gt;();
+    line.add(node);
+    lines.add(line);
+    processLine(lines,line,node);
+}
+return lines;
 }
 
 private void processLine(List&amp;lt;List&amp;lt;Node&amp;gt;&amp;gt; lines,List&amp;lt;Node&amp;gt; line,Node node) throws HasCycleExecption{
-    Set&amp;lt;Node&amp;gt; subNodes ;
-    if(CollectionUtils.isEmpty(subNodes)){
-        return ;
-    }
-    List copyLine = new ArrayList&amp;lt;&amp;gt;(line);
-    boolean moreThanOne =false;
-    for(Node subNode:subNodes){
-        if(moreThanOne){
-            List&amp;lt;Node&amp;gt; newLine = new ArrayList&amp;lt;&amp;gt;(copyLine);
-            newLine.add(subNode);
-            lines.add(newLine);
-            if(lineHasCycle(newLine)){
-                throw new HasCycleExecption(newLine.toString());
-            }
-
-            processLine(lines,newLine,subNode);
-        }else{
-            moreThanOne = true;
-            line.add(subNode);
-            if(lineHasCycle(line)){
-                throw new HasCycleExecption(line.toString());
-            }
-
-            processLine(lines,line,subNode);
+Set&amp;lt;Node&amp;gt; subNodes ;
+if(CollectionUtils.isEmpty(subNodes)){
+    return ;
+}
+List copyLine = new ArrayList&amp;lt;&amp;gt;(line);
+boolean moreThanOne =false;
+for(Node subNode:subNodes){
+    if(moreThanOne){
+        List&amp;lt;Node&amp;gt; newLine = new ArrayList&amp;lt;&amp;gt;(copyLine);
+        newLine.add(subNode);
+        lines.add(newLine);
+        if(lineHasCycle(newLine)){
+            throw new HasCycleExecption(newLine.toString());
         }
+
+        processLine(lines,newLine,subNode);
+    }else{
+        moreThanOne = true;
+        line.add(subNode);
+        if(lineHasCycle(line)){
+            throw new HasCycleExecption(line.toString());
+        }
+
+        processLine(lines,line,subNode);
     }
+}
 }
 
 private boolean lineHasCycle(List&amp;lt;Node&amp;gt; line){
-    return !(line.size() == new HashSet(line).size());
+return !(line.size() == new HashSet(line).size());
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
 
-&lt;p&gt;** BFS 方式&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;BFS 方式&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;Queue&amp;lt;Node&amp;gt; zeroIndegreeNodeQueue = new LinkedList&amp;lt;&amp;gt;();
 
-        Map&amp;lt;Node, Integer&amp;gt; notZeroIndegreeNodeMap = new HashMap&amp;lt;&amp;gt;();
+Map&amp;lt;Node, Integer&amp;gt; notZeroIndegreeNodeMap = new HashMap&amp;lt;&amp;gt;();
 
-        for (Map.Entry&amp;lt;Node, NodeInfo&amp;gt; vertices : nodesMap.entrySet()) {
-            Node node = vertices.getKey();
-            int inDegree = getIndegree(node);
+for (Map.Entry&amp;lt;Node, NodeInfo&amp;gt; vertices : nodesMap.entrySet()) {
+    Node node = vertices.getKey();
+    int inDegree = getIndegree(node);
 
-            if (inDegree == 0) {
-                zeroIndegreeNodeQueue.add(node);
-            } else {
-                notZeroIndegreeNodeMap.put(node, inDegree);
-            }
+    if (inDegree == 0) {
+        zeroIndegreeNodeQueue.add(node);
+    } else {
+        notZeroIndegreeNodeMap.put(node, inDegree);
+    }
+}
+
+
+while (!zeroIndegreeNodeQueue.isEmpty()) {
+    Node v = zeroIndegreeNodeQueue.poll();
+    Set&amp;lt;Node&amp;gt; subsequentNodes;
+
+    for (Node subsequentNode : subsequentNodes) {
+
+        Integer degree = notZeroIndegreeNodeMap.get(subsequentNode);
+
+        if (--degree == 0) {
+            zeroIndegreeNodeQueue.add(subsequentNode);
+            notZeroIndegreeNodeMap.remove(subsequentNode);
+        } else {
+            notZeroIndegreeNodeMap.put(subsequentNode, degree);
         }
 
+    }
+}
 
-        while (!zeroIndegreeNodeQueue.isEmpty()) {
-            Node v = zeroIndegreeNodeQueue.poll();
-            Set&amp;lt;Node&amp;gt; subsequentNodes;
-
-            for (Node subsequentNode : subsequentNodes) {
-
-                Integer degree = notZeroIndegreeNodeMap.get(subsequentNode);
-
-                if (--degree == 0) {
-                    zeroIndegreeNodeQueue.add(subsequentNode);
-                    notZeroIndegreeNodeMap.remove(subsequentNode);
-                } else {
-                    notZeroIndegreeNodeMap.put(subsequentNode, degree);
-                }
-
-            }
-        }
-
-        boolean hasCycle = notZeroIndegreeNodeMap.size() &amp;gt;0;
-        if(hasCycle){
-            log.warn(&amp;quot;has cycle:{}&amp;quot;,notZeroIndegreeNodeMap);
-        }
-        return hasCycle;
-&lt;/code&gt;&lt;/pre&gt;
+boolean hasCycle = notZeroIndegreeNodeMap.size() &amp;gt;0;
+if(hasCycle){
+    log.warn(&amp;quot;has cycle:{}&amp;quot;,notZeroIndegreeNodeMap);
+}
+return hasCycle;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
       
     </item>
