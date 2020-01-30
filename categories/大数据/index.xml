@@ -18,7 +18,7 @@
       <pubDate>Thu, 30 Jan 2020 10:36:14 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/post/dag_2/</guid>
-      <description>DAG基本概念 DAG：（Directed acyclic graph）有向无环图 首先它是一个图，非线性结构，多对多，由两个集合V(节点Vertex)和E(边</description>
+      <description>DAG基本概念 **DAG：（Directed acyclic graph）有向无环图 ** * 首先它是一个图，非线性结构，多对多，由两个集合V(节点Vertex)</description>
     </item>
     
     <item>
