@@ -23,7 +23,7 @@
 
 &lt;h2 id=&#34;dag基本概念&#34;&gt;DAG基本概念&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;DAG：（Directed acyclic graph）有向无环图&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;DAG：（Directed acyclic graph）有向无环图&lt;/em&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;首先它是一个图，非线性结构，多对多，由两个集合节点（Vertex)和边(Edge)组成&lt;br /&gt;&lt;/li&gt;
