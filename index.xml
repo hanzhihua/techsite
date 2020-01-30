@@ -23,11 +23,11 @@
 
 &lt;h2 id=&#34;dag基本概念&#34;&gt;DAG基本概念&lt;/h2&gt;
 
-&lt;p&gt;**DAG：（Directed acyclic graph）有向无环图 **
+&lt;p&gt;**DAG：（Directed acyclic graph）有向无环图 **&lt;br /&gt;
 * 首先它是一个图，非线性结构，多对多，由两个集合节点（Vertex)和边(Edge)组成&lt;br /&gt;
-* 有向图 &amp;amp;&amp;amp; 无向图
-    * 区别Edge是不是有方向，DAG是有向图，是有方向的
-* 无向完全图 &amp;amp;&amp;amp; 有向完全图
+* 有向图 &amp;amp;&amp;amp; 无向图&lt;br /&gt;
+    * 区别Edge是不是有方向，DAG是有向图，是有方向的&lt;br /&gt;
+* 无向完全图 &amp;amp;&amp;amp; 有向完全图&lt;br /&gt;
     * 对于无向图拥有 n(n-1)/2的Edge,对于有向图拥有n(n-1)的Edge&lt;br /&gt;
 * 顶点的度数
     * 对于无向图，顶点的度表示以该顶点作为一个端点的边的数目&lt;br /&gt;
