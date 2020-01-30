@@ -7,10 +7,77 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 &lt;a href=&#34;http://www.beian.miit.gov.cn&#34;&gt;沪ICP备19026538号&lt;/a&gt; </copyright>
-    <lastBuildDate>Tue, 31 Dec 2019 10:56:08 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jan 2020 10:36:14 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>大数据平台DAG应用</title>
+      <link>https://hanzhihua.cn/post/dag_2/</link>
+      <pubDate>Thu, 30 Jan 2020 10:36:14 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/dag_2/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;dag基本概念&#34;&gt;DAG基本概念&lt;/h2&gt;
+
+&lt;p&gt;DAG：（Directed acyclic graph）有向无环图
+* 首先它是一个图，非线性结构，多对多，由两个集合V(节点Vertex)和E(边Edge)组成&lt;br /&gt;
+* 有向图 &amp;amp;&amp;amp; 无向图
+    * 区别Edge是不是有方向，DAG是有向图，是有方向的
+* 无向完全图 &amp;amp;&amp;amp; 有向完全图
+    * 对于无向图拥有 n(n-1)/2的Edge,对于有向图拥有n(n-1)的Edge&lt;br /&gt;
+* 顶点的度数
+    * 对于无向图，顶点的度表示以该顶点作为一个端点的边的数目
+    * 对于有向图，区分入度和出度，入度表示以该顶点为终点的入边数目，出度是以该顶点为起点的出边数目，该顶点的度等于其入度和出度之和
+* 连通图&amp;amp;&amp;amp;非连通图
+    * 根据顶点是否连通来分别
+    * 大数据平台DAG一般是非连通图
+* 存储结构
+    * 邻接矩阵，行、列表明入度和出度的情况
+    * 邻接表，对于图中每个顶点，把所有邻接于该顶点的顶点链成一个单链表&lt;br /&gt;
+* 图的遍历包括BFS、DFS
+    * DFS 深度优先搜索遍历 （采用邻接矩阵存储，则时间复杂度为O(n2)；当采用邻接表时时间复杂度为O(n+e)。）
+    * BFS 广度优先搜索遍历  (采用邻接矩阵存储，则时间复杂度为O(n2)；当采用邻接表时时间复杂度为O(n+e)。）
+* 拓扑排序
+    * 只针对DAG，需要满足下面两个条件
+        * 每个顶点出现且只出现一次
+        * 若存在一条从顶点 A 到顶点 B 的路径，那么在序列中顶点 A 出现在顶点 B 的前面
+        * &lt;strong&gt;通常，一个有向无环图满足上述两个条件可以有一个或多个拓扑排序序列&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;大数据平台的应用&#34;&gt;大数据平台的应用&lt;/h2&gt;
+
+&lt;h3 id=&#34;调度系统中的应用&#34;&gt;调度系统中的应用&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;调度系统中的任务就是一个典型DAG&lt;/li&gt;
+&lt;li&gt;判断DAG是否存在环状&lt;/li&gt;
+&lt;li&gt;判读两个任务是否存在依赖关系&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;实现方式&#34;&gt;实现方式&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;采用邻接表表方式存储&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;伪代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;private final Map nodesMap = new HashMap&amp;lt;&amp;gt;(); //顶点
+
+private final Map edgesMap = new HashMap&amp;lt;&amp;gt;(); //出度关系
+
+private final Map reverseEdgesMap = new HashMap&amp;lt;&amp;gt;(); //入度关系
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;使用DFS或者BFS判断是否有环，都比较方便&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>OLAP系统设计草案</title>
@@ -1546,32 +1613,6 @@ jdbc.validation_query  = &amp;quot;select 1&amp;quot;
 
 &lt;ul&gt;
 &lt;li&gt;建立/data/log/目录/，（目录要建的，不然就是&amp;rsquo;带病&amp;rsquo;工作）&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>DATAX的玩法</title>
-      <link>https://hanzhihua.cn/post/etl_1/</link>
-      <pubDate>Sun, 01 Sep 2019 22:56:50 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/etl_1/</guid>
-      
-        <description>
-
-&lt;p&gt;DATAX是阿里开源的一个优秀的ETL工具，使用框架+PLUGIN设计方式，通过依赖ClassLoader来隔离容错，总体设计还不错，被很多公司的数据团队使用&lt;/p&gt;
-
-&lt;p&gt;做一个完整的数据平台的ETL工具，完全依靠DATAX也是不够，它只能算是一个引擎,一个基础,需要做二次开发&lt;/p&gt;
-
-&lt;h2 id=&#34;二次开发功能点&#34;&gt;二次开发功能点&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ETL主要是被DAG系统使用，所以数据的输入、描述是有DAG系统或者由统一的元信息服务来承担&lt;/li&gt;
-&lt;li&gt;ETL需要被DAG的调度管理，一般都是依赖任务&lt;/li&gt;
-&lt;li&gt;DAG系统承担着ETL任务引擎集群管理工作，包括路由、容错、服务发现等&lt;/li&gt;
-&lt;li&gt;ETL引擎需要提供接口来接受DAG系统的指令，同时还需要上报任务状态、健康状态等工作&lt;/li&gt;
-&lt;li&gt;多进程多节点的任务类型没有开源，需要自己实现&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       

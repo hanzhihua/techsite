@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 &lt;a href=&#34;http://www.beian.miit.gov.cn&#34;&gt;沪ICP备19026538号&lt;/a&gt; </copyright>
-    <lastBuildDate>Fri, 11 Oct 2019 16:38:07 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jan 2020 10:36:14 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/tags/dag/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>大数据平台DAG应用</title>
+      <link>https://hanzhihua.cn/post/dag_2/</link>
+      <pubDate>Thu, 30 Jan 2020 10:36:14 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/dag_2/</guid>
+      <description>DAG基本概念 DAG：（Directed acyclic graph）有向无环图 * 首先它是一个图，非线性结构，多对多，由两个集合V(节点Vertex)和E(</description>
+    </item>
     
     <item>
       <title>hive/spark server-jdbc连接池问题</title>

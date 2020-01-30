@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 &lt;a href=&#34;http://www.beian.miit.gov.cn&#34;&gt;沪ICP备19026538号&lt;/a&gt; </copyright>
-    <lastBuildDate>Tue, 31 Dec 2019 10:56:08 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jan 2020 10:36:14 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>大数据平台DAG应用</title>
+      <link>https://hanzhihua.cn/post/dag_2/</link>
+      <pubDate>Thu, 30 Jan 2020 10:36:14 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/dag_2/</guid>
+      <description>DAG基本概念 DAG：（Directed acyclic graph）有向无环图 * 首先它是一个图，非线性结构，多对多，由两个集合V(节点Vertex)和E(</description>
+    </item>
     
     <item>
       <title>OLAP系统设计草案</title>
@@ -181,15 +190,6 @@
       
       <guid>https://hanzhihua.cn/post/cs_2/</guid>
       <description>昨天线上DAG系统一个工作节点出现了OOM。 线上处理问题流程：先止损，后定位 现象重放 收到DAG系统一个工作节点的OOM告警 查看DAG系统工作</description>
-    </item>
-    
-    <item>
-      <title>DATAX的玩法</title>
-      <link>https://hanzhihua.cn/post/etl_1/</link>
-      <pubDate>Sun, 01 Sep 2019 22:56:50 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/etl_1/</guid>
-      <description>DATAX是阿里开源的一个优秀的ETL工具，使用框架+PLUGIN设计方式，通过依赖ClassLoader来隔离容错，总体设计还不错，被很多</description>
     </item>
     
   </channel>
