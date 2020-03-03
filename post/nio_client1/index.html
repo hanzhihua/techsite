@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Nio客户端高级功能 - 一个码农 工作点滴</title>
+  <title>Nio客户端上层功能 - 一个码农 工作点滴</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="NIO 客户度调用服务端方式 调用 调用方式 同步调用：（当前线程等待） 结果分为超时结果或者取得服务端返回结果 异步调用：（当前线程不等待） 使用liste" />
+  <meta name="description" content="NIO客户端上层功能包括调用、重连 调用 调用方式 同步调用：（调用线程等待） 结果分为超时结果或者取得服务端返回结果 异步调用：（调用线程不等待） 使" />
 <meta name="keywords" content="nio" />
 
 
@@ -57,26 +57,26 @@
 
 
 
-<meta property="og:title" content="Nio客户端高级功能" />
-<meta property="og:description" content="NIO 客户度调用服务端方式 调用 调用方式 同步调用：（当前线程等待） 结果分为超时结果或者取得服务端返回结果 异步调用：（当前线程不等待） 使用liste" />
+<meta property="og:title" content="Nio客户端上层功能" />
+<meta property="og:description" content="NIO客户端上层功能包括调用、重连 调用 调用方式 同步调用：（调用线程等待） 结果分为超时结果或者取得服务端返回结果 异步调用：（调用线程不等待） 使" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hanzhihua.cn/post/nio_client1/" />
 <meta property="article:published_time" content="2020-03-03T11:59:48+08:00" />
 <meta property="article:modified_time" content="2020-03-03T11:59:48+08:00" />
-<meta itemprop="name" content="Nio客户端高级功能">
-<meta itemprop="description" content="NIO 客户度调用服务端方式 调用 调用方式 同步调用：（当前线程等待） 结果分为超时结果或者取得服务端返回结果 异步调用：（当前线程不等待） 使用liste">
+<meta itemprop="name" content="Nio客户端上层功能">
+<meta itemprop="description" content="NIO客户端上层功能包括调用、重连 调用 调用方式 同步调用：（调用线程等待） 结果分为超时结果或者取得服务端返回结果 异步调用：（调用线程不等待） 使">
 
 
 <meta itemprop="datePublished" content="2020-03-03T11:59:48&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-03T11:59:48&#43;08:00" />
-<meta itemprop="wordCount" content="208">
+<meta itemprop="wordCount" content="214">
 
 
 
 <meta itemprop="keywords" content="java,io," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Nio客户端高级功能"/>
-<meta name="twitter:description" content="NIO 客户度调用服务端方式 调用 调用方式 同步调用：（当前线程等待） 结果分为超时结果或者取得服务端返回结果 异步调用：（当前线程不等待） 使用liste"/>
+<meta name="twitter:title" content="Nio客户端上层功能"/>
+<meta name="twitter:description" content="NIO客户端上层功能包括调用、重连 调用 调用方式 同步调用：（调用线程等待） 结果分为超时结果或者取得服务端返回结果 异步调用：（调用线程不等待） 使"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -296,7 +296,7 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">Nio客户端高级功能</h1>
+      <h1 class="post-title">Nio客户端上层功能</h1>
       
       <div class="post-meta">
         <time datetime="2020-03-03" class="post-time">
@@ -320,26 +320,26 @@
     <div class="post-content">
       
 
-<p>NIO 客户度调用服务端方式</p>
+<p>NIO客户端上层功能包括调用、重连</p>
 
 <h1 id="调用">调用</h1>
 
 <h2 id="调用方式">调用方式</h2>
 
 <ul>
-<li>同步调用：（当前线程等待）
+<li>同步调用：（调用线程等待）
 
 <ul>
 <li>结果分为超时结果或者取得服务端返回结果<br /></li>
 </ul></li>
-<li>异步调用：（当前线程不等待）
+<li>异步调用：（调用线程不等待）
 
 <ul>
 <li>使用listener方式<br />
 
 <ul>
 <li>listener接口由nio框架提供，结果集分timeout结果集或者服务端返回结果集<br /></li>
-<li>使用实现listener接口<br /></li>
+<li>应用实现listener接口<br /></li>
 </ul></li>
 <li>oneway方式（不考虑返回值）<br />
 

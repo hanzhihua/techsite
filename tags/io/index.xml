@@ -13,12 +13,12 @@
     
     
     <item>
-      <title>Nio客户端高级功能</title>
+      <title>Nio客户端上层功能</title>
       <link>https://hanzhihua.cn/post/nio_client1/</link>
       <pubDate>Tue, 03 Mar 2020 11:59:48 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/post/nio_client1/</guid>
-      <description>NIO 客户度调用服务端方式 调用 调用方式 同步调用：（当前线程等待） 结果分为超时结果或者取得服务端返回结果 异步调用：（当前线程不等待） 使用liste</description>
+      <description>NIO客户端上层功能包括调用、重连 调用 调用方式 同步调用：（调用线程等待） 结果分为超时结果或者取得服务端返回结果 异步调用：（调用线程不等待） 使</description>
     </item>
     
     <item>

@@ -13,7 +13,7 @@
     
     
     <item>
-      <title>Nio客户端高级功能</title>
+      <title>Nio客户端上层功能</title>
       <link>https://hanzhihua.cn/post/nio_client1/</link>
       <pubDate>Tue, 03 Mar 2020 11:59:48 +0800</pubDate>
       
@@ -21,26 +21,26 @@
       
         <description>
 
-&lt;p&gt;NIO 客户度调用服务端方式&lt;/p&gt;
+&lt;p&gt;NIO客户端上层功能包括调用、重连&lt;/p&gt;
 
 &lt;h1 id=&#34;调用&#34;&gt;调用&lt;/h1&gt;
 
 &lt;h2 id=&#34;调用方式&#34;&gt;调用方式&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;同步调用：（当前线程等待）
+&lt;li&gt;同步调用：（调用线程等待）
 
 &lt;ul&gt;
 &lt;li&gt;结果分为超时结果或者取得服务端返回结果&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;异步调用：（当前线程不等待）
+&lt;li&gt;异步调用：（调用线程不等待）
 
 &lt;ul&gt;
 &lt;li&gt;使用listener方式&lt;br /&gt;
 
 &lt;ul&gt;
 &lt;li&gt;listener接口由nio框架提供，结果集分timeout结果集或者服务端返回结果集&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;使用实现listener接口&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;应用实现listener接口&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;oneway方式（不考虑返回值）&lt;br /&gt;
 
