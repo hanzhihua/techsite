@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 &lt;a href=&#34;http://www.beian.miit.gov.cn&#34;&gt;沪ICP备19026538号&lt;/a&gt; </copyright>
-    <lastBuildDate>Sat, 24 Aug 2019 10:56:11 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 03 Mar 2020 11:59:48 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/tags/io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Nio客户端高级功能</title>
+      <link>https://hanzhihua.cn/post/nio_client1/</link>
+      <pubDate>Tue, 03 Mar 2020 11:59:48 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/nio_client1/</guid>
+      <description>NIO 客户度调用服务端方式 调用 调用方式 同步调用：（当前线程等待） 结果分为超时结果或者取得服务端返回结果 异步调用：（当前线程不等待） 使用liste</description>
+    </item>
     
     <item>
       <title>写文件性能总结</title>

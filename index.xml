@@ -7,10 +7,101 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 &lt;a href=&#34;http://www.beian.miit.gov.cn&#34;&gt;沪ICP备19026538号&lt;/a&gt; </copyright>
-    <lastBuildDate>Thu, 30 Jan 2020 10:36:14 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 03 Mar 2020 11:59:48 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Nio客户端高级功能</title>
+      <link>https://hanzhihua.cn/post/nio_client1/</link>
+      <pubDate>Tue, 03 Mar 2020 11:59:48 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/nio_client1/</guid>
+      
+        <description>
+
+&lt;p&gt;NIO 客户度调用服务端方式&lt;/p&gt;
+
+&lt;h1 id=&#34;调用&#34;&gt;调用&lt;/h1&gt;
+
+&lt;h2 id=&#34;调用方式&#34;&gt;调用方式&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;同步调用：（当前线程等待）
+
+&lt;ul&gt;
+&lt;li&gt;结果分为超时结果或者取得服务端返回结果&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;异步调用：（当前线程不等待）
+
+&lt;ul&gt;
+&lt;li&gt;使用listener方式&lt;br /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;listener接口由nio框架提供，结果集分timeout结果集或者服务端返回结果集&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;使用实现listener接口&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;oneway方式（不考虑返回值）&lt;br /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;一般不保证请求是否到达服务端&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;高级使用，可区分是否把请求写入本地的socket sendbuf中&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;实现方式&#34;&gt;实现方式&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;同步&lt;br /&gt;
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/nio_syn.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/nio_syn.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;异步&lt;br /&gt;
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/nio_asyn.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/nio_asyn.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;重连&#34;&gt;重连&lt;/h1&gt;
+
+&lt;h2 id=&#34;实现方式-1&#34;&gt;实现方式&lt;/h2&gt;
+
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/nio_reconn.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/nio_reconn.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+</description>
+      
+    </item>
     
     <item>
       <title>大数据平台DAG应用</title>
@@ -1673,66 +1764,6 @@ jdbc.validation_query  = &amp;quot;select 1&amp;quot;
 &lt;li&gt;文件:/var/log/syslog  ,内容: &amp;ldquo;NIC Link is Down&amp;rdquo;,直接下线该机器&lt;/li&gt;
 &lt;li&gt;文件::/var/log/syslog ,内容: &amp;ldquo;I/O error&amp;rdquo; 下线该磁盘&lt;/li&gt;
 &lt;li&gt;文件::/var/log/syslog ,内容: &amp;ldquo;blk_update_request: critical medium error&amp;rdquo; 下线该磁盘&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>一个DAG系统的故障</title>
-      <link>https://hanzhihua.cn/post/cs_2/</link>
-      <pubDate>Thu, 05 Sep 2019 14:06:22 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/cs_2/</guid>
-      
-        <description>
-
-&lt;p&gt;昨天线上DAG系统一个工作节点出现了OOM。
-线上处理问题流程：&lt;strong&gt;先止损，后定位&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;现象重放&#34;&gt;现象重放&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;收到DAG系统一个工作节点的OOM告警&lt;/li&gt;
-&lt;li&gt;查看DAG系统工作状态，发现DAG系统的调度任务工作正常&lt;/li&gt;
-&lt;li&gt;查看监控系统，系统层面正常，该节点已经重启&lt;/li&gt;
-&lt;li&gt;通过查看该节点的日志，没有发现特别的地方&lt;/li&gt;
-&lt;li&gt;查找JVM crash的日志，但没有找到&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;问题分析-节点oom原因&#34;&gt;问题分析（节点OOM原因）&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;通过监控系统，发现该节点接受的工作请求与其他工作节点没有什么区别，而且crash 节点日志没有特别的地方。
-多个工作节点，但只有一个工作节点出现了OOM，感觉是由于任务造成的&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;该节点重启时，并没有dump出内存快照?&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;em&gt;该节点重启是由于OOM而退出，supervisor又把它拉起来&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;进程启动脚本（部分）&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;-XX:+UseG1GC -XX:ParallelGCThreads=24 
--XX:ConcGCThreads=16 -XX:InitiatingHeapOccupancyPercent=45 
--XX:NewRatio=2 -XX:SurvivorRatio=4 -XX:MaxTenuringThreshold=15 
--XX:-UseAdaptiveSizePolicy -Xms16G -Xmx16G -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/log/目录/应用_%p.hprof 
--XX:+PrintGCDetails -Xloggc:/data/log/目录/应用.log -XX:+PrintGCTimeStamps 
--Djava.security.egd=file:/dev/./urandom -Dfile.encoding=utf-8
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;主要的原因，TMD的 &lt;strong&gt;目录/data/log/目录&lt;/strong&gt; 不存在，下面是supervisor日志&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Java HotSpot(TM) 64-Bit Server VM warning: Cannot open file /data/log/目录/... due to No such file or directory
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;哎，最宝贵的crash的内存快照、异常信息就没有了
-留给我们的，只有痛苦的梳理crash节点当时运行过的每个任务了，静态的分析是否可能存在内存泄露情况&lt;/p&gt;
-
-&lt;h2 id=&#34;改善措施&#34;&gt;改善措施&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;建立/data/log/目录/，（目录要建的，不然就是&amp;rsquo;带病&amp;rsquo;工作）&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
