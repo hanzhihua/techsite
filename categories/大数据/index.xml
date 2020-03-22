@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 &lt;a href=&#34;http://www.beian.miit.gov.cn&#34;&gt;沪ICP备19026538号&lt;/a&gt; </copyright>
-    <lastBuildDate>Thu, 30 Jan 2020 10:36:14 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 22 Mar 2020 17:51:18 +0800</lastBuildDate>
     
 	<atom:link href="https://hanzhihua.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>线程不工作</title>
+      <link>https://hanzhihua.cn/post/cs_7/</link>
+      <pubDate>Sun, 22 Mar 2020 17:51:18 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cs_7/</guid>
+      <description>调度系统中的消息组件出现了消息堆积的现象 现象重放 消息中心的消息包括调度信息、任务状态 任务状态如果不能及时处理的话，后面的依赖任务也不能被及时</description>
+    </item>
     
     <item>
       <title>大数据平台DAG应用</title>

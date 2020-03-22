@@ -7,10 +7,64 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>All rights reserved - 2019 &lt;a href=&#34;http://www.beian.miit.gov.cn&#34;&gt;沪ICP备19026538号&lt;/a&gt; </copyright>
-    <lastBuildDate>Tue, 03 Mar 2020 11:59:48 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 22 Mar 2020 17:51:18 +0800</lastBuildDate>
     
         <atom:link href="https://hanzhihua.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>线程不工作</title>
+      <link>https://hanzhihua.cn/post/cs_7/</link>
+      <pubDate>Sun, 22 Mar 2020 17:51:18 +0800</pubDate>
+      
+      <guid>https://hanzhihua.cn/post/cs_7/</guid>
+      
+        <description>
+
+&lt;p&gt;调度系统中的消息组件出现了消息堆积的现象&lt;/p&gt;
+
+&lt;h2 id=&#34;现象重放&#34;&gt;现象重放&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;消息中心的消息包括调度信息、任务状态&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;任务状态如果不能及时处理的话，后面的依赖任务也不能被及时被调度，导致整个调度系统出现了堵塞，不能工作&lt;/li&gt;
+&lt;li&gt;消息中心组件架构&lt;br /&gt;
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://hanzhihua.cn/event_center.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;https://hanzhihua.cn/event_center.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;问题分析&#34;&gt;问题分析&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;通过jstack -l pid，查看到所有的消息消费线程都是runnable状态，堆栈全部堵在读取mongo上面&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;mongo读取使用了spring 的MongoTemplate，发现了里面设置了socketTimeout设置了为0，就意味在mongo client如果服务端没有返回，就会一直等下去了&lt;/li&gt;
+&lt;li&gt;同时发现了当时mongo处于不可用的情况&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;改善措施&#34;&gt;改善措施&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;当然就是设置mongo socketTimeout,设置成20秒&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;重构消息中心组件
+
+&lt;ul&gt;
+&lt;li&gt;消息分类，使用不同的线程来处理，调度日志和任务状态变更消息重要级别是不一样的，调度日志消息是可以降级的&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;消息新增合并功能，就是调度日志可以合并，未处理的同类型的消息可合并，如果出现最终的调度消息，前面为处理的消息可drop,不处理&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>Nio客户端上层功能</title>
@@ -1740,30 +1794,6 @@ jdbc.validation_query  = &amp;quot;select 1&amp;quot;
 &lt;ul&gt;
 &lt;li&gt;因为写一个ExceptionSort成本比较高，所以就在取的连接的时候，做一次连接可用性的检查，testOnBorrow设置为true&lt;/li&gt;
 &lt;li&gt;validation_query  = &amp;ldquo;select 1&amp;rdquo;,对于普通的关系型数据库是一个比较好的选择，但对应hive就非常慢了,改成 &amp;ldquo;show databases&amp;rdquo; 就会快很多&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>HADOOP集群 健康状况检测方案</title>
-      <link>https://hanzhihua.cn/post/sre_1/</link>
-      <pubDate>Tue, 10 Sep 2019 11:09:03 +0800</pubDate>
-      
-      <guid>https://hanzhihua.cn/post/sre_1/</guid>
-      
-        <description>
-
-&lt;h2 id=&#34;hadoop集群-健康状况检测方案&#34;&gt;HADOOP集群 健康状况检测方案&lt;/h2&gt;
-
-&lt;p&gt;流程：对linux的日志进行监控，当发生错误时候，对硬盘或者机器做下线处理&lt;/p&gt;
-
-&lt;h3 id=&#34;监控方法&#34;&gt;监控方法&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;文件:/var/log/syslog  ,内容: &amp;ldquo;NIC Link is Down&amp;rdquo;,直接下线该机器&lt;/li&gt;
-&lt;li&gt;文件::/var/log/syslog ,内容: &amp;ldquo;I/O error&amp;rdquo; 下线该磁盘&lt;/li&gt;
-&lt;li&gt;文件::/var/log/syslog ,内容: &amp;ldquo;blk_update_request: critical medium error&amp;rdquo; 下线该磁盘&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
