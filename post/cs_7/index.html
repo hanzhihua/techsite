@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="韩志华" />
-  <meta name="description" content="调度系统中的消息组件出现了消息堆积的现象 现象重放 消息中心的消息包括调度信息、任务状态 任务状态如果不能及时处理的话，后面的依赖任务也不能被及时" />
+  <meta name="description" content="调度系统中的消息组件出现了消息堆积的现象 现象重放 收到了消息堆积的报警 消息中心的消息包括调度信息消息、任务状态修改消息 任务状态修改消息如果不能" />
 
 
 
@@ -57,25 +57,25 @@
 
 
 <meta property="og:title" content="线程不工作" />
-<meta property="og:description" content="调度系统中的消息组件出现了消息堆积的现象 现象重放 消息中心的消息包括调度信息、任务状态 任务状态如果不能及时处理的话，后面的依赖任务也不能被及时" />
+<meta property="og:description" content="调度系统中的消息组件出现了消息堆积的现象 现象重放 收到了消息堆积的报警 消息中心的消息包括调度信息消息、任务状态修改消息 任务状态修改消息如果不能" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hanzhihua.cn/post/cs_7/" />
 <meta property="article:published_time" content="2020-03-22T17:51:18+08:00" />
 <meta property="article:modified_time" content="2020-03-22T17:51:18+08:00" />
 <meta itemprop="name" content="线程不工作">
-<meta itemprop="description" content="调度系统中的消息组件出现了消息堆积的现象 现象重放 消息中心的消息包括调度信息、任务状态 任务状态如果不能及时处理的话，后面的依赖任务也不能被及时">
+<meta itemprop="description" content="调度系统中的消息组件出现了消息堆积的现象 现象重放 收到了消息堆积的报警 消息中心的消息包括调度信息消息、任务状态修改消息 任务状态修改消息如果不能">
 
 
 <meta itemprop="datePublished" content="2020-03-22T17:51:18&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-22T17:51:18&#43;08:00" />
-<meta itemprop="wordCount" content="440">
+<meta itemprop="wordCount" content="460">
 
 
 
 <meta itemprop="keywords" content="casestudy," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="线程不工作"/>
-<meta name="twitter:description" content="调度系统中的消息组件出现了消息堆积的现象 现象重放 消息中心的消息包括调度信息、任务状态 任务状态如果不能及时处理的话，后面的依赖任务也不能被及时"/>
+<meta name="twitter:description" content="调度系统中的消息组件出现了消息堆积的现象 现象重放 收到了消息堆积的报警 消息中心的消息包括调度信息消息、任务状态修改消息 任务状态修改消息如果不能"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -327,8 +327,9 @@
 <h2 id="现象重放">现象重放</h2>
 
 <ul>
-<li>消息中心的消息包括调度信息、任务状态<br /></li>
-<li>任务状态如果不能及时处理的话，后面的依赖任务也不能被及时被调度，导致整个调度系统出现了堵塞，不能工作</li>
+<li>收到了消息堆积的报警<br /></li>
+<li>消息中心的消息包括调度信息消息、任务状态修改消息<br /></li>
+<li>任务状态修改消息如果不能及时处理的话，后面的依赖任务也不能被及时被调度，导致整个调度系统出现了堵塞，不能工作<br /></li>
 <li>消息中心组件架构<br />
 
 <link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
@@ -341,7 +342,7 @@
     <a href="/event_center.png" itemprop="contentUrl"></a>
   </figure>
 </div>
-</li>
+<br /></li>
 </ul>
 
 <h2 id="问题分析">问题分析</h2>
@@ -349,7 +350,7 @@
 <ul>
 <li>通过jstack -l pid，查看到所有的消息消费线程都是runnable状态，堆栈全部堵在读取mongo上面<br /></li>
 <li>mongo读取使用了spring 的MongoTemplate，发现了里面设置了socketTimeout设置了为0，就意味在mongo client如果服务端没有返回，就会一直等下去了</li>
-<li>同时发现了当时mongo处于不可用的情况</li>
+<li>同时发现了当时mongo处于不可用的情况<br /></li>
 </ul>
 
 <h2 id="改善措施">改善措施</h2>

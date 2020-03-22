@@ -26,8 +26,9 @@
 &lt;h2 id=&#34;现象重放&#34;&gt;现象重放&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;消息中心的消息包括调度信息、任务状态&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;任务状态如果不能及时处理的话，后面的依赖任务也不能被及时被调度，导致整个调度系统出现了堵塞，不能工作&lt;/li&gt;
+&lt;li&gt;收到了消息堆积的报警&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;消息中心的消息包括调度信息消息、任务状态修改消息&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;任务状态修改消息如果不能及时处理的话，后面的依赖任务也不能被及时被调度，导致整个调度系统出现了堵塞，不能工作&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;消息中心组件架构&lt;br /&gt;
 
 
@@ -40,7 +41,7 @@
     &lt;a href=&#34;https://hanzhihua.cn/event_center.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
   &lt;/figure&gt;
 &lt;/div&gt;
-&lt;/li&gt;
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;问题分析&#34;&gt;问题分析&lt;/h2&gt;
@@ -48,7 +49,7 @@
 &lt;ul&gt;
 &lt;li&gt;通过jstack -l pid，查看到所有的消息消费线程都是runnable状态，堆栈全部堵在读取mongo上面&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;mongo读取使用了spring 的MongoTemplate，发现了里面设置了socketTimeout设置了为0，就意味在mongo client如果服务端没有返回，就会一直等下去了&lt;/li&gt;
-&lt;li&gt;同时发现了当时mongo处于不可用的情况&lt;/li&gt;
+&lt;li&gt;同时发现了当时mongo处于不可用的情况&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;改善措施&#34;&gt;改善措施&lt;/h2&gt;
