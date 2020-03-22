@@ -13,12 +13,12 @@
     
     
     <item>
-      <title>线程不工作</title>
+      <title>消息堆积问题分析</title>
       <link>https://hanzhihua.cn/post/cs_7/</link>
       <pubDate>Sun, 22 Mar 2020 17:51:18 +0800</pubDate>
       
       <guid>https://hanzhihua.cn/post/cs_7/</guid>
-      <description>调度系统中的消息组件出现了消息堆积的现象 现象重放 收到了消息堆积的报警 消息中心的消息包括调度信息消息、任务状态修改消息 任务状态修改消息如果不能</description>
+      <description>调度系统中的消息组件出现了消息堆积的现象 现象重放 收到了消息堆积的报警，整个调度系统都堵住了 消息中心的消息包括调度信息消息、任务状态修改消息 任</description>
     </item>
     
     <item>
